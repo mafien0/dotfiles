@@ -46,61 +46,44 @@ return {
 			map("n", "<leader>ga", vim.lsp.buf.code_action, { desc = "Code action" })
 
 			-- Diagnostics
-			map("n", "<leader>ge", vim.diagnostic.open_float, { desc = "Line diagnostics" })
 			map("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
 			map("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
 			map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostics list" })
 
-			-- Mason
-			map("n", "<leader>gm", function()
-				require("mason.ui").open()
-			end, { desc = "Mason UI" })
-
-			-- Trouble (overrides <leader>ge diagnostic open_float)
+			-- Trouble
 			map("n", "<leader>ge", function()
 				require("trouble").toggle({ mode = "diagnostics" })
 			end, { desc = "Toggle trouble" })
-		end,
-	},
 
-	-- Mason
-	{
-		"mason-org/mason.nvim",
-		cmd = "Mason",
-		opts = {},
-	},
-
-	-- Lsp & Mason
-	{
-		"mason-org/mason-lspconfig.nvim",
-		opts = {
-			ensure_installed = {
+			-- LSP servers (provided by Nix system packages)
+			vim.lsp.enable({
 				"lua_ls",
-				"rust_analyzer",
 				"gopls",
-				"vtsls",
 				"pyright",
 				"clangd",
 				"marksman",
-				"stylua",
-				"gofumpt",
-				"goimports",
-			},
-		},
-		config = function()
-			require("mason-lspconfig").setup({
-				handlers = {
-					-- Default handler for all servers
-					function(server_name)
-						require("lspconfig")[server_name].setup({})
-					end,
+				"jsonls",
+				"yamlls",
+				"ts_ls",
+				"bashls",
+			})
+
+			vim.lsp.config("nixd", {
+				cmd = { "nixd" },
+				settings = {
+					nixd = {
+						nixpkgs = {
+							expr = "import /nix/var/nix/profiles/per-user/root/channels/nixos { }",
+						},
+						formatting = {
+							command = { "nixfmt" },
+						},
+					},
 				},
 			})
+			vim.lsp.enable("nixd")
+
 		end,
-		dependencies = {
-			"mason-org/mason.nvim",
-			"neovim/nvim-lspconfig",
-		},
 	},
 
 	-- Glance

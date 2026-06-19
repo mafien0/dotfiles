@@ -3,7 +3,6 @@
   flake.nixosModules.desktopConfiguration =
     {
       pkgs,
-      lib,
       config,
       ...
     }:
@@ -37,6 +36,7 @@
         trusted-public-keys = [ "nix-community.cachix-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
       };
 
+      # Grub
       boot.loader = {
         grub = {
           enable = true;
@@ -46,9 +46,12 @@
         efi.canTouchEfiVariables = true;
       };
 
+      # Ly dm
+      services.displayManager.ly.enable = true;
+
+      # Something other configureation
       networking.hostName = "desktop";
       networking.networkmanager.enable = true;
-
       time.timeZone = "Asia/Almaty";
 
       i18n.defaultLocale = "en_US.UTF-8";
@@ -61,15 +64,14 @@
         shell = pkgs.zsh;
       };
 
+      # I want to switch to helium
       programs.firefox.enable = true;
 
       environment.systemPackages = with pkgs; [
         wget
-        cargo
-        rustc
         opencode
         nixfmt
-        nil
+        nixd
         ripgrep
       ];
 
