@@ -21,10 +21,6 @@
         width = 3;
       };
 
-      # border = {
-      #   width = 1;
-      # };
-
       shadow = {
         softness = 30;
         spread = 5;
@@ -37,10 +33,10 @@
       };
     };
 
-    # cursor = {
-    #   xcursor-theme = "Bibata-Modern-Classic";
-    #   xcursor-size = 20;
-    # };
+    cursor = {
+      xcursor-theme = "Bibata-Modern-Classic";
+      xcursor-size = 20;
+    };
 
     hotkey-overlay = {
       skip-at-startup = _: { };

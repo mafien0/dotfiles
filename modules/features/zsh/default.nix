@@ -28,9 +28,6 @@
         };
 
         interactiveShellInit = ''
-          # Remove timestamp from candy theme
-          PROMPT='%n@%m %~ %# '
-
           fpath=(~/.zsh $fpath)
           autoload -Uz compinit
           compinit -u

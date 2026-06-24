@@ -14,8 +14,10 @@
 
         # GUI
         self.nixosModules.gtk
+        self.nixosModules.qt
         self.nixosModules.niri
         self.nixosModules.foot
+        self.nixosModules.apps
         self.nixosModules.spicetify
         self.nixosModules.nixcord
         self.nixosModules.helium
@@ -65,17 +67,25 @@
       users.users.mafien0 = {
         isNormalUser = true;
         initialPassword = "passwd";
-        extraGroups = [ "wheel" ];
+        extraGroups = [
+          "wheel"
+          "disk"
+        ];
         shell = pkgs.zsh;
       };
 
+      # Packages
       environment.systemPackages = with pkgs; [
+        # Cli / Tui
         btop
         cloc
         fzf
         wget
         ripgrep
+        killall
+
         localsend
+        prismlauncher
       ];
 
       programs.steam = {

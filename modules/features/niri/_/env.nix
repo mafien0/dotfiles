@@ -5,6 +5,7 @@
       ELECTRON_OZONE_PLATFORM_HINT = "wayland";
       MOZ_ENABLE_WAYLAND = "1";
       QT_QPA_PLATFORM = "wayland";
+      QT_QPA_PLATFORMTHEME = "qt6ct";
       WINE_VK_VULKAN_ONLY = "1";
       XDG_SESSION_TYPE = "wayland";
     };
