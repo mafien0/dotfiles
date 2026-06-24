@@ -10,18 +10,23 @@
 
       imports = [
         self.nixosModules.desktopHardware
-
-        self.nixosModules.nh
+        self.nixosModules.homeManager
 
         # GUI
-        self.nixosModules.foot
+        self.nixosModules.gtk
         self.nixosModules.niri
+        self.nixosModules.foot
+        self.nixosModules.spicetify
+        self.nixosModules.nixcord
+        self.nixosModules.helium
 
         # CLI
         self.nixosModules.zsh
+        self.nixosModules.nh
         self.nixosModules.tmux
         self.nixosModules.neovim
         self.nixosModules.git
+        self.nixosModules.opencode
       ];
 
       system.stateVersion = "26.05";
@@ -64,16 +69,21 @@
         shell = pkgs.zsh;
       };
 
-      # I want to switch to helium
-      programs.firefox.enable = true;
-
       environment.systemPackages = with pkgs; [
+        btop
+        cloc
+        fzf
         wget
-        opencode
-        nixfmt
-        nixd
         ripgrep
+        localsend
       ];
+
+      programs.steam = {
+        enable = true;
+        remotePlay.openFirewall = true;
+        dedicatedServer.openFirewall = true;
+        localNetworkGameTransfers.openFirewall = true;
+      };
 
       fonts.packages = with pkgs; [
         # Nerd Fonts

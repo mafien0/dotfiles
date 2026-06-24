@@ -1,6 +1,6 @@
 { inputs, moduleWithSystem, ... }: {
   flake.nixosModules.zsh = moduleWithSystem (
-    { config, ... }: { pkgs, lib, ... }: {
+    { ... }: { pkgs, ... }: {
       programs.zsh = {
         enable = true;
         syntaxHighlighting.enable = true;
@@ -28,6 +28,9 @@
         };
 
         interactiveShellInit = ''
+          # Remove timestamp from candy theme
+          PROMPT='%n@%m %~ %# '
+
           fpath=(~/.zsh $fpath)
           autoload -Uz compinit
           compinit -u
@@ -49,7 +52,7 @@
   );
 
   perSystem =
-    { pkgs, lib, ... }:
+    { pkgs, ... }:
     {
       packages.myZsh = inputs.wrapper-modules.wrappers.zsh.wrap {
         inherit pkgs;

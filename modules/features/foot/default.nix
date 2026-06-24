@@ -5,7 +5,7 @@
 }:
 {
   flake.nixosModules.foot = moduleWithSystem (
-    { config, ... }: { pkgs, lib, ... }: {
+    { config, ... }: { ... }: {
       environment.systemPackages = [ config.packages.myFeet ];
     }
   );

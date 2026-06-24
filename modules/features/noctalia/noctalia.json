@@ -204,28 +204,13 @@
       "lockScreenBlur": 0.7000000000000001,
       "lockScreenTint": 0,
       "keybinds": {
-        "keyUp": [
-          "Up"
-        ],
-        "keyDown": [
-          "Down"
-        ],
-        "keyLeft": [
-          "Left"
-        ],
-        "keyRight": [
-          "Right"
-        ],
-        "keyEnter": [
-          "Return",
-          "Enter"
-        ],
-        "keyEscape": [
-          "Esc"
-        ],
-        "keyRemove": [
-          "Del"
-        ]
+        "keyUp": ["Up"],
+        "keyDown": ["Down"],
+        "keyLeft": ["Left"],
+        "keyRight": ["Right"],
+        "keyEnter": ["Return", "Enter"],
+        "keyEscape": ["Esc"],
+        "keyRemove": ["Del"]
       },
       "reverseScroll": false,
       "smoothScrollEnabled": true
@@ -582,11 +567,7 @@
       "autoHideMs": 2000,
       "overlayLayer": true,
       "backgroundOpacity": 1,
-      "enabledTypes": [
-        0,
-        1,
-        2
-      ],
+      "enabledTypes": [0, 1, 2],
       "monitors": []
     },
     "audio": {
