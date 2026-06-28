@@ -5,7 +5,10 @@
 {
   flake.nixosModules.apps = moduleWithSystem (
     { ... }: { pkgs, ... }: {
+      services.gvfs.enable = true;
       services.udisks2.enable = true;
+      programs.ssh.startAgent = true;
+      services.gnome.gcr-ssh-agent.enable = false;
       security.polkit.enable = true;
 
       environment.systemPackages = with pkgs; [

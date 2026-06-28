@@ -4,8 +4,8 @@
     spawn-sh-at-startup = [
       (lib.getExe pkgs.noctalia-shell)
       "hypridle"
-      "wl-paste --watch cliphist store"
-      "wl-clip-persist --clipboard regular"
+      "${lib.getExe pkgs.wl-clip-persist} --clipboard regular --primary"
+      (lib.getExe' pkgs.polkit_gnome "polkit-gnome-authentication-agent-1")
       "tailscale systray"
     ];
 

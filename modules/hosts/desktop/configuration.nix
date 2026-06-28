@@ -22,13 +22,16 @@
         self.nixosModules.nixcord
         self.nixosModules.helium
 
-        # CLI
+        # CLI & TUI
         self.nixosModules.zsh
         self.nixosModules.nh
         self.nixosModules.tmux
         self.nixosModules.neovim
         self.nixosModules.git
         self.nixosModules.opencode
+        self.nixosModules.btop
+        self.nixosModules.pipewire
+        self.nixosModules.tailscale
       ];
 
       system.stateVersion = "26.05";
@@ -77,15 +80,16 @@
       # Packages
       environment.systemPackages = with pkgs; [
         # Cli / Tui
-        btop
         cloc
         fzf
         wget
         ripgrep
         killall
+        fastfetch # Cool
 
         localsend
         prismlauncher
+        blockbench
       ];
 
       programs.steam = {
@@ -93,6 +97,7 @@
         remotePlay.openFirewall = true;
         dedicatedServer.openFirewall = true;
         localNetworkGameTransfers.openFirewall = true;
+        extraPackages = with pkgs; [ pulseaudio bibata-cursors ];
       };
 
       fonts.packages = with pkgs; [
@@ -148,6 +153,7 @@
 
       # Nvidia gtx1060 drivers
       hardware.graphics.enable = true;
+      hardware.graphics.enable32Bit = true;
       services.xserver.videoDrivers = [ "nvidia" ];
       hardware.nvidia = {
         open = false;

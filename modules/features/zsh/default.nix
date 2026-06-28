@@ -29,8 +29,6 @@
 
         interactiveShellInit = ''
           fpath=(~/.zsh $fpath)
-          autoload -Uz compinit
-          compinit -u
 
           autoload -U up-line-or-beginning-search down-line-or-beginning-search
           zle -N up-line-or-beginning-search

@@ -101,7 +101,7 @@
       "Mod+Alt+S" = _: {
         props.repeat = false;
         content."spawn-sh" =
-          "niri msg action screenshot-screen && sleep 0.5; wl-paste | satty --filename -";
+          "niri msg action screenshot-screen && sleep 0.5; ${lib.getExe' pkgs.wl-clipboard "wl-paste"} | ${lib.getExe pkgs.satty} --filename -";
       };
       "Mod+Z" = _: {
         props.repeat = false;

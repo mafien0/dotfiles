@@ -6,7 +6,9 @@
     { ... }: { pkgs, ... }: {
       environment.systemPackages = with pkgs; [
         qt6Packages.qt6ct
+        qt6Packages.qtwayland
         libsForQt5.qt5ct
+        libsForQt5.qtwayland
       ];
 
       environment.sessionVariables = {
