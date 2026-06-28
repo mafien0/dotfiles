@@ -26,7 +26,8 @@
     }:
     let
       footPkg = config.packages.myFeet or pkgs.foot;
-      cfg = import ./_/config.nix { inherit pkgs lib; };
+      hypridlePkg = config.packages.myHypridle or pkgs.hypridle;
+      cfg = import ./_/config.nix { inherit pkgs lib hypridlePkg; };
       sty = import ./_/style.nix { inherit pkgs lib; };
       inp = import ./_/input.nix { inherit pkgs lib footPkg; };
       env = import ./_/env.nix { inherit pkgs lib; };

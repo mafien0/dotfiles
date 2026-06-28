@@ -12,11 +12,17 @@
         self.nixosModules.desktopHardware
         self.nixosModules.homeManager
 
+        # Services
+        self.nixosModules.pipewire
+        self.nixosModules.tailscale
+        self.nixosModules.sync
+
         # GUI
         self.nixosModules.gtk
         self.nixosModules.qt
         self.nixosModules.niri
         self.nixosModules.foot
+        self.nixosModules.hypridle
         self.nixosModules.apps
         self.nixosModules.spicetify
         self.nixosModules.nixcord
@@ -30,8 +36,6 @@
         self.nixosModules.git
         self.nixosModules.opencode
         self.nixosModules.btop
-        self.nixosModules.pipewire
-        self.nixosModules.tailscale
       ];
 
       system.stateVersion = "26.05";
@@ -97,7 +101,10 @@
         remotePlay.openFirewall = true;
         dedicatedServer.openFirewall = true;
         localNetworkGameTransfers.openFirewall = true;
-        extraPackages = with pkgs; [ pulseaudio bibata-cursors ];
+        extraPackages = with pkgs; [
+          pulseaudio
+          bibata-cursors
+        ];
       };
 
       fonts.packages = with pkgs; [
