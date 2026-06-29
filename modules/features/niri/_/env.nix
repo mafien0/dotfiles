@@ -8,6 +8,7 @@
       QT_QPA_PLATFORM = "wayland";
       QT_QPA_PLATFORMTHEME = "qt6ct";
       WINE_VK_VULKAN_ONLY = "1";
+      _JAVA_AWT_WM_NONREPARENTING = "1";
       XCURSOR_THEME = "Bibata-Modern-Classic";
       XCURSOR_SIZE = "20";
       XCURSOR_PATH = lib.concatStringsSep ":" [

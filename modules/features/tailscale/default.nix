@@ -1,5 +1,4 @@
 {
-  inputs,
   moduleWithSystem,
   ...
 }:
@@ -10,6 +9,8 @@
         enable = true;
         openFirewall = true;
       };
+
+      services.resolved.enable = true;
     }
   );
 }

@@ -5,7 +5,7 @@
 }:
 {
   flake.nixosModules.neovim = moduleWithSystem (
-    { config, ... }: { pkgs, lib, ... }: {
+    { config, ... }: { ... }: {
       environment.systemPackages = [ config.packages.myNeovim ];
       environment.sessionVariables.EDITOR = "nvim";
     }

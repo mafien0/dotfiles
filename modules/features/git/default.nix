@@ -5,7 +5,7 @@
 }:
 {
   flake.nixosModules.git = moduleWithSystem (
-    { config, ... }: { pkgs, lib, ... }: {
+    { config, ... }: { ... }: {
       environment.systemPackages = [ config.packages.myGit ];
     }
   );

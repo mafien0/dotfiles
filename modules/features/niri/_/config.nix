@@ -1,4 +1,8 @@
-{ pkgs, lib, hypridlePkg }:
+{
+  pkgs,
+  lib,
+  hypridlePkg,
+}:
 {
   settings = {
     spawn-sh-at-startup = [
@@ -7,6 +11,7 @@
       "${lib.getExe pkgs.wl-clip-persist} --clipboard regular --primary"
       (lib.getExe' pkgs.polkit_gnome "polkit-gnome-authentication-agent-1")
       "tailscale systray"
+      "${lib.getExe pkgs.xrdb} -merge <<< 'Xcursor.theme: Bibata-Modern-Classic\nXcursor.size: 20'"
     ];
 
     xwayland-satellite = {

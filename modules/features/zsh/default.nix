@@ -1,6 +1,6 @@
 { inputs, moduleWithSystem, ... }: {
   flake.nixosModules.zsh = moduleWithSystem (
-    { ... }: { pkgs, ... }: {
+    { ... }: { pkgs, lib, ... }: {
       programs.zsh = {
         enable = true;
         syntaxHighlighting.enable = true;
@@ -9,10 +9,10 @@
         histFile = "~/.zsh_history";
 
         shellAliases = {
-          l = "${pkgs.eza}/bin/eza -la --icons=auto --classify --group-directories-first --header --time-style=long-iso";
-          ls = "${pkgs.eza}/bin/eza --icons=auto --classify --group-directories-first --header --time-style=long-iso";
-          lt = "${pkgs.eza}/bin/eza --tree --icons=auto --classify --group-directories-first --header --time-style=long-iso";
-          g = "${pkgs.git}/bin/git";
+          l = "${lib.getExe pkgs.eza} -la --icons=auto --classify --group-directories-first --header --time-style=long-iso";
+          ls = "${lib.getExe pkgs.eza} --icons=auto --classify --group-directories-first --header --time-style=long-iso";
+          lt = "${lib.getExe pkgs.eza} --tree --icons=auto --classify --group-directories-first --header --time-style=long-iso";
+          g = "${lib.getExe pkgs.git}";
           c = "clear";
         };
 

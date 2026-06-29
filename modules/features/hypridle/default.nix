@@ -10,24 +10,26 @@
   );
 
   perSystem =
-    { pkgs, ... }:
+    { pkgs, lib, ... }:
     let
+      wlopm = lib.getExe pkgs.wlopm;
+      gawk = lib.getExe' pkgs.gawk "awk";
       dim = pkgs.writeShellScript "hypridle-dim" ''
-        ${pkgs.wlopm}/bin/wlopm | ${pkgs.gawk}/bin/awk '{print $1}' | while read -r out; do
-          ${pkgs.wlopm}/bin/wlopm --off "$out"
+        ${wlopm} | ${gawk} '{print $1}' | while read -r out; do
+          ${wlopm} --off "$out"
         done
       '';
 
       undim = pkgs.writeShellScript "hypridle-undim" ''
-        ${pkgs.wlopm}/bin/wlopm | ${pkgs.gawk}/bin/awk '{print $1}' | while read -r out; do
-          ${pkgs.wlopm}/bin/wlopm --on "$out"
+        ${wlopm} | ${gawk} '{print $1}' | while read -r out; do
+          ${wlopm} --on "$out"
         done
       '';
 
       hypridleConfig = pkgs.writeText "hypridle.conf" ''
         general {
-            lock_cmd = ${pkgs.hyprlock}/bin/hyprlock
-            before_sleep_cmd = ${pkgs.systemd}/bin/loginctl lock-session
+            lock_cmd = ${lib.getExe pkgs.hyprlock}
+            before_sleep_cmd = ${lib.getExe' pkgs.systemd "loginctl"} lock-session
             after_sleep_cmd = ${undim}
         }
 
@@ -39,18 +41,18 @@
 
         listener {
             timeout = 600
-            on-timeout = ${pkgs.systemd}/bin/loginctl lock-session
+            on-timeout = ${lib.getExe' pkgs.systemd "loginctl"} lock-session
         }
 
         listener {
             timeout = 900
-            on-timeout = ${pkgs.systemd}/bin/systemctl suspend
+            on-timeout = ${lib.getExe' pkgs.systemd "systemctl"} suspend
         }
       '';
     in
     {
       packages.myHypridle = pkgs.writeShellScriptBin "hypridle" ''
-        exec ${pkgs.hypridle}/bin/hypridle --config ${hypridleConfig}
+        exec ${lib.getExe pkgs.hypridle} --config ${hypridleConfig}
       '';
     };
 }

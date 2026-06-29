@@ -1,6 +1,6 @@
 { moduleWithSystem, ... }: {
   flake.nixosModules.sync = moduleWithSystem (
-    { ... }: { pkgs, lib, ... }: {
+    { config, ... }: { pkgs, lib, ... }: {
       systemd.services.auto-git-sync = {
         description = "Auto-sync nix config to git remote";
         after = [ "network-online.target" ];
@@ -10,15 +10,17 @@
           User = "mafien0";
           WorkingDirectory = "/home/mafien0/nix";
         };
+        path = [ pkgs.openssh ];
         environment = {
           GIT_SSH_COMMAND = "${lib.getExe pkgs.openssh} -i /home/mafien0/.ssh/id_ed25519 -o StrictHostKeyChecking=accept-new";
         };
         script = ''
           set -euo pipefail
-          ${lib.getExe pkgs.git} add -A
-          ${lib.getExe pkgs.git} diff --cached --quiet || (
-            ${lib.getExe pkgs.git} commit -m "auto: daily sync $(date +%Y-%m-%d)"
-            ${lib.getExe pkgs.git} push
+          GIT=${lib.getExe config.packages.myGit}
+          $GIT add -A
+          $GIT diff --cached --quiet || (
+            $GIT commit -m "auto: daily sync $(date +%Y-%m-%d)"
+            $GIT push
           )
         '';
       };

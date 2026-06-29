@@ -5,7 +5,7 @@
 }:
 {
   flake.nixosModules.niri = moduleWithSystem (
-    { config, ... }: { pkgs, lib, ... }: {
+    { config, ... }: { pkgs, ... }: {
       programs.niri = {
         enable = true;
         package = config.packages.myNiri;

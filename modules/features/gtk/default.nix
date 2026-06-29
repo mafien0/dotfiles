@@ -3,19 +3,25 @@
   ...
 }:
 let
-  mkMyIconTheme = pkgs: (pkgs.colloid-icon-theme.override { colorVariants = ["grey"]; }).overrideAttrs (old: {
-    postInstall = (old.postInstall or "") + ''
-      for theme in "$out/share/icons/"*/index.theme; do
-        substituteInPlace "$theme" \
-          --replace-fail "Inherits=hicolor,breeze" "Inherits=Papirus-Dark,Papirus,hicolor,breeze"
-      done
-    '';
-  });
-in {
+  mkMyIconTheme =
+    pkgs:
+    (pkgs.colloid-icon-theme.override { colorVariants = [ "grey" ]; }).overrideAttrs (old: {
+      postInstall = (old.postInstall or "") + ''
+        for theme in "$out/share/icons/"*/index.theme; do
+          substituteInPlace "$theme" \
+            --replace-fail "Inherits=hicolor,breeze" "Inherits=Papirus-Dark,Papirus,hicolor,breeze"
+        done
+      '';
+    });
+in
+{
   flake.nixosModules.gtk = moduleWithSystem (
-    { ... }: { pkgs, lib, ... }: let
+    { ... }:
+    { pkgs, lib, ... }:
+    let
       myIconTheme = mkMyIconTheme pkgs;
-    in {
+    in
+    {
       programs.dconf.enable = true;
 
       environment.systemPackages = with pkgs; [
@@ -39,35 +45,43 @@ in {
     }
   );
 
-  flake.homeManagerModules.gtk = { pkgs, ... }: let
-    myIconTheme = mkMyIconTheme pkgs;
-  in {
-    gtk = {
-      enable = true;
-      theme = {
-        name = "adw-gtk3";
-        package = pkgs.adw-gtk3;
+  flake.homeManagerModules.gtk =
+    { pkgs, ... }:
+    let
+      myIconTheme = mkMyIconTheme pkgs;
+    in
+    {
+      gtk = {
+        enable = true;
+        theme = {
+          name = "adw-gtk3";
+          package = pkgs.adw-gtk3;
+        };
+        iconTheme = {
+          name = "Colloid-Grey-Dark";
+          package = myIconTheme;
+        };
+        cursorTheme = {
+          name = "Bibata-Modern-Classic";
+          package = pkgs.bibata-cursors;
+        };
       };
-      iconTheme = {
-        name = "Colloid-Grey-Dark";
-        package = myIconTheme;
-      };
-      cursorTheme = {
-        name = "Bibata-Modern-Classic";
-        package = pkgs.bibata-cursors;
+
+      home.file.".config/gtk-4.0/gtk.css".text = ''
+        @import url("noctalia.css");
+      '';
+
+      home.file.".icons/default/index.theme".text = ''
+        [Icon Theme]
+        Inherits=Bibata-Modern-Classic
+      '';
+
+      dconf = {
+        enable = true;
+        settings."org/gnome/desktop/interface" = {
+          "gtk-theme" = "adw-gtk3";
+          "color-scheme" = "prefer-dark";
+        };
       };
     };
-
-    home.file.".config/gtk-4.0/gtk.css".text = ''
-      @import url("noctalia.css");
-    '';
-
-    dconf = {
-      enable = true;
-      settings."org/gnome/desktop/interface" = {
-        "gtk-theme" = "adw-gtk3";
-        "color-scheme" = "prefer-dark";
-      };
-    };
-  };
 }

@@ -204,13 +204,28 @@
       "lockScreenBlur": 0.7000000000000001,
       "lockScreenTint": 0,
       "keybinds": {
-        "keyUp": ["Up"],
-        "keyDown": ["Down"],
-        "keyLeft": ["Left"],
-        "keyRight": ["Right"],
-        "keyEnter": ["Return", "Enter"],
-        "keyEscape": ["Esc"],
-        "keyRemove": ["Del"]
+        "keyUp": [
+          "Up"
+        ],
+        "keyDown": [
+          "Down"
+        ],
+        "keyLeft": [
+          "Left"
+        ],
+        "keyRight": [
+          "Right"
+        ],
+        "keyEnter": [
+          "Return",
+          "Enter"
+        ],
+        "keyEscape": [
+          "Esc"
+        ],
+        "keyRemove": [
+          "Del"
+        ]
       },
       "reverseScroll": false,
       "smoothScrollEnabled": true
@@ -309,7 +324,7 @@
       "favorites": []
     },
     "appLauncher": {
-      "enableClipboardHistory": true,
+      "enableClipboardHistory": false,
       "autoPasteClipboard": false,
       "enableClipPreview": true,
       "clipboardWrapText": true,
@@ -318,14 +333,19 @@
       "clipboardWatchTextCommand": "wl-paste --type text --watch cliphist store",
       "clipboardWatchImageCommand": "wl-paste --type image --watch cliphist store",
       "position": "center",
-      "pinnedApps": [],
+      "pinnedApps": [
+        "vesktop",
+        "org.prismlauncher.PrismLauncher",
+        "spotify",
+        "helium"
+      ],
       "sortByMostUsed": true,
       "terminalCommand": "alacritty -e",
       "customLaunchPrefixEnabled": false,
       "customLaunchPrefix": "",
       "viewMode": "grid",
       "showCategories": true,
-      "iconMode": "tabler",
+      "iconMode": "native",
       "showIconBackground": false,
       "enableSettingsSearch": true,
       "enableWindowsSearch": true,
@@ -567,7 +587,11 @@
       "autoHideMs": 2000,
       "overlayLayer": true,
       "backgroundOpacity": 1,
-      "enabledTypes": [0, 1, 2],
+      "enabledTypes": [
+        0,
+        1,
+        2
+      ],
       "monitors": []
     },
     "audio": {
@@ -614,11 +638,11 @@
         },
         {
           "enabled": true,
-          "id": "qt"
+          "id": "nvim-base16"
         },
         {
           "enabled": true,
-          "id": "nvim-base16"
+          "id": "qt"
         }
       ],
       "enableUserTheming": true
@@ -686,20 +710,20 @@
     },
     "desktopWidgetsEditMode": false,
     "display": {
-      "winit": {
+      "HDMI-A-1": {
+        "name": "HDMI-A-1",
         "connected": true,
-        "height": 1038,
-        "name": "winit",
-        "physical_height": 0,
-        "physical_width": 0,
-        "refresh_rate": 60000,
         "scale": 1,
-        "transform": "Flipped180",
-        "vrr_enabled": false,
-        "vrr_supported": false,
-        "width": 917,
+        "width": 1920,
+        "height": 1080,
         "x": 0,
-        "y": 0
+        "y": 0,
+        "physical_width": 530,
+        "physical_height": 290,
+        "refresh_rate": 74986,
+        "vrr_supported": false,
+        "vrr_enabled": false,
+        "transform": "Normal"
       }
     },
     "notificationsState": {

@@ -5,7 +5,7 @@
 }:
 {
   flake.nixosModules.nh = moduleWithSystem (
-    { config, ... }: { pkgs, lib, ... }: {
+    { config, ... }: { ... }: {
       programs.nh = {
         enable = true;
         package = config.packages.myNh;

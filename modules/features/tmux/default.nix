@@ -5,7 +5,7 @@
 }:
 {
   flake.nixosModules.tmux = moduleWithSystem (
-    { config, ... }: { pkgs, lib, ... }: {
+    { config, ... }: { ... }: {
       programs.tmux = {
         enable = true;
         package = config.packages.myTmux;

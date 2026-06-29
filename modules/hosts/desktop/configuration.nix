@@ -45,6 +45,9 @@
           "nix-command"
           "flakes"
         ];
+        auto-optimise-store = true;
+        max-jobs = 4;
+        cores = 0;
         # Nix community cachix
         substituters = [ "https://nix-community.cachix.org" ];
         trusted-public-keys = [ "nix-community.cachix-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
@@ -56,9 +59,14 @@
           enable = true;
           device = "nodev";
           efiSupport = true;
+          useOSProber = true;
         };
         efi.canTouchEfiVariables = true;
       };
+
+      services.journald.extraConfig = ''
+        SystemMaxUse=500M
+      '';
 
       # Ly dm
       services.displayManager.ly.enable = true;
@@ -84,6 +92,8 @@
       # Packages
       environment.systemPackages = with pkgs; [
         # Cli / Tui
+        zip
+        unzip
         cloc
         fzf
         wget

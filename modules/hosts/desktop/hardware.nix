@@ -20,8 +20,24 @@
         "sd_mod"
       ];
       boot.initrd.kernelModules = [ ];
-      boot.kernelModules = [ ];
+      boot.kernelModules = [ "tcp_bbr" ];
       boot.extraModulePackages = [ ];
+
+      boot.kernelParams = [
+        "nowatchdog"
+        "udev.log_priority=3"
+      ];
+
+      boot.kernel.sysctl = {
+        "vm.swappiness" = 10;
+        "vm.vfs_cache_pressure" = 50;
+        "vm.dirty_ratio" = 10;
+        "vm.dirty_background_ratio" = 5;
+        "net.core.default_qdisc" = "cake";
+        "net.ipv4.tcp_congestion_control" = "bbr";
+      };
+
+      powerManagement.cpuFreqGovernor = "performance";
 
       fileSystems."/" = {
         device = "/dev/disk/by-uuid/e3e52f52-bb10-4280-8e0a-a0d692cb465b";
