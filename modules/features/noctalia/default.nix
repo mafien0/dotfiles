@@ -7,6 +7,8 @@
 
       settings = (builtins.fromJSON (builtins.readFile ./noctalia.json)).settings;
 
+      runtimePkgs = with pkgs; [ cliphist wl-clipboard ];
+
       user-templates = {
         neovim = {
           input_path = "~/nix/modules/features/neovim/nvim/lua/matugen-template.lua";
