@@ -12,6 +12,7 @@
       };
 
       environment.systemPackages = [
+        pkgs.wl-clipboard
         pkgs.xwayland-satellite
       ];
     }

@@ -8,24 +8,35 @@
     { ... }: { config, ... }: {
       imports = [ inputs.nixcord.nixosModules.nixcord ];
 
+      # TODO: Remove this once nixpkgs bumps the pnpm version pinned in vesktop
+      nixpkgs.overlays = [
+        (final: prev: {
+          pnpm_10_29_2 = prev.pnpm_10;
+        })
+      ];
+
       programs.nixcord = {
         enable = true;
-        user = "mafien0"; # Idk nixcord desc said that i need to hardcode that one
+        user = "mafien0";
         vesktop.enable = true;
+        vesktop.settings = {
+          splashBackground = "#121214";
+          enableSplashScreen = false;
+        };
         discord.enable = false;
 
         quickCss = ''
-          @import url("https://croissantdunord.github.io/discord-adblock/adblock.css");
+          @import url("https://codeberg.org/ridge/Discord-Adblock/raw/branch/main/discord-adblock.css");
         '';
 
         config = {
+          useQuickCss = true;
           frameless = true;
 
           plugins = {
             hideMedia.enable = true;
             callTimer.enable = true;
             fakeNitro.enable = true;
-            friendsSince.enable = true;
             keepCurrentChannel.enable = true;
             mentionAvatars.enable = true;
             noF1.enable = true;

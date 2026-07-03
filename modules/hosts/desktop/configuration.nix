@@ -53,6 +53,12 @@
         trusted-public-keys = [ "nix-community.cachix-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
       };
 
+      systemd.services.nix-daemon.serviceConfig = {
+        CPUSchedulingPolicy = "idle";
+        IOSchedulingClass = "idle";
+        Nice = 19;
+      };
+
       # Grub
       boot.loader = {
         grub = {
@@ -175,6 +181,7 @@
       hardware.nvidia = {
         open = false;
         modesetting.enable = true;
+        powerManagement.enable = true;
         nvidiaSettings = true;
         package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
       };

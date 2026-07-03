@@ -13,7 +13,7 @@
     }
   );
 
-  perSystem = { pkgs, config, ... }: {
+  perSystem = { pkgs, ... }: {
     packages.myTmux = inputs.wrapper-modules.wrappers.tmux.wrap {
       inherit pkgs;
 
