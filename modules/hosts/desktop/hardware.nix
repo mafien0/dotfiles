@@ -38,24 +38,6 @@
 
       powerManagement.cpuFreqGovernor = "performance";
 
-      fileSystems."/" = {
-        device = "/dev/disk/by-uuid/05190543-e5df-4868-beb3-ed9e3cd8a159 ";
-        fsType = "ext4";
-      };
-
-      fileSystems."/boot" = {
-        device = "/dev/disk/by-uuid/EF31-4A1B ";
-        fsType = "vfat";
-        options = [
-          "fmask=0022"
-          "dmask=0022"
-        ];
-      };
-
-      swapDevices = [
-        { device = "/dev/disk/by-uuid/f3327b66-15cb-4e76-8637-b5d26bb35bbb"; }
-      ];
-
       nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
       hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     };

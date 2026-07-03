@@ -4,6 +4,7 @@
     {
       pkgs,
       config,
+      lib,
       ...
     }:
     {
@@ -54,9 +55,9 @@
       };
 
       systemd.services.nix-daemon.serviceConfig = {
-        CPUSchedulingPolicy = "idle";
-        IOSchedulingClass = "idle";
-        Nice = 19;
+        CPUSchedulingPolicy = lib.mkForce "idle";
+        IOSchedulingClass = lib.mkForce "idle";
+        Nice = lib.mkForce 19;
       };
 
       # Grub
