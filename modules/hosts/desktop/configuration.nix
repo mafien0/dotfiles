@@ -13,28 +13,23 @@
         self.nixosModules.desktopHardware
         self.nixosModules.homeManager
 
-        # extra - services
-        self.nixosModules.pipewire
-        self.nixosModules.tailscale
-        self.nixosModules.sync
-
-        # features - apps & programs
-        self.nixosModules.gtk
-        self.nixosModules.qt
         self.nixosModules.apps
-        self.nixosModules.helium
-        self.nixosModules.nixcord
-        self.nixosModules.spicetify
-
-        # wrapped - configured binaries
         self.nixosModules.btop
         self.nixosModules.foot
         self.nixosModules.git
+        self.nixosModules.gtk
+        self.nixosModules.helpers
+        self.nixosModules.helium
         self.nixosModules.hypridle
         self.nixosModules.neovim
-        self.nixosModules.helpers
         self.nixosModules.niri
+        self.nixosModules.nixcord
         self.nixosModules.opencode
+        self.nixosModules.pipewire
+        self.nixosModules.qt
+        self.nixosModules.spicetify
+        self.nixosModules.sync
+        self.nixosModules.tailscale
         self.nixosModules.tmux
         self.nixosModules.zsh
       ];

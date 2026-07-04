@@ -145,13 +145,13 @@
           },
           {
             "colorizeDistroLogo": false,
-            "colorizeSystemIcon": "none",
+            "colorizeSystemIcon": "primary",
             "colorizeSystemText": "none",
             "customIconPath": "",
-            "enableColorization": false,
-            "icon": "noctalia",
+            "enableColorization": true,
+            "icon": "snowflake",
             "id": "ControlCenter",
-            "useDistroLogo": false
+            "useDistroLogo": true
           }
         ]
       },

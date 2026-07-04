@@ -14,8 +14,8 @@
 
       user-templates = {
         neovim = {
-          input_path = "~/nix/modules/wrapped/neovim/nvim/lua/matugen-template.lua";
-          output_path = "~/nix/modules/wrapped/neovim/nvim/lua/matugen.lua";
+          input_path = "~/nix/modules/features/neovim/nvim/lua/matugen-template.lua";
+          output_path = "~/nix/modules/features/neovim/nvim/lua/matugen.lua";
           post_hook = "pkill -SIGUSR1 nvim";
         };
       };
