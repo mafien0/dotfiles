@@ -5,7 +5,7 @@
 }:
 {
   flake.nixosModules.helium = moduleWithSystem (
-    { ... }: { pkgs, ... }: {
+    _: { pkgs, ... }: {
       environment.systemPackages = [ inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default ];
 
       xdg.mime.defaultApplications = {

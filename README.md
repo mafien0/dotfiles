@@ -1,6 +1,9 @@
 # Nix dotfiles
 Mine dendritic nixos configuration powered by noctalia shell
 
+
+Code is formatted with `nixfmt`, checked with `nil_ls`, `deadnix` and `statix`
+
 ## AI
 This project is 70% written by ai(reviewed ofc)  
 Im manually writing only parts of the system that i find interesting, everything else pass to ai  

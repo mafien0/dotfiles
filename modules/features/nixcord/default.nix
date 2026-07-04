@@ -5,12 +5,12 @@
 }:
 {
   flake.nixosModules.nixcord = moduleWithSystem (
-    { ... }: { config, ... }: {
+    _: { config, ... }: {
       imports = [ inputs.nixcord.nixosModules.nixcord ];
 
       # TODO: Remove this once nixpkgs bumps the pnpm version pinned in vesktop
       nixpkgs.overlays = [
-        (final: prev: {
+        (_final: prev: {
           pnpm_10_29_2 = prev.pnpm_10;
         })
       ];

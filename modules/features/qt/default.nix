@@ -4,7 +4,7 @@
 }:
 {
   flake.nixosModules.qt = moduleWithSystem (
-    { ... }: { pkgs, ... }: {
+    _: { pkgs, ... }: {
       environment.systemPackages = with pkgs; [
         qt6Packages.qt6ct
         qt6Packages.qtwayland

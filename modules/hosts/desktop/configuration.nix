@@ -13,30 +13,30 @@
         self.nixosModules.desktopHardware
         self.nixosModules.homeManager
 
-        # Services
+        # extra - services
         self.nixosModules.pipewire
         self.nixosModules.tailscale
         self.nixosModules.sync
 
-        # GUI
+        # features - apps & programs
         self.nixosModules.gtk
         self.nixosModules.qt
-        self.nixosModules.niri
-        self.nixosModules.foot
-        self.nixosModules.hypridle
         self.nixosModules.apps
-        self.nixosModules.spicetify
-        self.nixosModules.nixcord
         self.nixosModules.helium
+        self.nixosModules.nixcord
+        self.nixosModules.spicetify
 
-        # CLI & TUI
-        self.nixosModules.zsh
-        self.nixosModules.nh
-        self.nixosModules.tmux
-        self.nixosModules.neovim
-        self.nixosModules.git
-        self.nixosModules.opencode
+        # wrapped - configured binaries
         self.nixosModules.btop
+        self.nixosModules.foot
+        self.nixosModules.git
+        self.nixosModules.hypridle
+        self.nixosModules.neovim
+        self.nixosModules.helpers
+        self.nixosModules.niri
+        self.nixosModules.opencode
+        self.nixosModules.tmux
+        self.nixosModules.zsh
       ];
 
       system.stateVersion = "26.05";
@@ -71,12 +71,15 @@
         efi.canTouchEfiVariables = true;
       };
 
-      services.journald.extraConfig = ''
-        SystemMaxUse=500M
-      '';
+      services = {
+        journald.extraConfig = ''
+          SystemMaxUse=500M
+        '';
 
-      # Ly dm
-      services.displayManager.ly.enable = true;
+        # Ly dm
+        displayManager.ly.enable = true;
+        xserver.xkb.layout = "us";
+      };
 
       # Something other configureation
       networking.hostName = "desktop";
@@ -84,7 +87,6 @@
       time.timeZone = "Asia/Almaty";
 
       i18n.defaultLocale = "en_US.UTF-8";
-      services.xserver.xkb.layout = "us";
 
       users.users.mafien0 = {
         isNormalUser = true;
@@ -176,16 +178,18 @@
       };
 
       # Nvidia gtx1060 drivers
-      hardware.graphics.enable = true;
-      hardware.graphics.enable32Bit = true;
-      services.xserver.videoDrivers = [ "nvidia" ];
-      hardware.nvidia = {
-        open = false;
-        modesetting.enable = true;
-        powerManagement.enable = true;
-        nvidiaSettings = true;
-        package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
+      hardware = {
+        graphics.enable = true;
+        graphics.enable32Bit = true;
+        nvidia = {
+          open = false;
+          modesetting.enable = true;
+          powerManagement.enable = true;
+          nvidiaSettings = true;
+          package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
+        };
       };
+      services.xserver.videoDrivers = [ "nvidia" ];
 
     };
 }

@@ -16,7 +16,7 @@ let
 in
 {
   flake.nixosModules.gtk = moduleWithSystem (
-    { ... }:
+    _:
     { pkgs, lib, ... }:
     let
       myIconTheme = mkMyIconTheme pkgs;
@@ -24,23 +24,25 @@ in
     {
       programs.dconf.enable = true;
 
-      environment.systemPackages = with pkgs; [
-        adw-gtk3
-        bibata-cursors
-        myIconTheme
-        papirus-icon-theme
-        glib
-        gsettings-desktop-schemas
-      ];
+      environment = {
+        systemPackages = with pkgs; [
+          adw-gtk3
+          bibata-cursors
+          myIconTheme
+          papirus-icon-theme
+          glib
+          gsettings-desktop-schemas
+        ];
 
-      environment.sessionVariables = {
-        GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/gsettings-desktop-schemas-${lib.getVersion pkgs.gsettings-desktop-schemas}/glib-2.0/schemas";
-      };
+        sessionVariables = {
+          GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/gsettings-desktop-schemas-${lib.getVersion pkgs.gsettings-desktop-schemas}/glib-2.0/schemas";
+        };
 
-      environment.variables = {
-        XCURSOR_THEME = "Bibata-Modern-Classic";
-        XCURSOR_SIZE = "20";
-        XCURSOR_PATH = lib.mkForce "$HOME/.nix-profile/share/icons:$HOME/.icons:$HOME/.local/share/icons:/run/current-system/sw/share/icons:/usr/share/icons";
+        variables = {
+          XCURSOR_THEME = "Bibata-Modern-Classic";
+          XCURSOR_SIZE = "20";
+          XCURSOR_PATH = lib.mkForce "$HOME/.nix-profile/share/icons:$HOME/.icons:$HOME/.local/share/icons:/run/current-system/sw/share/icons:/usr/share/icons";
+        };
       };
     }
   );

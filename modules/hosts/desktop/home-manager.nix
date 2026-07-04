@@ -9,7 +9,7 @@ let
 in
 {
   flake.nixosModules.homeManager = moduleWithSystem (
-    { ... }: { ... }: {
+    _: _: {
       imports = [ inputs.home-manager.nixosModules.home-manager ];
 
       home-manager = {
