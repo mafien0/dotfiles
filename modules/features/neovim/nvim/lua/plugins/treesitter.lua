@@ -5,6 +5,7 @@ return {
 		require("nvim-treesitter").setup({
 			ensure_installed = {},
 			auto_install = false,
+			indent = { enable = true },
 		})
 	end,
 }

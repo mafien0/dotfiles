@@ -6,3 +6,18 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		})
 	end,
 })
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = "*.gradle",
+	callback = function()
+		vim.bo.filetype = "groovy"
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = "*.gradle.kts",
+	callback = function()
+		vim.bo.filetype = "kotlin"
+	end,
+})
+

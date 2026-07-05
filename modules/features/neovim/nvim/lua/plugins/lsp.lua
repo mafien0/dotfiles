@@ -83,6 +83,14 @@ return {
 			})
 			vim.lsp.enable("nixd")
 
+			-- jdtls (Java)
+			vim.lsp.enable("jdtls")
+
+			-- Groovy (build.gradle)
+			vim.lsp.config("groovyls", {
+				cmd = { "groovy-language-server" },
+			})
+			vim.lsp.enable("groovyls")
 		end,
 	},
 

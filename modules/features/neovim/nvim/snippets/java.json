@@ -1,0 +1,247 @@
+{
+  "main method": {
+    "prefix": "main",
+    "body": [
+      "public static void main(String[] args) {",
+      "\t$1",
+      "}"
+    ],
+    "description": "public static void main(String[] args)"
+  },
+  "System.out.println": {
+    "prefix": "sout",
+    "body": "System.out.println($1);",
+    "description": "System.out.println"
+  },
+  "System.out.printf": {
+    "prefix": "soutf",
+    "body": "System.out.printf(\"$1\", $2);",
+    "description": "System.out.printf"
+  },
+  "for loop": {
+    "prefix": "fori",
+    "body": [
+      "for (int $1 = 0; $1 < $2; $1++) {",
+      "\t$3",
+      "}"
+    ],
+    "description": "for loop with index"
+  },
+  "enhanced for loop": {
+    "prefix": "foreach",
+    "body": [
+      "for ($1 $2 : $3) {",
+      "\t$4",
+      "}"
+    ],
+    "description": "enhanced for loop"
+  },
+  "if condition": {
+    "prefix": "if",
+    "body": [
+      "if ($1) {",
+      "\t$2",
+      "}"
+    ],
+    "description": "if condition"
+  },
+  "if else": {
+    "prefix": "ifelse",
+    "body": [
+      "if ($1) {",
+      "\t$2",
+      "} else {",
+      "\t$3",
+      "}"
+    ],
+    "description": "if else"
+  },
+  "try catch": {
+    "prefix": "try",
+    "body": [
+      "try {",
+      "\t$1",
+      "} catch ($2 e) {",
+      "\t$3",
+      "}"
+    ],
+    "description": "try catch"
+  },
+  "try with resources": {
+    "prefix": "tryw",
+    "body": [
+      "try ($1) {",
+      "\t$2",
+      "} catch ($3 e) {",
+      "\t$4",
+      "}"
+    ],
+    "description": "try with resources"
+  },
+  "class": {
+    "prefix": "class",
+    "body": [
+      "public class ${1:ClassName} {",
+      "\t$2",
+      "}"
+    ],
+    "description": "class declaration"
+  },
+  "interface": {
+    "prefix": "interface",
+    "body": [
+      "public interface ${1:InterfaceName} {",
+      "\t$2",
+      "}"
+    ],
+    "description": "interface declaration"
+  },
+  "enum": {
+    "prefix": "enum",
+    "body": [
+      "public enum ${1:EnumName} {",
+      "\t$2",
+      "}"
+    ],
+    "description": "enum declaration"
+  },
+  "private static final": {
+    "prefix": "prsf",
+    "body": "private static final $1 $2 = $3;",
+    "description": "private static final"
+  },
+  "public static final": {
+    "prefix": "psf",
+    "body": "public static final $1 $2 = $3;",
+    "description": "public static final"
+  },
+  "getter": {
+    "prefix": "getter",
+    "body": [
+      "public $1 get${2:$(vim.fn.substitute(vim.fn.capitalize(vim.fn.input('Field name: ')), '^.', string.upper, ''))}() {",
+      "\treturn this.$3;",
+      "}"
+    ],
+    "description": "getter method"
+  },
+  "setter": {
+    "prefix": "setter",
+    "body": [
+      "public void set${1:$(vim.fn.substitute(vim.fn.capitalize(vim.fn.input('Field name: ')), '^.', string.upper, ''))}($2 $3) {",
+      "\tthis.$3 = $3;",
+      "}"
+    ],
+    "description": "setter method"
+  },
+  "instanceof check": {
+    "prefix": "inst",
+    "body": [
+      "if ($1 instanceof $2 $3) {",
+      "\t$4",
+      "}"
+    ],
+    "description": "instanceof check with pattern variable"
+  },
+  "Objects.toString": {
+    "prefix": "tostring",
+    "body": [
+      "@Override",
+      "public String toString() {",
+      "\treturn \"${1:ClassName}{\" +",
+      "\t\t\"$2=\" + $2 +",
+      "\t\t'}'",
+      "\t;",
+      "}"
+    ],
+    "description": "toString override"
+  },
+  "equals and hashCode": {
+    "prefix": "eqhash",
+    "body": [
+      "@Override",
+      "public boolean equals(Object o) {",
+      "\tif (this == o) return true;",
+      "\tif (o == null || getClass() != o.getClass()) return false;",
+      "\t${1:ClassName} that = (${1:ClassName}) o;",
+      "\treturn $2;",
+      "}",
+      "",
+      "@Override",
+      "public int hashCode() {",
+      "\treturn Objects.hash($3);",
+      "}"
+    ],
+    "description": "equals and hashCode"
+  },
+  "private final field": {
+    "prefix": "prf",
+    "body": "private final $1 $2;",
+    "description": "private final field"
+  },
+  "constructor": {
+    "prefix": "cons",
+    "body": [
+      "public ${1:ClassName}($2) {",
+      "\t$3",
+      "}"
+    ],
+    "description": "constructor"
+  },
+  "Logger declaration": {
+    "prefix": "logger",
+    "body": "private static final Logger LOGGER = Logger.getLogger(\"${1:ClassName}\");",
+    "description": "Logger declaration"
+  },
+  "throw exception": {
+    "prefix": "throw",
+    "body": "throw new ${1:RuntimeException}(\"$2\");",
+    "description": "throw exception"
+  },
+  "return statement": {
+    "prefix": "return",
+    "body": "return $1;",
+    "description": "return statement"
+  },
+  "null check": {
+    "prefix": "ifnull",
+    "body": [
+      "if ($1 == null) {",
+      "\t$2",
+      "}"
+    ],
+    "description": "null check"
+  },
+  "not null check": {
+    "prefix": "ifnotnull",
+    "body": [
+      "if ($1 != null) {",
+      "\t$2",
+      "}"
+    ],
+    "description": "not null check"
+  },
+  "Optional.ofNullable": {
+    "prefix": "opt",
+    "body": "Optional.ofNullable($1).ifPresent($2 -> $3);",
+    "description": "Optional.ofNullable"
+  },
+  "enum with fields": {
+    "prefix": "enumf",
+    "body": [
+      "public enum ${1:EnumName} {",
+      "\t$2;",
+      "",
+      "\tprivate final $3 $4;",
+      "",
+      "\t${1:EnumName}($3 $4) {",
+      "\t\tthis.$4 = $4;",
+      "\t}",
+      "",
+      "\tpublic $3 get${5:$(vim.fn.substitute('$4', '^.', string.upper, ''))}() {",
+      "\t\treturn $4;",
+      "\t}",
+      "}"
+    ],
+    "description": "enum with fields"
+  }
+}

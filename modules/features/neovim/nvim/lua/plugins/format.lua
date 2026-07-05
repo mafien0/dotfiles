@@ -7,6 +7,9 @@ return {
 			python = { "isort", "black" },
 			c = { "clang-format" },
 			cpp = { "clang-format" },
+			java = { "google-java-format" },
+			kotlin = { "ktlint" },
+
 			nix = { "nixfmt" },
 			json = { "prettier" },
 			typescript = { "prettier" },
