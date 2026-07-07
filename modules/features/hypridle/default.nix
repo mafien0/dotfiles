@@ -1,3 +1,4 @@
+# DEPRECATED: Will be removed. Idle management is handled by noctalia.
 { moduleWithSystem, ... }: {
   flake.nixosModules.hypridle = moduleWithSystem (
     { config, ... }: { pkgs, ... }: {

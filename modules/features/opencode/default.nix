@@ -15,7 +15,14 @@
       inherit pkgs;
       settings = {
         theme = "system";
+        lsp = true;
+        mcp.nixos = {
+          type = "local";
+          command = [ "mcp-nixos" ];
+          enabled = true;
+        };
       };
+      runtimePkgs = with pkgs; [ mcp-nixos ];
     };
   };
 }

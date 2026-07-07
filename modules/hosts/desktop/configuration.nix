@@ -20,7 +20,6 @@
         self.nixosModules.gtk
         self.nixosModules.helpers
         self.nixosModules.helium
-        self.nixosModules.hypridle
         self.nixosModules.neovim
         self.nixosModules.niri
         self.nixosModules.nixcord
@@ -36,6 +35,8 @@
 
       system.stateVersion = "26.05";
       nixpkgs.config.allowUnfree = true;
+
+
       nix.settings = {
         experimental-features = [
           "nix-command"

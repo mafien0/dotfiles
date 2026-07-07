@@ -8,13 +8,6 @@
     _: { config, ... }: {
       imports = [ inputs.nixcord.nixosModules.nixcord ];
 
-      # TODO: Remove this once nixpkgs bumps the pnpm version pinned in vesktop
-      nixpkgs.overlays = [
-        (_final: prev: {
-          pnpm_10_29_2 = prev.pnpm_10;
-        })
-      ];
-
       programs.nixcord = {
         enable = true;
         user = "mafien0";

@@ -1,13 +1,12 @@
 {
   pkgs,
   lib,
-  hypridlePkg,
+  noctaliaPkg,
 }:
 {
   settings = {
     spawn-sh-at-startup = [
-      (lib.getExe pkgs.noctalia-shell)
-      (lib.getExe hypridlePkg)
+      (lib.getExe noctaliaPkg)
       "${lib.getExe pkgs.wl-clip-persist} --clipboard regular --primary"
       (lib.getExe' pkgs.polkit_gnome "polkit-gnome-authentication-agent-1")
       "tailscale systray"

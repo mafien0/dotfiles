@@ -193,9 +193,9 @@
       "Mod+C"."spawn-sh" = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
       "Mod+O"."spawn-sh" = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+ -l 1.0";
       "Mod+Shift+O"."spawn-sh" = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-";
-      "Mod+I"."spawn-sh" = "playerctl play-pause";
-      "Mod+Alt+I"."spawn-sh" = "playerctl next";
-      "Mod+Alt+Shift+I"."spawn-sh" = "playerctl previous";
+      "Mod+I"."spawn-sh" = "${lib.getExe pkgs.playerctl} play-pause";
+      "Mod+Alt+I"."spawn-sh" = "${lib.getExe pkgs.playerctl} next";
+      "Mod+Alt+Shift+I"."spawn-sh" = "${lib.getExe pkgs.playerctl} previous";
 
       # Obs control
       "Mod+T"."spawn-sh" = "${lib.getExe pkgs.noctalia-shell} ipc call plugin:obs-control saveReplay";
@@ -219,27 +219,27 @@
       };
       "XF86AudioStop" = _: {
         props."allow-when-locked" = true;
-        content."spawn-sh" = "playerctl stop";
+        content."spawn-sh" = "${lib.getExe pkgs.playerctl} stop";
       };
       "XF86AudioPlay" = _: {
         props."allow-when-locked" = true;
-        content."spawn-sh" = "playerctl play-pause";
+        content."spawn-sh" = "${lib.getExe pkgs.playerctl} play-pause";
       };
       "XF86AudioPrev" = _: {
         props."allow-when-locked" = true;
-        content."spawn-sh" = "playerctl previous";
+        content."spawn-sh" = "${lib.getExe pkgs.playerctl} previous";
       };
       "XF86AudioNext" = _: {
         props."allow-when-locked" = true;
-        content."spawn-sh" = "playerctl next";
+        content."spawn-sh" = "${lib.getExe pkgs.playerctl} next";
       };
       "XF86MonBrightnessUp" = _: {
         props."allow-when-locked" = true;
-        content."spawn-sh" = "brightnessctl --class=backlight set +10%";
+        content."spawn-sh" = "${lib.getExe pkgs.brightnessctl} --class=backlight set +10%";
       };
       "XF86MonBrightnessDown" = _: {
         props."allow-when-locked" = true;
-        content."spawn-sh" = "brightnessctl --class=backlight set 10%-";
+        content."spawn-sh" = "${lib.getExe pkgs.brightnessctl} --class=backlight set 10%-";
       };
     };
   };

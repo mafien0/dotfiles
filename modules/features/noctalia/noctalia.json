@@ -673,10 +673,10 @@
       "notifyUpdates": true
     },
     "idle": {
-      "enabled": false,
-      "screenOffTimeout": 600,
-      "lockTimeout": 660,
-      "suspendTimeout": 1800,
+      "enabled": true,
+      "screenOffTimeout": 300,
+      "lockTimeout": 600,
+      "suspendTimeout": 900,
       "fadeDuration": 5,
       "screenOffCommand": "",
       "lockCommand": "",
