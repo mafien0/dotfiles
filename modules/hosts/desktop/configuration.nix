@@ -20,7 +20,7 @@
         self.nixosModules.gtk
         self.nixosModules.helpers
         self.nixosModules.helium
-        self.nixosModules.neovim
+        self.nixosModules.nvf
         self.nixosModules.niri
         self.nixosModules.nixcord
         self.nixosModules.opencode
@@ -30,12 +30,12 @@
         self.nixosModules.sync
         self.nixosModules.tailscale
         self.nixosModules.tmux
+        self.nixosModules.yazi
         self.nixosModules.zsh
       ];
 
       system.stateVersion = "26.05";
       nixpkgs.config.allowUnfree = true;
-
 
       nix.settings = {
         experimental-features = [
@@ -74,6 +74,7 @@
 
         # Ly dm
         displayManager.ly.enable = true;
+
         xserver.xkb.layout = "us";
       };
 
@@ -97,6 +98,8 @@
       # Packages
       environment.systemPackages = with pkgs; [
         # Cli / Tui
+        devenv
+        python3
         zip
         unzip
         cloc

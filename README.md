@@ -2,7 +2,7 @@
 Mine dendritic nixos configuration powered by noctalia shell
 
 
-Code is formatted with `nixfmt`, checked with `nil_ls`, `deadnix` and `statix`
+Code is formatted with `nixfmt`, checked with `nixd`, `deadnix` and `statix`
 
 ## AI
 This project is 70% written by ai(reviewed ofc)  

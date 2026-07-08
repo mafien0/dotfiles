@@ -4,7 +4,7 @@ I included AGENTS.md into repo for purpose
 
 ## Overview
 
-Personal **NixOS flake** for host `desktop` (user `mafien0`). Modular architecture using **flake-parts**, **import-tree** for auto-discovery, and **nix-wrapper-modules** for wrapping CLI tools with baked-in configs. Uses **home-manager** for user-level state.
+Personal **NixOS flake** for host `desktop` (user `mafien0`). Modular architecture using **flake-parts**, **import-tree** for auto-discovery. CLI tools use **nix-wrapper-modules** for baked-in configs. Neovim uses **nvf** for declarative configuration. Uses **home-manager** for user-level state.
 
 ## Workflow
 
@@ -14,7 +14,7 @@ Personal **NixOS flake** for host `desktop` (user `mafien0`). Modular architectu
 - **Always Search for the dead code with `deadnix`** (`deadnix -q **/*.nix`) and fix it
 - **Always Check for anti-patterns with `statix`** (`statix check .`) and fix it
 - **When editing configuration update** `AGENTS.md`
-- **Don't make things up** — consult docs first, especially <https://birdeehub.github.io/nix-wrapper-modules/>, use `nix-locate` or `nix search` to find packages
+- **Don't make things up** — consult docs first, especially <https://birdeehub.github.io/nix-wrapper-modules/>, use `nix-locate` or `nix search` to find packages; for nvf see <https://nvf.notashelf.dev/options.html>
 - **Don't take shortcuts** — follow Nix standards and idioms
 - **Use `lib.getExe`** instead of hardcoded `${pkgs.pkg}/bin/` paths to reference binaries
 - **Use `moduleWithSystem`** pattern for all feature modules that need both NixOS module + package exports
@@ -41,6 +41,7 @@ modules/
     helium/                  # Web browser (default handler)
     hypridle/                # Idle daemon: dim→lock→sleep pipeline
     neovim/                  # Heavily configured editor (see below)
+    nvf/                     # nvf declarative Neovim framework (replaces wrapper-modules neovim)
     nh/                      # Nix helper tool + dev tools (deadnix, nixfmt, statix, nil)
     niri/                    # Wayland compositor (6 sub-configs)
     nixcord/                 # Discord with Vesktop/Vencord
@@ -68,7 +69,7 @@ Most features export two things:
 This is achieved via the `moduleWithSystem` helper from `flake-parts`.
 
 ### Wrapper Modules
-Every CLI tool uses `BirdeeHub/nix-wrapper-modules` to embed config into the Nix store derivation. Supported wrappers: `foot`, `neovim`, `git`, `nh`, `niri`, `noctalia-shell`, `tmux`, `zsh`, `btop`, `opencode`.
+Every CLI tool uses `BirdeeHub/nix-wrapper-modules` to embed config into the Nix store derivation. Supported wrappers: `foot`, `git`, `nh`, `niri`, `noctalia-shell`, `tmux`, `zsh`, `btop`, `opencode`.
 
 ## Feature Details
 
@@ -80,7 +81,8 @@ Every CLI tool uses `BirdeeHub/nix-wrapper-modules` to embed config into the Nix
 | `git` | `nixosModules.git` | `myGit` | SSH-signed commits, alias `g`, allowed signers file |
 | `gtk` | `nixosModules.gtk` | — | NixOS: adw-gtk3, Bibata cursors, Papirus icons, Colloid-Grey-Dark (patched). Home-manager: GTK config, dconf dark scheme, imports noctalia.css |
 | `helium` | `nixosModules.helium` | — | Default browser for http/https/html/xhtml+xml |
-| `neovim` | `nixosModules.neovim` | `myNeovim` | See Neovim section below |
+| `neovim` | `nixosModules.neovim` → imports `nixosModules.nvf` | — | See Neovim section below |
+| `nvf` | `nixosModules.nvf` (uses `inputs.nvf`) | — | nvf Neovim framework: all `programs.nvf` options configured here |
 | `helpers` | `nixosModules.helpers` → imports `nixosModules.nh` + nix-index-database | — | Aggregates nh feature + nix-index-database + dev tools (deadnix, nixfmt, statix, nil) |
 | `nh` | `nixosModules.nh` | `myNh` | nh (flake path baked in, auto-clean 4d/3) |
 | `niri` | `nixosModules.niri` | `myNiri` | See niri section below |
@@ -107,7 +109,7 @@ packages.myFeet = inputs.wrapper-modules.wrappers.foot.wrap {
 };
 ```
 
-**Wrapper with runtime deps** (neovim):
+**Wrapper with runtime deps** (neovim — legacy, nvf now replaces this):
 ```nix
 packages.myNeovim = inputs.wrapper-modules.wrappers.neovim.wrap {
   inherit pkgs;
@@ -139,38 +141,44 @@ packages.myNiri = inputs.wrapper-modules.wrappers.niri.wrap {
 ### Dynamic Theming Pipeline
 Noctalia → Material You color gen → `matugen-template.lua` ({{placeholders}}) → `matugen.lua` → SIGUSR1 → Neovim hot-reload.
 
-## Neovim (modules/features/neovim/)
+## Neovim
 
-**Entry:** `nvim/init.lua` → options → lazy.nvim bootstrap → matugen → keybinds → autocmds.
+**Active config:** `modules/features/nvf/` — declarative via nvf.  
+**Legacy wrapper-modules config:** `modules/features/neovim/` (preserved but unused).
 
-**Plugin configs** in `nvim/lua/plugins/`:
+### nvf Structure
 
-| File | Plugins | Purpose |
-|---|---|---|
-| `lsp.lua` | lspconfig, glance, trouble, fidget, lazydev, tiny-inline-diagnostic | LSP client with `vim.lsp.enable` (no Mason) |
-| `cmp.lua` | blink.cmp, LuaSnip | Autocompletion + snippets (super-tab preset) |
-| `snacks.lua` | snacks.nvim | Picker, explorer, dashboard, terminal, indent, notifier, scratch |
-| `mini.lua` | mini.nvim | Statusline, pairs, comment, sessions, surround, icons |
-| `format.lua` | conform.nvim | Auto-format on save (500ms timeout) |
-| `treesitter.lua` | nvim-treesitter | Syntax highlighting (auto_install=false, bundled at build) |
-| `flash.lua` | flash.nvim | Enhanced navigation (z=flash, Z=treesitter) |
-| `git.lua` | gitsigns.nvim | Git signs + blame |
-| `diffview.lua` | diffview.nvim | Git diff viewer |
-| `aerial.lua` | aerial.nvim | Symbol outline |
-| `whichkey.lua` | which-key.nvim | Keybinding popup (helix preset) |
-| `markdown.lua` | live-preview.nvim, checkmate.nvim | Markdown preview + checkboxes |
-| `opencode.lua` | opencode.nvim, render-markdown.nvim | AI chat assistant frontend |
-| `tpipeline.lua` | vim-tpipeline | Tmux statusline integration |
-| `themes/base16.lua` | base16-nvim | Active Material You theme |
-| `themes/rosepine.lua` | rose-pine/neovim | Fallback theme |
+```
+modules/features/nvf/
+  default.nix              # Entry — uses moduleWithSystem, mkMerge of all sub-files
+  _config/
+    options.nix             # vim options (native Nix, no Lua)
+    keybinds.nix            # 9 general mappings (save, window nav, clipboard, etc.)
+    autocmds.nix            # vim.autocmds + vim.augroups (native Nix, no Lua)
+    theme.nix               # additionalRuntimePaths → neovim/ for noctalia matugen
+  _plugins/
+    languages.nix           # 18 language LSPs, conform-nvim, treesitter, glance, trouble
+    cmp.nix                 # blink.cmp (super-tab), LuaSnip, friendly-snippets
+    snacks.nix              # Picker, explorer, dashboard (custom header/keys), terminal, scratch
+    mini.nix                # Statusline, pairs, comment, surround, sessions, icons
+    flash.nix               # Flash navigation (z=flash, Z=treesitter)
+    git.nix                 # Gitsigns (current_line_blame)
+    diffview.nix            # diffview-nvim
+    aerial.nix              # aerial-nvim symbol outline
+    whichkey.nix            # which-key (helix preset), group regs for f+g
+    markdown.nix            # live-preview, checkmate
+    opencode.nix            # opencode.nvim, render-markdown
+    tpipeline.nix           # vim-tpipeline tmux integration
+    _themes/
+      base16.nix            # base16-nvim + matugen (noctalia dynamic theme)
+      rosepine.nix          # rose-pine fallback (activates if matugen fails)
+```
 
-**LSP servers** (provided as Nix runtime packages, `vim.lsp.enable`): `lua_ls`, `gopls`, `pyright`, `clangd`, `marksman`, `jsonls`, `yamlls`, `ts_ls`, `bashls`, `nixd`.
-**Formatters**: `stylua`, `gofumpt`, `goimports`, `nixfmt`, `prettier`, `black`, `isort`, `shfmt`.
-**Tree-sitter grammars** (21 bundled at build): Nix, Lua, Python, Go, C, C++, Bash, JSON, YAML, Markdown, TypeScript, TSX, VimL, CSS, HTML, Rust, JavaScript, Comment, Regex, SQL, TOML.
+**LSP servers** (declarative via nvf `vim.languages.*.enable`, no Mason): `lua_ls`, `gopls`, `pyright`, `clangd`, `marksman`, `jsonls`, `yamlls`, `ts_ls`, `bashls`, `nixd`, `jdtls`, `kotlin_language_server`, `groovy`.
+**Formatters** (conform-nvim): `stylua`, `gofumpt`, `goimports`, `nixfmt`, `prettier`, `black`, `isort`, `shfmt`.
+**Tree-sitter grammars** (nvf-builtin + 4 extra): Nix, Lua, Python, Go, C, C++, Bash, JSON, YAML, Markdown, TypeScript, TSX, VimL, CSS, HTML, Rust, JavaScript, Comment, Regex, SQL, TOML, Groovy.
 
-**Lazy-lock** tracks 26 plugins (blink.cmp, snacks.nvim, mini.nvim, lspconfig, trouble, glance, flash, gitsigns, conform, which-key, aerial, etc.)
-
-**Keybinds**: Space leader, `<C-s>` save, `<C-h/j/k/l>` window nav, `<Esc>` clear search highlight, `<leader>y/p` clipboard.
+**Keybinds**: Space leader, `<leader><leader>` files, `<leader>fg` grep, `<leader>fb` buffers, `<leader>fr` resume, `<leader>fh` help, `<leader>fw` workspace symbols, `<leader>e` explorer, `<C-t>` terminal, `<leader>b` scratch, `<leader>gd` def, `<leader>gD` decl, `<leader>gi` impl, `<leader>gR` refs, `<leader>gt` type def, `K` hover, `<C-k>` sig, `<leader>gr` rename, `<leader>ga` code action, `[d`/`]d` diag, `<leader>q` diag list, `<leader>ge` trouble, `<leader>ld/r/t/i` glance, `<leader>?` which-key, `z` flash, `Z` treesitter flash.
 
 ## Host Configuration
 
