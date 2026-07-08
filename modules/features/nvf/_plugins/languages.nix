@@ -1,36 +1,4 @@
-{ pkgs, lib }:
-let
-  kotlin-lsp-src = pkgs.fetchzip {
-    name = "kotlin-lsp-src";
-    url = "https://download-cdn.jetbrains.com/language-server/kotlin-server/262.8190.0/kotlin-server-262.8190.0.tar.gz";
-    sha256 = "1rgpkn1anfja3kd6mf9p78klsqpcan777s46yga2w4jk9l0p85ck";
-  };
-
-  kotlin-lsp = pkgs.stdenv.mkDerivation {
-    name = "kotlin-lsp";
-    dontUnpack = true;
-    dontBuild = true;
-    nativeBuildInputs = [ pkgs.autoPatchelfHook ];
-    buildInputs = with pkgs; [
-      zlib
-      stdenv.cc.cc.lib
-      freetype
-      alsa-lib
-      wayland
-      libxkbcommon
-      libx11
-      libxext
-      libxi
-      libxrender
-      libxtst
-    ];
-    installPhase = ''
-      cp -r ${kotlin-lsp-src} $out
-      chmod -R u+w $out
-    '';
-  };
-in
-
+{ pkgs }:
 {
   # Language modules handle LSP servers, formatters, and tree-sitter grammars
   languages = {
@@ -54,11 +22,6 @@ in
     sql.enable = true;
     toml.enable = true;
     java.enable = true;
-    kotlin = {
-      enable = true;
-      treesitter.enable = true;
-      lsp.enable = true;
-    };
   };
 
   # Tree-sitter: only extra grammars not covered by language modules
@@ -76,7 +39,6 @@ in
       tree-sitter-vim
       tree-sitter-comment
       tree-sitter-regex
-      tree-sitter-groovy
     ];
   };
 
@@ -88,14 +50,8 @@ in
         lsp_format = "fallback";
         timeout_ms = 500;
       };
-      formatters_by_ft = {
-        kotlin = [ "ktlint" ];
-      };
-      formatters = {
-        ktlint = {
-          command = "${lib.getExe pkgs.ktlint}";
-        };
-      };
+      formatters_by_ft = { };
+      formatters = { };
     };
   };
 
@@ -104,15 +60,6 @@ in
     enable = true;
     lspconfig.enable = true;
     trouble.enable = true;
-    # JetBrains kotlin-lsp via intellij-server
-    servers.kotlin-language-server = {
-      root_markers = [ ".git" ];
-      cmd = lib.mkForce [
-        "${kotlin-lsp}/bin/intellij-server"
-        "--stdio"
-      ];
-      init_options = lib.mkForce { };
-    };
   };
 
   visuals.fidget-nvim.enable = true;
@@ -143,14 +90,6 @@ in
     tiny-inline-diagnostic-nvim = {
       package = pkgs.vimPlugins.tiny-inline-diagnostic-nvim;
       setup = "require('tiny-inline-diagnostic').setup { preset = 'simple' }";
-    };
-  };
-
-  # Filetype detection for languages without built-in Neovim support
-  filetype = {
-    extension = {
-      kt = "kotlin";
-      kts = "kotlin";
     };
   };
 

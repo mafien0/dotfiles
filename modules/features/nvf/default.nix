@@ -27,7 +27,7 @@
           (import ./_config/theme.nix)
 
           # Plugins
-          (import ./_plugins/languages.nix { inherit pkgs lib; })
+          (import ./_plugins/languages.nix { inherit pkgs; })
           (import ./_plugins/cmp.nix)
           (import ./_plugins/snacks.nix)
           (import ./_plugins/mini.nix)
