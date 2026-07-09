@@ -1,10 +1,33 @@
-{ pkgs }:
 {
+  pkgs,
+  lib,
+}: let
+  mkLuaInline = expr: {
+    _type = "lua-inline";
+    inherit expr;
+  };
+in {
+  lsp = {
+    enable = true;
+    lspconfig.enable = true;
+    trouble.enable = true;
+  };
+  diagnostics = {
+    enable = true;
+    config = {
+      virtual_text = false;
+    };
+  };
+
   # Language modules handle LSP servers, formatters, and tree-sitter grammars
   languages = {
+    enableFormat = true;
+    enableTreesitter = true;
+    enableExtraDiagnostics = true;
+
     nix = {
       enable = true;
-      lsp.servers = [ "nixd" ];
+      lsp.servers = ["nixd"];
       treesitter.enable = true;
     };
     go.enable = true;
@@ -50,26 +73,12 @@
         lsp_format = "fallback";
         timeout_ms = 500;
       };
-      formatters_by_ft = { };
-      formatters = { };
+      formatters_by_ft = {};
+      formatters = {};
     };
-  };
-
-  # LSP infrastructure — must enable the top-level flag for language modules to hook in
-  lsp = {
-    enable = true;
-    lspconfig.enable = true;
-    trouble.enable = true;
   };
 
   visuals.fidget-nvim.enable = true;
-
-  diagnostics = {
-    enable = true;
-    config = {
-      virtual_text = false;
-    };
-  };
 
   # Packages outside language module coverage
   extraPackages = with pkgs; [
@@ -132,6 +141,5 @@
         vim.keymap.set("n", k[1], k[2], { desc = k.desc })
       end
     '';
-
   };
 }

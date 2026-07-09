@@ -92,6 +92,7 @@ Every CLI tool uses `BirdeeHub/nix-wrapper-modules` to embed config into the Nix
 | `noctalia` | — | `myNoctalia` | Out-of-store config, noctalia.json (719 lines), neovim template pipeline, **built-in idle management** (300s screen-off → 600s lock → 900s suspend, smooth fade dim) |
 | `opencode` | `nixosModules.opencode` | `myOpencode` | System theme |
 | `pipewire` | `nixosModules.pipewire` | — | PulseAudio compat, WirePlumber, ALSA + 32-bit |
+| `prismlauncher` | `nixosModules.prismlauncher` | `myPrismlauncher` | Minecraft launcher, Wayland-forced via wrapper (glfw in LD_LIBRARY_PATH, `_JAVA_AWT_WM_NONREPARENTING`, `SDL_VIDEODRIVER`) |
 | `qt` | `nixosModules.qt` | — | qt6ct/5ct, Wayland, noctalia colorscheme, Colloid-Grey-Dark icon theme |
 | `spicetify` | `nixosModules.spicetify` | — | Wayland patch, extensions: adblockify, hidePodcasts |
 | `tailscale` | `nixosModules.tailscale` | — | Firewall open, MagicDNS via systemd-resolved |
