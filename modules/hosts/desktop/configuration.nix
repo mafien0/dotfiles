@@ -111,11 +111,13 @@
       blockbench
 
       ntfs3g
+      docker-compose
 
       # Im sorry, but i need kotlin
       vscodium
     ];
 
+    virtualisation.docker.enable = true;
     programs = {
       nix-ld.enable = true;
 
