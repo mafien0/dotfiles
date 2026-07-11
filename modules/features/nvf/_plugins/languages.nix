@@ -28,10 +28,15 @@ in {
     nix = {
       enable = true;
       lsp.servers = ["nixd"];
+      format.type = "nixfmt";
       treesitter.enable = true;
     };
     go.enable = true;
-    python.enable = true;
+    python = {
+      enable = true;
+      format.type = "ruff";
+      lsp.servers = ["ruff"];
+    };
     lua.enable = true;
     clang.enable = true;
     bash.enable = true;
