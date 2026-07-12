@@ -1,202 +1,206 @@
-{self, ...}: {
-  flake.nixosModules.desktopConfiguration = {
-    pkgs,
-    config,
-    lib,
-    ...
-  }: {
-    imports = [
-      self.nixosModules.desktopHardware
-      self.nixosModules.homeManager
+{ self, ... }: {
+  flake.nixosModules.desktopConfiguration =
+    {
+      pkgs,
+      config,
+      lib,
+      ...
+    }:
+    {
+      imports = [
+        self.nixosModules.desktopHardware
+        self.nixosModules.homeManager
 
-      self.nixosModules.apps
-      self.nixosModules.btop
-      self.nixosModules.foot
-      self.nixosModules.git
-      self.nixosModules.gtk
-      self.nixosModules.helpers
-      self.nixosModules.helium
-      self.nixosModules.nvf
-      self.nixosModules.niri
-      self.nixosModules.nixcord
-      self.nixosModules.opencode
-      self.nixosModules.pipewire
-      self.nixosModules.prismlauncher
-      self.nixosModules.qt
-      self.nixosModules.spicetify
-      self.nixosModules.sync
-      self.nixosModules.tailscale
-      self.nixosModules.tmux
-      self.nixosModules.yazi
-      self.nixosModules.zsh
-    ];
-
-    system.stateVersion = "26.05";
-    nixpkgs.config.allowUnfree = true;
-
-    nix.settings = {
-      experimental-features = [
-        "nix-command"
-        "flakes"
+        self.nixosModules.apps
+        self.nixosModules.btop
+        self.nixosModules.foot
+        self.nixosModules.git
+        self.nixosModules.gtk
+        self.nixosModules.helpers
+        self.nixosModules.helium
+        self.nixosModules.nvf
+        self.nixosModules.niri
+        self.nixosModules.nixcord
+        self.nixosModules.opencode
+        self.nixosModules.pipewire
+        self.nixosModules.prismlauncher
+        self.nixosModules.qt
+        self.nixosModules.spicetify
+        self.nixosModules.sync
+        self.nixosModules.tailscale
+        self.nixosModules.tmux
+        self.nixosModules.yazi
+        self.nixosModules.zsh
       ];
-      auto-optimise-store = true;
-      max-jobs = 4;
-      cores = 0;
-      # Nix community cachix
-      substituters = ["https://nix-community.cachix.org"];
-      trusted-public-keys = ["nix-community.cachix-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="];
-    };
 
-    systemd.services.nix-daemon.serviceConfig = {
-      CPUSchedulingPolicy = lib.mkForce "idle";
-      IOSchedulingClass = lib.mkForce "idle";
-      Nice = lib.mkForce 19;
-    };
+      system.stateVersion = "26.05";
+      nixpkgs.config.allowUnfree = true;
 
-    # Grub
-    boot.loader = {
-      grub = {
-        enable = true;
-        device = "nodev";
-        efiSupport = true;
-        useOSProber = true;
+      nix.settings = {
+        experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
+        auto-optimise-store = true;
+        max-jobs = 4;
+        cores = 0;
+        # Nix community cachix
+        substituters = [ "https://nix-community.cachix.org" ];
+        trusted-public-keys = [ "nix-community.cachix-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
       };
-      efi.canTouchEfiVariables = true;
-    };
 
-    services = {
-      journald.extraConfig = ''
-        SystemMaxUse=500M
-      '';
+      systemd.services.nix-daemon.serviceConfig = {
+        CPUSchedulingPolicy = lib.mkForce "idle";
+        IOSchedulingClass = lib.mkForce "idle";
+        Nice = lib.mkForce 19;
+      };
 
-      # Ly dm
-      displayManager.ly.enable = true;
+      # Grub
+      boot.loader = {
+        grub = {
+          enable = true;
+          device = "nodev";
+          efiSupport = true;
+          useOSProber = true;
+        };
+        efi.canTouchEfiVariables = true;
+      };
 
-      xserver.xkb.layout = "us";
-    };
+      services = {
+        journald.extraConfig = ''
+          SystemMaxUse=500M
+        '';
 
-    # Something other configureation
-    networking.hostName = "desktop";
-    networking.networkmanager.enable = true;
-    time.timeZone = "Asia/Almaty";
+        # Ly dm
+        displayManager.ly.enable = true;
 
-    i18n.defaultLocale = "en_US.UTF-8";
+        xserver.xkb.layout = "us";
+      };
 
-    users.users.mafien0 = {
-      isNormalUser = true;
-      initialPassword = "passwd";
-      extraGroups = [
-        "wheel"
-        "disk"
+      # Something other configureation
+      networking.hostName = "desktop";
+      networking.networkmanager.enable = true;
+      time.timeZone = "Asia/Almaty";
+
+      i18n.defaultLocale = "en_US.UTF-8";
+
+      users.users.mafien0 = {
+        isNormalUser = true;
+        initialPassword = "passwd";
+        extraGroups = [
+          "wheel"
+          "disk"
+        ];
+        shell = pkgs.zsh;
+      };
+
+      # Packages
+      environment.systemPackages = with pkgs; [
+        # Cli / Tui
+        devenv
+        python3
+        zip
+        unzip
+        cloc
+        fzf
+        wget
+        ripgrep
+        killall
+        wrangler
+        fastfetch # Cool
+
+        localsend
+        blockbench
+        obs-studio
+        qbittorrent
+
+        ntfs3g
+        docker-compose
+
+        # Im sorry, but i need kotlin
+        vscodium
       ];
-      shell = pkgs.zsh;
-    };
 
-    # Packages
-    environment.systemPackages = with pkgs; [
-      # Cli / Tui
-      devenv
-      python3
-      zip
-      unzip
-      cloc
-      fzf
-      wget
-      ripgrep
-      killall
-      obs-studio
-      fastfetch # Cool
+      virtualisation.docker.enable = true;
+      programs = {
+        nix-ld.enable = true;
 
-      localsend
-      blockbench
+        # Steam
+        steam = {
+          enable = true;
+          remotePlay.openFirewall = true;
+          dedicatedServer.openFirewall = true;
+          localNetworkGameTransfers.openFirewall = true;
+          extraPackages = with pkgs; [
+            pulseaudio
+            bibata-cursors
+          ];
+        };
+      };
 
-      ntfs3g
-      docker-compose
+      fonts.packages = with pkgs; [
+        # Nerd Fonts
+        nerd-fonts.fira-code
+        nerd-fonts.hack
+        nerd-fonts.jetbrains-mono
+        nerd-fonts.noto
+        nerd-fonts.sauce-code-pro
 
-      # Im sorry, but i need kotlin
-      vscodium
-    ];
+        # General purpose
+        noto-fonts
+        noto-fonts-cjk-sans
+        noto-fonts-color-emoji
+        dejavu_fonts
+        ubuntu-classic
 
-    virtualisation.docker.enable = true;
-    programs = {
-      nix-ld.enable = true;
+        # Metric-compatible MS fonts
+        liberation_ttf
+        carlito
+        caladea
 
-      # Steam
-      steam = {
-        enable = true;
-        remotePlay.openFirewall = true;
-        dedicatedServer.openFirewall = true;
-        localNetworkGameTransfers.openFirewall = true;
-        extraPackages = with pkgs; [
-          pulseaudio
-          bibata-cursors
+        # Adobe Source fonts
+        source-code-pro
+        source-sans-pro
+        source-serif-pro
+      ];
+
+      fonts.fontconfig.defaultFonts = {
+        monospace = [
+          "JetBrainsMono Nerd Font"
+          "FiraCode Nerd Font"
+          "Hack Nerd Font"
+          "Source Code Pro"
+          "DejaVu Sans Mono"
+          "Noto Sans Mono"
+        ];
+        sansSerif = [
+          "Noto Sans"
+          "Ubuntu"
+          "DejaVu Sans"
+          "Source Sans Pro"
+        ];
+        serif = [
+          "Noto Serif"
+          "Source Serif Pro"
+          "DejaVu Serif"
+        ];
+        emoji = [
+          "Noto Color Emoji"
         ];
       };
-    };
 
-    fonts.packages = with pkgs; [
-      # Nerd Fonts
-      nerd-fonts.fira-code
-      nerd-fonts.hack
-      nerd-fonts.jetbrains-mono
-      nerd-fonts.noto
-      nerd-fonts.sauce-code-pro
-
-      # General purpose
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-color-emoji
-      dejavu_fonts
-      ubuntu-classic
-
-      # Metric-compatible MS fonts
-      liberation_ttf
-      carlito
-      caladea
-
-      # Adobe Source fonts
-      source-code-pro
-      source-sans-pro
-      source-serif-pro
-    ];
-
-    fonts.fontconfig.defaultFonts = {
-      monospace = [
-        "JetBrainsMono Nerd Font"
-        "FiraCode Nerd Font"
-        "Hack Nerd Font"
-        "Source Code Pro"
-        "DejaVu Sans Mono"
-        "Noto Sans Mono"
-      ];
-      sansSerif = [
-        "Noto Sans"
-        "Ubuntu"
-        "DejaVu Sans"
-        "Source Sans Pro"
-      ];
-      serif = [
-        "Noto Serif"
-        "Source Serif Pro"
-        "DejaVu Serif"
-      ];
-      emoji = [
-        "Noto Color Emoji"
-      ];
-    };
-
-    # Nvidia gtx1060 drivers
-    hardware = {
-      graphics.enable = true;
-      graphics.enable32Bit = true;
-      nvidia = {
-        open = false;
-        modesetting.enable = true;
-        powerManagement.enable = true;
-        nvidiaSettings = true;
-        package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
+      # Nvidia gtx1060 drivers
+      hardware = {
+        graphics.enable = true;
+        graphics.enable32Bit = true;
+        nvidia = {
+          open = false;
+          modesetting.enable = true;
+          powerManagement.enable = true;
+          nvidiaSettings = true;
+          package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
+        };
       };
+      services.xserver.videoDrivers = [ "nvidia" ];
     };
-    services.xserver.videoDrivers = ["nvidia"];
-  };
 }
