@@ -34,7 +34,7 @@
       # Launchers
       "Mod+Return".spawn = "${lib.getExe footPkg}";
       "Mod+Shift+Return".spawn-sh = "${lib.getExe footPkg} --title='terminal-popup'";
-      "Mod+E".spawn = "${lib.getExe pkgs.nautilus}";
+      "Mod+E".spawn = "${lib.getExe pkgs.thunar}";
       "Mod+Alt+L".spawn-sh = "niri msg action power-on-monitors";
 
       # Noctalia shell

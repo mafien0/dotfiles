@@ -18,12 +18,16 @@
         self.nixosModules.gtk
         self.nixosModules.helpers
         self.nixosModules.helium
+        self.nixosModules.imv
+        self.nixosModules.mousepad
+        self.nixosModules.mpv
         self.nixosModules.nvf
         self.nixosModules.niri
         self.nixosModules.nixcord
         self.nixosModules.opencode
         self.nixosModules.pipewire
         self.nixosModules.prismlauncher
+        self.nixosModules.qbittorrent
         self.nixosModules.qt
         self.nixosModules.spicetify
         self.nixosModules.sync
@@ -94,6 +98,11 @@
         shell = pkgs.zsh;
       };
 
+      swapDevices = [{
+        device = "/swapfile";
+        size = 8192;
+      }];
+
       # Packages
       environment.systemPackages = with pkgs; [
         # Cli / Tui
@@ -112,7 +121,6 @@
         localsend
         blockbench
         obs-studio
-        qbittorrent
 
         ntfs3g
         docker-compose

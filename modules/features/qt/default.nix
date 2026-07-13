@@ -5,15 +5,15 @@
 {
   flake.nixosModules.qt = moduleWithSystem (
     _: { pkgs, ... }: {
-      environment.systemPackages = with pkgs; [
-        qt6Packages.qt6ct
-        qt6Packages.qtwayland
-        libsForQt5.qt5ct
-        libsForQt5.qtwayland
-      ];
+      qt = {
+        enable = true;
+        platformTheme = "qt5ct";
+      };
 
       environment.sessionVariables = {
-        QT_QPA_PLATFORMTHEME = "qt6ct";
+        QT_QPA_PLATFORM = "wayland";
+        XCURSOR_THEME = "Bibata-Modern-Classic";
+        XCURSOR_SIZE = "20";
       };
 
       home-manager.users.mafien0 = { config, ... }: {

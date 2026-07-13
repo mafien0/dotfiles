@@ -7,6 +7,15 @@
   flake.nixosModules.foot = moduleWithSystem (
     { config, ... }: _: {
       environment.systemPackages = [ config.packages.myFeet ];
+
+      xdg.mime.defaultApplications = {
+        "x-scheme-handler/terminal" = "foot.desktop";
+      };
+
+      home-manager.users.mafien0.xdg.configFile."xfce4/helpers.rc".text = ''
+        TerminalEmulator=foot
+        FileManager=Thunar
+      '';
     }
   );
 

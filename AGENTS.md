@@ -16,6 +16,7 @@ Personal **NixOS flake** for host `desktop` (user `mafien0`). Modular architectu
 - **When editing configuration update** `AGENTS.md`
 - **Don't make things up** — consult docs first, especially <https://birdeehub.github.io/nix-wrapper-modules/>, use `nix-locate` or `nix search` to find packages; for nvf see <https://nvf.notashelf.dev/options.html>
 - **Don't take shortcuts** — follow Nix standards and idioms
+- **Prefer `programs.<name>.enable = true` over `environment.systemPackages`** — always check if a program has a dedicated NixOS module first (e.g., `programs.thunar.enable` instead of `pkgs.thunar`, `programs.foot.enable` instead of `pkgs.foot`). The module handles D-Bus services, session setup, and integration that bare package installs miss
 - **nvf `luaConfigRC` resolves `require()` at build time** — nvf inlines Lua modules found via `additionalRuntimePaths` into the store path. Use `dofile` + `vim.api.nvim_get_runtime_file` instead of `require` for anything that must be loaded dynamically at runtime (e.g., noctalia-generated matugen.lua).
 - **`noctalia-shell` `user-templates` must use `templates` wrapper** — format is `user-templates = { templates = { myName = { input_path = "..."; output_path = "..."; post_hook = "..."; }; }; };` (not `{ myName = ...; }` directly), because attributes are converted to TOML and noctalia-shell reads them under `[templates.*]`
 - **Use `lib.getExe`** instead of hardcoded `${pkgs.pkg}/bin/` paths to reference binaries

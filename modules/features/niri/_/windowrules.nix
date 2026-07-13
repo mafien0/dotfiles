@@ -18,19 +18,34 @@ _: {
       open-floating = true;
     }
 
+    # Qalculate! — fixed size
+    {
+      matches = [
+        { app-id = "^qalculate-gtk$"; }
+      ];
+      open-floating = true;
+      default-column-width = {
+        fixed = 794;
+      };
+      default-window-height = {
+        fixed = 554;
+      };
+    }
+
     # Floating windows (multiple matches)
     {
       matches = [
         { title = "terminal-popup"; }
         { app-id = "popup"; }
         { app-id = "waypaper"; }
+        { app-id = "^[Tt]hunar$"; }
+        { app-id = "^imv$"; }
+        { app-id = "^org\\.xfce\\.mousepad$"; }
         { app-id = "modrinth-app.*"; }
         { app-id = "Bitwarden"; }
         { app-id = "ninjabrainbot.*"; }
         { app-id = "^.*\\.satty$"; }
         { app-id = "^.*\\.Celluloid$"; }
-        { app-id = "^.*\\.Loupe$"; }
-        { app-id = "^.*\\.TextEditor$"; }
         { app-id = "^.*\\.pwvucontrol$"; }
         { app-id = "^.*\\.MissionCenter$"; }
         { app-id = "^.*\\.Warehouse$"; }

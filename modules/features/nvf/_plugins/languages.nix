@@ -1,12 +1,14 @@
 {
   pkgs,
   lib,
-}: let
+}:
+let
   mkLuaInline = expr: {
     _type = "lua-inline";
     inherit expr;
   };
-in {
+in
+{
   lsp = {
     enable = true;
     lspconfig.enable = true;
@@ -27,18 +29,17 @@ in {
 
     nix = {
       enable = true;
-      lsp.servers = ["nixd"];
-      format.type = "nixfmt";
+      lsp.servers = [ "nixd" ];
+      format.type = [ "nixfmt" ];
       treesitter.enable = true;
     };
     go.enable = true;
     python = {
       enable = true;
-      format.type = "ruff";
-      lsp.servers = ["ruff"];
+      format.type = [ "ruff" ];
+      lsp.servers = [ "ruff" ];
     };
     lua.enable = true;
-    clang.enable = true;
     bash.enable = true;
     json.enable = true;
     yaml.enable = true;
@@ -78,8 +79,8 @@ in {
         lsp_format = "fallback";
         timeout_ms = 500;
       };
-      formatters_by_ft = {};
-      formatters = {};
+      formatters_by_ft = { };
+      formatters = { };
     };
   };
 
