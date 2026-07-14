@@ -15,12 +15,12 @@
 
       programs.spicetify = {
         enable = true;
-        enabledExtensions = with spicePkgs.extensions; [
-          adblockify
-          hidePodcasts
-        ];
-        wayland = true;
-        windowManagerPatch = true;
+        # enabledExtensions = with spicePkgs.extensions; [
+        #   adblockify
+        #   hidePodcasts
+        # ];
+        # wayland = true;
+        # windowManagerPatch = true;
       };
     }
   );

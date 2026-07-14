@@ -98,10 +98,12 @@
         shell = pkgs.zsh;
       };
 
-      swapDevices = [{
-        device = "/swapfile";
-        size = 8192;
-      }];
+      swapDevices = [
+        {
+          device = "/swapfile";
+          size = 8192;
+        }
+      ];
 
       # Packages
       environment.systemPackages = with pkgs; [
@@ -116,6 +118,7 @@
         ripgrep
         killall
         wrangler
+        go
         fastfetch # Cool
 
         localsend
