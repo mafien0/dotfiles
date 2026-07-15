@@ -17,6 +17,7 @@
         "/home/mafien0/.icons"
         "/usr/share/icons"
       ];
+      EGL_PLATFORM = "wayland";
       XDG_SESSION_TYPE = "wayland";
     };
   };

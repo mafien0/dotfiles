@@ -88,12 +88,12 @@ Every CLI tool uses `BirdeeHub/nix-wrapper-modules` to embed config into the Nix
 | `nvf` | `nixosModules.nvf` (uses `inputs.nvf`) | — | nvf Neovim framework: all `programs.nvf` options configured here |
 | `helpers` | `nixosModules.helpers` → imports `nixosModules.nh` + nix-index-database | — | Aggregates nh feature + nix-index-database + dev tools (deadnix, nixfmt, statix, nil) |
 | `nh` | `nixosModules.nh` | `myNh` | nh (flake path baked in, auto-clean 4d/3) |
-| `niri` | `nixosModules.niri` | `myNiri` | See niri section below |
+| `niri` | `nixosModules.niri` | `myNiri` | See niri section below. System pkgs: cliphist, wl-clip-persist, wl-clipboard |
 | `nixcord` | `nixcord.nixosModules.nixcord` | — | Vesktop enabled, adblock CSS, plugins: hideMedia/callTimer/fakeNitro/friendsSince/keepCurrentChannel/mentionAvatars/noF1 |
 | `noctalia` | — | `myNoctalia` | Out-of-store config, noctalia.json (719 lines), neovim template pipeline, **built-in idle management** (300s screen-off → 600s lock → 900s suspend, smooth fade dim) |
 | `opencode` | `nixosModules.opencode` | `myOpencode` | System theme |
 | `pipewire` | `nixosModules.pipewire` | — | PulseAudio compat, WirePlumber, ALSA + 32-bit |
-| `prismlauncher` | `nixosModules.prismlauncher` | `myPrismlauncher` | Minecraft launcher, Wayland-forced via wrapper (glfw in LD_LIBRARY_PATH, `_JAVA_AWT_WM_NONREPARENTING`, `SDL_VIDEODRIVER`) |
+| `prismlauncher` | `nixosModules.prismlauncher` | `myPrismlauncher` | Minecraft launcher, `pkgs.extend` overlay replaces `glfw3-minecraft` with `LWJGL-CI/glfw` (IME-aware, native Wayland), 6 JDKs |
 | `qt` | `nixosModules.qt` | — | qt6ct/5ct, Wayland, noctalia colorscheme, Colloid-Grey-Dark icon theme |
 | `spicetify` | `nixosModules.spicetify` | — | Wayland patch, extensions: adblockify, hidePodcasts |
 | `tailscale` | `nixosModules.tailscale` | — | Firewall open, MagicDNS via systemd-resolved |
@@ -183,6 +183,10 @@ modules/features/nvf/
 **Tree-sitter grammars** (nvf-builtin + 4 extra): Nix, Lua, Python, Go, C, C++, Bash, JSON, YAML, Markdown, TypeScript, TSX, VimL, CSS, HTML, Rust, JavaScript, Comment, Regex, SQL, TOML, Groovy.
 
 **Keybinds**: Space leader, `<leader><leader>` files, `<leader>fg` grep, `<leader>fb` buffers, `<leader>fr` resume, `<leader>fh` help, `<leader>fw` workspace symbols, `<leader>e` explorer, `<C-t>` terminal, `<leader>b` scratch, `<leader>gd` def, `<leader>gD` decl, `<leader>gi` impl, `<leader>gR` refs, `<leader>gt` type def, `K` hover, `<C-k>` sig, `<leader>gr` rename, `<leader>ga` code action, `[d`/`]d` diag, `<leader>q` diag list, `<leader>ge` trouble, `<leader>ld/r/t/i` glance, `<leader>?` which-key, `z` flash, `Z` treesitter flash.
+
+### Native Wayland GLFW for Minecraft
+
+The prismlauncher module injects `JAVA_TOOL_OPTIONS=-Dorg.lwjgl.glfw.libname=libglfw.so` into the launcher wrapper. This tells LWJGL to load the patched system GLFW (`LWJGL-CI/glfw`) instead of the bundled one. The `glfw3-minecraft` package is replaced via `pkgs.extend` overlay in `modules/features/prismlauncher/default.nix` — it overrides the source to `LWJGL-CI/GLFW` (IME-aware, proper Wayland) and applies 6 Minecraft-specific patches (cursor constraints over pointer-warp, key modifier fix, window position warning downgrades, etc.).
 
 ## Host Configuration
 

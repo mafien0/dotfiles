@@ -12,8 +12,10 @@
       };
 
       environment.systemPackages = [
+        pkgs.cliphist
+        pkgs.wl-clip-persist
         pkgs.wl-clipboard
-        pkgs.xwayland-satellite
+        pkgs.zenity
       ];
     }
   );

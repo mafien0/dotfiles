@@ -1,0 +1,24 @@
+diff -ruN a/src/init.c b/src/init.c
+--- a/src/init.c
++++ b/src/init.c
+@@ -472,6 +472,21 @@
+     _glfw.hints.init = _glfwInitHints;
+     _glfw.allocator = _glfwInitAllocator;
+ 
++    {
++        const char* const env = getenv("GLFW_PLATFORM");
++        if (env)
++        {
++            if (strcmp(env, "wayland") == 0)
++                _glfw.hints.init.platformID = GLFW_PLATFORM_WAYLAND;
++            else if (strcmp(env, "x11") == 0)
++                _glfw.hints.init.platformID = GLFW_PLATFORM_X11;
++            else if (strcmp(env, "win32") == 0)
++                _glfw.hints.init.platformID = GLFW_PLATFORM_WIN32;
++            else if (strcmp(env, "cocoa") == 0)
++                _glfw.hints.init.platformID = GLFW_PLATFORM_COCOA;
++        }
++    }
++
+     if (!_glfwSelectPlatform(_glfw.hints.init.platformID, &_glfw.platform))
+         return GLFW_FALSE;

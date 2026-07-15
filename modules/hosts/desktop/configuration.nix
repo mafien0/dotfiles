@@ -124,6 +124,7 @@
         localsend
         blockbench
         obs-studio
+        obsidian
 
         ntfs3g
         docker-compose
@@ -204,6 +205,7 @@
       hardware = {
         graphics.enable = true;
         graphics.enable32Bit = true;
+        graphics.extraPackages = with pkgs; [ egl-wayland ];
         nvidia = {
           open = false;
           modesetting.enable = true;
