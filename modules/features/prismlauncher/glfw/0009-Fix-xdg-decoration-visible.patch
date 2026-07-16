@@ -1,0 +1,41 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: mafien0
+Date: Thu Jul 16 2026
+Subject: [PATCH 9/8] Fix xdg-decoration configure not making window visible
+
+xdgSurfaceHandleConfigure checks window->wl.xdg.decorationMode before
+making the window visible, but the xdg-decoration configure event may
+arrive *after* the xdg-surface configure event. In that case
+decorationMode is still 0 when xdgSurfaceHandleConfigure runs, so
+window->wl.visible is never set.
+
+This causes eglSwapBuffers to be skipped (swapBuffersEGL checks
+window->wl.visible) and the window is never presented to the compositor.
+
+Fix by also setting window->wl.visible in xdgDecorationHandleConfigure
+once the decoration mode is known.
+
+diff --git a/src/wl_window.c b/src/wl_window.c
+index 1234567..abcdef0 100644
+--- a/src/wl_window.c
++++ b/src/wl_window.c
+@@ -444,7 +444,7 @@ static void xdgDecorationHandleConfigure(void* userData,
+     _GLFWwindow* window = userData;
+
+     window->wl.xdg.decorationMode = mode;
+-
++
+     if (mode == ZXDG_TOPLEVEL_DECORATION_V1_MODE_CLIENT_SIDE)
+     {
+         if (window->decorated && !window->monitor)
+@@ -452,6 +452,12 @@ static void xdgDecorationHandleConfigure(void* userData,
+     }
+     else
+         destroyFallbackDecorations(window);
++
++    if (!window->wl.visible)
++    {
++        window->wl.visible = GLFW_TRUE;
++        _glfwInputWindowDamage(window);
++    }
+ }

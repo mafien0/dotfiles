@@ -54,12 +54,12 @@
               prepend_keymap = [
                 {
                   on = [ "s" ];
-                  run = "shell '${pkgs.fzf}/bin/fzf | xargs -r nvim' --block --confirm";
+                  run = "shell '${lib.getExe pkgs.fzf} | xargs -r nvim' --block --confirm";
                   desc = "Fuzzy find and open in nvim";
                 }
                 {
                   on = [ "S" ];
-                  run = "shell '${pkgs.fzf}/bin/fzf' --block";
+                  run = "shell '${lib.getExe pkgs.fzf}' --block";
                   desc = "Fzf search";
                 }
               ];

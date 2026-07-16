@@ -12,6 +12,7 @@ let
     ./glfw/0006-Implement-glfwSetCursorPosWayland-via-pointer-constr.patch
     ./glfw/0007-GLFW_PLATFORM-env-var.patch
     ./glfw/0008-glfwPlatformSupported-X11-DISPLAY.patch
+    ./glfw/0009-Fix-xdg-decoration-visible.patch
   ];
 in
 {
@@ -43,6 +44,12 @@ in
             sed -i '/struct wp_pointer_warp_v1\*  pointerWarp;/d' "$H"
             grep -q 'askedCursorPosX' "$H" || \
               sed -i '/^    } fallback;/a\    double                      askedCursorPosX, askedCursorPosY;\n    GLFWbool                    didAskForSetCursorPos;' "$H"
+
+            # Fix: when EGL context clear fails (e.g. NVIDIA Wayland), still
+            # clear the TLS so subsequent makeContextCurrent(window) works.
+            sed -i '/EGL: Failed to clear current context/,/^        }$/{
+            /^            return;$/d
+            }' src/egl_context.c
           '';
         });
       };
@@ -67,7 +74,10 @@ in
             {
               qtWrapperArgs = old.qtWrapperArgs ++ [
                 "--set JDK_JAVA_OPTIONS -Dorg.lwjgl.glfw.libname=${glfwLib}"
+                "--set JAVA_TOOL_OPTIONS -Dorg.lwjgl.glfw.libname=${glfwLib}"
                 "--set XDG_SESSION_TYPE wayland"
+                "--set GLFW_PLATFORM wayland"
+                "--set __GL_THREADED_OPTIMIZATIONS 0"
               ];
             }
           );

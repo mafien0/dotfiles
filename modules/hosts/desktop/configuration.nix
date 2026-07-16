@@ -81,7 +81,7 @@
         xserver.xkb.layout = "us";
       };
 
-      # Something other configureation
+      # Something other configuration
       networking.hostName = "desktop";
       networking.networkmanager.enable = true;
       time.timeZone = "Asia/Almaty";
@@ -123,7 +123,6 @@
 
         localsend
         blockbench
-        obs-studio
         obsidian
 
         ntfs3g
@@ -134,15 +133,20 @@
       ];
 
       virtualisation.docker.enable = true;
+
       programs = {
         nix-ld.enable = true;
 
+        obs-studio.enable = true;
+
+        gamescope.enable = true;
         # Steam
         steam = {
           enable = true;
           remotePlay.openFirewall = true;
           dedicatedServer.openFirewall = true;
           localNetworkGameTransfers.openFirewall = true;
+          gamescopeSession.enable = true;
           extraPackages = with pkgs; [
             pulseaudio
             bibata-cursors
@@ -203,9 +207,11 @@
 
       # Nvidia gtx1060 drivers
       hardware = {
-        graphics.enable = true;
-        graphics.enable32Bit = true;
-        graphics.extraPackages = with pkgs; [ egl-wayland ];
+        graphics = {
+          enable = true;
+          enable32Bit = true;
+          extraPackages = with pkgs; [ egl-wayland ];
+        };
         nvidia = {
           open = false;
           modesetting.enable = true;

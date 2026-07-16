@@ -16,7 +16,7 @@ Personal **NixOS flake** for host `desktop` (user `mafien0`). Modular architectu
 - **When editing configuration update** `AGENTS.md`
 - **Don't make things up** — consult docs first, especially <https://birdeehub.github.io/nix-wrapper-modules/>, use `nix-locate` or `nix search` to find packages; for nvf see <https://nvf.notashelf.dev/options.html>
 - **Don't take shortcuts** — follow Nix standards and idioms
-- **Prefer `programs.<name>.enable = true` over `environment.systemPackages`** — always check if a program has a dedicated NixOS module first (e.g., `programs.thunar.enable` instead of `pkgs.thunar`, `programs.foot.enable` instead of `pkgs.foot`). The module handles D-Bus services, session setup, and integration that bare package installs miss
+- **Prefer `programs.<name>.enable = true` or `services.<name>.enable = true` over `environment.systemPackages`** — always check if a program has a dedicated NixOS module first (e.g., `programs.thunar.enable` instead of `pkgs.thunar`, `programs.foot.enable` instead of `pkgs.foot`, `programs.obs-studio.enable` instead of `pkgs.obs-studio`, `services.pipewire.enable` instead of `pkgs.pipewire`). The module handles D-Bus services, session setup, and integration that bare package installs miss. If no module exists, fall back to `environment.systemPackages`.
 - **nvf `luaConfigRC` resolves `require()` at build time** — nvf inlines Lua modules found via `additionalRuntimePaths` into the store path. Use `dofile` + `vim.api.nvim_get_runtime_file` instead of `require` for anything that must be loaded dynamically at runtime (e.g., noctalia-generated matugen.lua).
 - **`noctalia-shell` `user-templates` must use `templates` wrapper** — format is `user-templates = { templates = { myName = { input_path = "..."; output_path = "..."; post_hook = "..."; }; }; };` (not `{ myName = ...; }` directly), because attributes are converted to TOML and noctalia-shell reads them under `[templates.*]`
 - **Use `lib.getExe`** instead of hardcoded `${pkgs.pkg}/bin/` paths to reference binaries
@@ -30,7 +30,7 @@ modules/
   parts.nix                  # Supported systems
   hosts/desktop/
     default.nix              # nixosConfigurations.desktop definition
-    configuration.nix        # Main system module (imports 20 features)
+    configuration.nix        # Main system module (imports 24 features)
     disko.nix                # Disko partition layout (1GB boot, 4GB swap, rest ext4)
     hardware.nix             # Boot modules, CPU microcode, NVIDIA
     home-manager.nix         # Home-manager NixOS activation (imports modular home configs)
@@ -40,22 +40,26 @@ modules/
     foot/                    # Terminal emulator (wrapped + Noctalia themed)
     git/                     # SSH-signed commits (wrapped)
     gtk/                     # GTK theming via adw-gtk3 + Bibata cursors
-    helpers/                 # Aggregates wrapped/nh feature
+    helpers/                 # Aggregates nh + dev tools (deadnix, nixfmt, statix, nil)
     helium/                  # Web browser (default handler)
-    hypridle/                # Idle daemon: dim→lock→sleep pipeline
-    neovim/                  # Heavily configured editor (see below)
-    nvf/                     # nvf declarative Neovim framework (replaces wrapper-modules neovim)
-    nh/                      # Nix helper tool + dev tools (deadnix, nixfmt, statix, nil)
+    imv/                     # Image viewer (MIME default)
+    mousepad/                # Text editor (MIME default)
+    mpv/                     # Video/audio player (MIME default)
+    nh/                      # Nix helper tool (wrapped)
     niri/                    # Wayland compositor (6 sub-configs)
     nixcord/                 # Discord with Vesktop/Vencord
     noctalia/                # Desktop shell with Material You theming
+    nvf/                     # Declarative Neovim via nvf
     opencode/                # AI coding assistant (wrapped)
     pipewire/                # Audio system (PulseAudio + WirePlumber)
+    prismlauncher/           # Minecraft launcher (Wayland GLFW patched)
+    qbittorrent/             # BitTorrent client (GUI, MIME default)
     qt/                      # Qt theming via qt6ct (noctalia colors)
     spicetify/               # Spotify theming mod
     sync/                    # Daily git auto-sync (systemd timer @ 12:00)
     tailscale/               # VPN mesh network
     tmux/                    # Terminal multiplexer (wrapped)
+    yazi/                    # File manager (wrapped)
     zsh/                     # Shell (Oh My Zsh)
 ```
 
@@ -84,6 +88,9 @@ Every CLI tool uses `BirdeeHub/nix-wrapper-modules` to embed config into the Nix
 | `git` | `nixosModules.git` | `myGit` | SSH-signed commits, alias `g`, allowed signers file |
 | `gtk` | `nixosModules.gtk` | — | NixOS: adw-gtk3, Bibata cursors, Papirus icons, Colloid-Grey-Dark (patched). Home-manager: GTK config, dconf dark scheme, imports noctalia.css |
 | `helium` | `nixosModules.helium` | — | Default browser for http/https/html/xhtml+xml |
+| `imv` | `nixosModules.imv` | — | Default image viewer (AVIF, BMP, GIF, JPEG, PNG, WebP, SVG, TIFF) |
+| `mousepad` | `nixosModules.mousepad` | — | Default text editor (plaintext, markdown, JSON, CSV, XML, code files) |
+| `mpv` | `nixosModules.mpv` | — | Default video/audio player (all common codecs/containers) |
 | `neovim` | `nixosModules.neovim` → imports `nixosModules.nvf` | — | See Neovim section below |
 | `nvf` | `nixosModules.nvf` (uses `inputs.nvf`) | — | nvf Neovim framework: all `programs.nvf` options configured here |
 | `helpers` | `nixosModules.helpers` → imports `nixosModules.nh` + nix-index-database | — | Aggregates nh feature + nix-index-database + dev tools (deadnix, nixfmt, statix, nil) |
@@ -94,10 +101,13 @@ Every CLI tool uses `BirdeeHub/nix-wrapper-modules` to embed config into the Nix
 | `opencode` | `nixosModules.opencode` | `myOpencode` | System theme |
 | `pipewire` | `nixosModules.pipewire` | — | PulseAudio compat, WirePlumber, ALSA + 32-bit |
 | `prismlauncher` | `nixosModules.prismlauncher` | `myPrismlauncher` | Minecraft launcher, `pkgs.extend` overlay replaces `glfw3-minecraft` with `LWJGL-CI/glfw` (IME-aware, native Wayland), 6 JDKs |
+| `qbittorrent` | `nixosModules.qbittorrent` | — | GUI BitTorrent client, magnet/torrent MIME defaults |
 | `qt` | `nixosModules.qt` | — | qt6ct/5ct, Wayland, noctalia colorscheme, Colloid-Grey-Dark icon theme |
 | `spicetify` | `nixosModules.spicetify` | — | Wayland patch, extensions: adblockify, hidePodcasts |
+| `sync` | `nixosModules.sync` | — | Daily git auto-sync (systemd timer @ 12:00) |
 | `tailscale` | `nixosModules.tailscale` | — | Firewall open, MagicDNS via systemd-resolved |
 | `tmux` | `nixosModules.tmux` | `myTmux` | Prefix C-a, vi keys, resurrect+continuum, top status bar, HJKL pane nav |
+| `yazi` | `nixosModules.yazi` | `myYazi` | File manager with fzf integration, Neovim opener, image preview |
 | `zsh` | `nixosModules.zsh` | `myZsh` | Oh My Zsh (candy), syntax highlighting, autosuggestions, 10k history, aliases (eza, git, clear) |
 
 ### Wrapping Examples
@@ -113,7 +123,7 @@ packages.myFeet = inputs.wrapper-modules.wrappers.foot.wrap {
 };
 ```
 
-**Wrapper with runtime deps** (neovim — legacy, nvf now replaces this):
+**Wrapper with runtime deps** (historical reference — neovim now uses nvf instead):
 ```nix
 packages.myNeovim = inputs.wrapper-modules.wrappers.neovim.wrap {
   inherit pkgs;
@@ -198,6 +208,7 @@ The prismlauncher module injects `JAVA_TOOL_OPTIONS=-Dorg.lwjgl.glfw.libname=lib
 - NVIDIA GTX 1060 (legacy_580, powerManagement enabled, in `hardware.nix`)
 - Fonts: 7 Nerd Fonts + Noto + DejaVu + Ubuntu + Adobe Source + metric-compatible MS alternatives
 - Steam with remotePlay/dedicatedServer/localNetworkGameTransfers firewall
+- OBS Studio via `programs.obs-studio.enable` (with virtual camera support)
 - Cachix: `nix-community`
 
 **`hardware.nix`**: NVIDIA GTX 1060 (legacy_580, powerManagement, modesetting), ext4 root (`/`), vfat boot, swap, AMD microcode, NVMe/USB boot modules, `nvidia` initrd module.
@@ -219,7 +230,7 @@ Wayland compositor split into 6 sub-configs merged via `lib.foldl lib.recursiveU
 - **Disko**: Partition layout in `modules/hosts/desktop/disko.nix` (under `modules/` so import-tree picks it up — wrapped in `flake.diskoConfigurations.desktop` to map it to flake output). Wired via `default.nix:6` (`self.diskoConfigurations.desktop`). Override disk at install: `nix run github:nix-community/disko -- --mode disko --flake '.#desktop' --arg disko.devices.disk.main.device '"/dev/sda"'`
 - Add a new feature: create `modules/features/<name>/default.nix` following `moduleWithSystem` pattern, then add `self.nixosModules.<name>` to `configuration.nix` imports
 - Feature aggregator pattern: `modules/features/helpers/` references `self.nixosModules.nh` to keep configuration.nix imports clean
-- LSPs are provided as Nix runtime packages (not Mason) — use `vim.lsp.enable` in Neovim config
+- LSPs are provided declaratively via nvf `vim.languages.*.enable` (not Mason)
 - Theme changes in Noctalia propagate live to Neovim via SIGUSR1
 - Rebuild: `sudo nixos-rebuild switch --flake .#desktop` or use `nh os switch`, but do not run it yourself
 - Nautilus remote connections require `services.gvfs.enable = true` and `programs.ssh.startAgent = true` (in `apps` module). Also `GIO_EXTRA_MODULES` in niri's env

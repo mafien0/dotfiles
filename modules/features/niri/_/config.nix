@@ -11,13 +11,13 @@
       "${lib.getExe' pkgs.wl-clipboard "wl-paste"} --type text --watch ${lib.getExe pkgs.cliphist} store"
       "${lib.getExe' pkgs.wl-clipboard "wl-paste"} --type image --watch ${lib.getExe pkgs.cliphist} store"
       (lib.getExe' pkgs.polkit_gnome "polkit-gnome-authentication-agent-1")
-      "tailscale systray"
+      (lib.getExe' pkgs.tailscale "systray")
       "${lib.getExe pkgs.xrdb} -merge <<< 'Xcursor.theme: Bibata-Modern-Classic\nXcursor.size: 20'"
     ];
 
-    # xwayland-satellite = {
-    #   path = lib.getExe pkgs.xwayland-satellite;
-    # };
+    xwayland-satellite = {
+      path = lib.getExe pkgs.xwayland-satellite;
+    };
 
     outputs = {
       "HDMI-A-1" = {

@@ -13,6 +13,7 @@
       environment.shellAliases = {
         v = "nvim";
         vim = "nvim";
+        view = "nvim -R";
         edit = "nvim";
         nano = "nvim";
       };

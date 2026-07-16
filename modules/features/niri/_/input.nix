@@ -147,7 +147,7 @@
       "Mod+R"."switch-preset-column-width" = _: { };
       "Mod+Ctrl+R"."reset-window-height" = _: { };
       "Mod+Shift+R"."switch-preset-window-height" = _: { };
-      "Mod+Ctrl+Shift+R"."reset-window-height" = _: { };
+      "Mod+Ctrl+Shift+R"."switch-preset-window-height" = _: { };
 
       # Mouse scroll
       "Mod+WheelScrollDown" = _: {

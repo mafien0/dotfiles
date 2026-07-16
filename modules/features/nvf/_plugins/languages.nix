@@ -2,12 +2,6 @@
   pkgs,
   lib,
 }:
-let
-  mkLuaInline = expr: {
-    _type = "lua-inline";
-    inherit expr;
-  };
-in
 {
   lsp = {
     enable = true;
@@ -111,7 +105,8 @@ in
   # LSP Lua config
   luaConfigRC = {
     lsp_capabilities = ''
-      local capabilities = require("blink.cmp").get_lsp_capabilities()
+      local ok, blink = pcall(require, "blink.cmp")
+      local capabilities = ok and blink.get_lsp_capabilities() or vim.lsp.protocol.make_client_capabilities()
       require("lspconfig.util").default_config.capabilities = capabilities
     '';
 

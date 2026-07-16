@@ -2,7 +2,8 @@
   inputs,
   moduleWithSystem,
   ...
-}: {
+}:
+{
   flake.nixosModules.nh = moduleWithSystem (
     { config, ... }: _: {
       programs.nh = {
