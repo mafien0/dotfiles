@@ -30,7 +30,7 @@ modules/
   parts.nix                  # Supported systems
   hosts/desktop/
     default.nix              # nixosConfigurations.desktop definition
-    configuration.nix        # Main system module (imports 24 features)
+    configuration.nix        # Main system module (imports 26 features)
     disko.nix                # Disko partition layout (1GB boot, 4GB swap, rest ext4)
     hardware.nix             # Boot modules, CPU microcode, NVIDIA
     home-manager.nix         # Home-manager NixOS activation (imports modular home configs)
@@ -96,7 +96,7 @@ Every CLI tool uses `BirdeeHub/nix-wrapper-modules` to embed config into the Nix
 | `helpers` | `nixosModules.helpers` → imports `nixosModules.nh` + nix-index-database | — | Aggregates nh feature + nix-index-database + dev tools (deadnix, nixfmt, statix, nil) |
 | `nh` | `nixosModules.nh` | `myNh` | nh (flake path baked in, auto-clean 4d/3) |
 | `niri` | `nixosModules.niri` | `myNiri` | See niri section below. System pkgs: cliphist, wl-clip-persist, wl-clipboard |
-| `nixcord` | `nixcord.nixosModules.nixcord` | — | Vesktop enabled, adblock CSS, plugins: hideMedia/callTimer/fakeNitro/friendsSince/keepCurrentChannel/mentionAvatars/noF1 |
+| `nixcord` | `nixcord.nixosModules.nixcord` | — | Vesktop enabled (requires `nixpkgs.config.permittedInsecurePackages` for EOL electron), adblock CSS, plugins: hideMedia/callTimer/fakeNitro/friendsSince/keepCurrentChannel/mentionAvatars/noF1 |
 | `noctalia` | — | `myNoctalia` | Out-of-store config, noctalia.json (719 lines), neovim template pipeline, **built-in idle management** (300s screen-off → 600s lock → 900s suspend, smooth fade dim) |
 | `opencode` | `nixosModules.opencode` | `myOpencode` | System theme |
 | `pipewire` | `nixosModules.pipewire` | — | PulseAudio compat, WirePlumber, ALSA + 32-bit |
@@ -202,14 +202,14 @@ The prismlauncher module injects `JAVA_TOOL_OPTIONS=-Dorg.lwjgl.glfw.libname=lib
 
 **`configuration.nix`** wires everything together:
 - State version 26.05, unfree allowed
-- GRUB + EFI, Ly display manager
+- GRUB + EFI + `minimal-grub-theme`, Ly display manager
 - NetworkManager, hostname `desktop`, TZ `Asia/Almaty`
 - User `mafien0` (wheel, disk, zsh)
 - NVIDIA GTX 1060 (legacy_580, powerManagement enabled, in `hardware.nix`)
 - Fonts: 7 Nerd Fonts + Noto + DejaVu + Ubuntu + Adobe Source + metric-compatible MS alternatives
 - Steam with remotePlay/dedicatedServer/localNetworkGameTransfers firewall
 - OBS Studio via `programs.obs-studio.enable` (with virtual camera support)
-- Cachix: `nix-community`
+- Cachix: `nix-community`, `nvf`, `hercules-ci`, `vic`, `spicetify-nix`, `helium-nix`
 
 **`hardware.nix`**: NVIDIA GTX 1060 (legacy_580, powerManagement, modesetting), ext4 root (`/`), vfat boot, swap, AMD microcode, NVMe/USB boot modules, `nvidia` initrd module.
 
