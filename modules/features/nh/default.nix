@@ -2,10 +2,9 @@
   inputs,
   moduleWithSystem,
   ...
-}:
-{
+}: {
   flake.nixosModules.nh = moduleWithSystem (
-    { config, ... }: _: {
+    {config, ...}: _: {
       programs.nh = {
         enable = true;
         package = config.packages.myNh;
@@ -17,7 +16,7 @@
     }
   );
 
-  perSystem = { pkgs, ... }: {
+  perSystem = {pkgs, ...}: {
     packages.myNh = inputs.wrapper-modules.wrappers.nh.wrap {
       inherit pkgs;
       flake = "/home/mafien0/nix";

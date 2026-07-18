@@ -1,5 +1,4 @@
-{ pkgs }:
-{
+{pkgs}: {
   extraPlugins.rose-pine = {
     package = pkgs.vimPlugins.rose-pine;
     setup = "require('rose-pine').setup {}";

@@ -1,10 +1,6 @@
-{
-  moduleWithSystem,
-  ...
-}:
-{
+{moduleWithSystem, ...}: {
   flake.nixosModules.pipewire = moduleWithSystem (
-    _: { pkgs, ... }: {
+    _: {pkgs, ...}: {
       services.pipewire = {
         enable = true;
         pulse.enable = true;

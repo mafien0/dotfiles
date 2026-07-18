@@ -2,8 +2,7 @@
   pkgs,
   lib,
   noctaliaPkg,
-}:
-{
+}: {
   settings = {
     spawn-sh-at-startup = [
       (lib.getExe noctaliaPkg)

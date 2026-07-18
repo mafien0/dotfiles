@@ -2,11 +2,10 @@
   inputs,
   moduleWithSystem,
   ...
-}:
-{
+}: {
   flake.nixosModules.helium = moduleWithSystem (
-    _: { pkgs, ... }: {
-      environment.systemPackages = [ inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+    _: {pkgs, ...}: {
+      environment.systemPackages = [inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default];
 
       xdg.mime.defaultApplications = {
         "text/html" = "helium.desktop";

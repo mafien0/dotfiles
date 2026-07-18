@@ -1,18 +1,18 @@
 _: {
-  settings = { };
+  settings = {};
 
   windowRules = [
     # Picture-in-Picture
     {
       matches = [
-        { title = "^Picture-in-Picture$"; }
+        {title = "^Picture-in-Picture$";}
       ];
       draw-border-with-background = false;
       focus-ring = {
-        off = _: { };
+        off = _: {};
       };
       shadow = {
-        off = _: { };
+        off = _: {};
       };
       geometry-corner-radius = 0;
       open-floating = true;
@@ -21,7 +21,7 @@ _: {
     # Qalculate! — fixed size
     {
       matches = [
-        { app-id = "^qalculate-gtk$"; }
+        {app-id = "^qalculate-gtk$";}
       ];
       open-floating = true;
       default-column-width = {
@@ -35,25 +35,25 @@ _: {
     # Floating windows (multiple matches)
     {
       matches = [
-        { title = "terminal-popup"; }
-        { app-id = "popup"; }
-        { app-id = "waypaper"; }
-        { app-id = "^[Tt]hunar$"; }
-        { app-id = "^imv$"; }
-        { app-id = "^org\\.xfce\\.mousepad$"; }
-        { app-id = "modrinth-app.*"; }
-        { app-id = "Bitwarden"; }
-        { app-id = "ninjabrainbot.*"; }
-        { app-id = "^.*\\.satty$"; }
-        { app-id = "^.*\\.Celluloid$"; }
-        { app-id = "^.*\\.pwvucontrol$"; }
-        { app-id = "^.*\\.MissionCenter$"; }
-        { app-id = "^.*\\.Warehouse$"; }
-        { app-id = "^.*\\.Flatseal$"; }
-        { app-id = "^.*\\.devtoolbox$"; }
-        { app-id = "^.*\\.Bazaar$"; }
-        { app-id = "^.*\\.spider$"; }
-        { title = "[Ss]ave [Ff]ile"; }
+        {title = "terminal-popup";}
+        {app-id = "popup";}
+        {app-id = "waypaper";}
+        {app-id = "^[Tt]hunar$";}
+        {app-id = "^imv$";}
+        {app-id = "^org\\.xfce\\.mousepad$";}
+        {app-id = "modrinth-app.*";}
+        {app-id = "Bitwarden";}
+        {app-id = "ninjabrainbot.*";}
+        {app-id = "^.*\\.satty$";}
+        {app-id = "^.*\\.Celluloid$";}
+        {app-id = "^.*\\.pwvucontrol$";}
+        {app-id = "^.*\\.MissionCenter$";}
+        {app-id = "^.*\\.Warehouse$";}
+        {app-id = "^.*\\.Flatseal$";}
+        {app-id = "^.*\\.devtoolbox$";}
+        {app-id = "^.*\\.Bazaar$";}
+        {app-id = "^.*\\.spider$";}
+        {title = "[Ss]ave [Ff]ile";}
       ];
       open-floating = true;
       default-window-height = {
@@ -67,8 +67,8 @@ _: {
     # GNOME apps float
     {
       matches = [
-        { app-id = "org.gnome.*"; }
-        { title = "Welcome to.*"; }
+        {app-id = "org.gnome.*";}
+        {title = "Welcome to.*";}
       ];
       open-floating = true;
     }
@@ -76,9 +76,9 @@ _: {
     # Block from screencast
     {
       matches = [
-        { app-id = "org.telegram.desktop"; }
-        { app-id = "com.rtosta.zapzap"; }
-        { app-id = "Spotify"; }
+        {app-id = "org.telegram.desktop";}
+        {app-id = "com.rtosta.zapzap";}
+        {app-id = "Spotify";}
       ];
       block-out-from = "screencast";
     }
@@ -87,7 +87,7 @@ _: {
   layerRules = [
     {
       matches = [
-        { namespace = "^noctalia-overview.*$"; }
+        {namespace = "^noctalia-overview.*$";}
       ];
       place-within-backdrop = true;
     }

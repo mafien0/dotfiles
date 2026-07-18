@@ -1,5 +1,4 @@
-{ pkgs }:
-{
+{pkgs}: {
   extraPlugins = {
     render-markdown-nvim = {
       package = pkgs.vimPlugins.render-markdown-nvim;

@@ -1,5 +1,4 @@
-{ lib }:
-{
+{lib}: {
   augroups = [
     {
       name = "HighlightYank";
@@ -9,7 +8,7 @@
 
   autocmds = [
     {
-      event = [ "TextYankPost" ];
+      event = ["TextYankPost"];
       group = "HighlightYank";
       desc = "Highlight yanked text";
       callback = lib.generators.mkLuaInline ''

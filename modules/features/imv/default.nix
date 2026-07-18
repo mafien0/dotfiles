@@ -1,11 +1,7 @@
-{
-  moduleWithSystem,
-  ...
-}:
-{
+{moduleWithSystem, ...}: {
   flake.nixosModules.imv = moduleWithSystem (
-    _: { pkgs, ... }: {
-      environment.systemPackages = [ pkgs.imv ];
+    _: {pkgs, ...}: {
+      environment.systemPackages = [pkgs.imv];
 
       xdg.mime.defaultApplications = {
         "image/avif" = "imv.desktop";

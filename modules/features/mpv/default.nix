@@ -1,11 +1,7 @@
-{
-  moduleWithSystem,
-  ...
-}:
-{
+{moduleWithSystem, ...}: {
   flake.nixosModules.mpv = moduleWithSystem (
-    _: { pkgs, ... }: {
-      environment.systemPackages = [ pkgs.mpv ];
+    _: {pkgs, ...}: {
+      environment.systemPackages = [pkgs.mpv];
 
       xdg.mime.defaultApplications = {
         # Video

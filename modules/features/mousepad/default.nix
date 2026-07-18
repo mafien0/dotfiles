@@ -1,11 +1,7 @@
-{
-  moduleWithSystem,
-  ...
-}:
-{
+{moduleWithSystem, ...}: {
   flake.nixosModules.mousepad = moduleWithSystem (
-    _: { pkgs, ... }: {
-      environment.systemPackages = [ pkgs.mousepad ];
+    _: {pkgs, ...}: {
+      environment.systemPackages = [pkgs.mousepad];
 
       xdg.mime.defaultApplications = {
         "text/plain" = "org.xfce.mousepad.desktop";

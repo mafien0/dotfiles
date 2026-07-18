@@ -2,18 +2,17 @@
   inputs,
   moduleWithSystem,
   ...
-}:
-{
+}: {
   flake.nixosModules.git = moduleWithSystem (
-    { config, ... }: _: {
-      environment.systemPackages = [ config.packages.myGit ];
+    {config, ...}: _: {
+      environment.systemPackages = [config.packages.myGit];
     }
   );
 
-  perSystem = { pkgs, ... }: {
+  perSystem = {pkgs, ...}: {
     packages.myGit = inputs.wrapper-modules.wrappers.git.wrap {
       inherit pkgs;
-      aliases = [ "g" ];
+      aliases = ["g"];
       settings = {
         user = {
           name = "mafien0";

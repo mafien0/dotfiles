@@ -3,10 +3,9 @@
   self,
   moduleWithSystem,
   ...
-}:
-{
+}: {
   flake.nixosModules.helpers = moduleWithSystem (
-    _: { pkgs, ... }: {
+    _: {pkgs, ...}: {
       imports = [
         self.nixosModules.nh
         inputs.nix-index-database.nixosModules.default
@@ -20,7 +19,7 @@
       environment.systemPackages = with pkgs; [
         deadnix
         nil
-        nixfmt
+        alejandra
         nixpkgs-lint-community
         statix
       ];

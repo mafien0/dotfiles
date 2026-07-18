@@ -2,11 +2,10 @@
   inputs,
   moduleWithSystem,
   ...
-}:
-{
+}: {
   flake.nixosModules.foot = moduleWithSystem (
-    { config, ... }: _: {
-      environment.systemPackages = [ config.packages.myFeet ];
+    {config, ...}: _: {
+      environment.systemPackages = [config.packages.myFeet];
 
       xdg.mime.defaultApplications = {
         "x-scheme-handler/terminal" = "foot.desktop";
@@ -19,7 +18,7 @@
     }
   );
 
-  perSystem = { pkgs, ... }: {
+  perSystem = {pkgs, ...}: {
     # I will keep it as myFeet
     packages.myFeet = inputs.wrapper-modules.wrappers.foot.wrap {
       inherit pkgs;

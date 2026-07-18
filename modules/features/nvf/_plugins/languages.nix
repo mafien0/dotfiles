@@ -1,8 +1,7 @@
 {
   pkgs,
   lib,
-}:
-{
+}: {
   lsp = {
     enable = true;
     lspconfig.enable = true;
@@ -23,15 +22,15 @@
 
     nix = {
       enable = true;
-      lsp.servers = [ "nixd" ];
-      format.type = [ "nixfmt" ];
+      lsp.servers = ["nixd"];
+      format.type = ["alejandra"];
       treesitter.enable = true;
     };
     go.enable = true;
     python = {
       enable = true;
-      format.type = [ "ruff" ];
-      lsp.servers = [ "ruff" ];
+      format.type = ["ruff"];
+      lsp.servers = ["ruff"];
     };
     lua.enable = true;
     bash.enable = true;
@@ -73,8 +72,8 @@
         lsp_format = "fallback";
         timeout_ms = 500;
       };
-      formatters_by_ft = { };
-      formatters = { };
+      formatters_by_ft = {};
+      formatters = {};
     };
   };
 

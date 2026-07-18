@@ -2,15 +2,14 @@
   inputs,
   moduleWithSystem,
   ...
-}:
-{
+}: {
   flake.nixosModules.opencode = moduleWithSystem (
-    { config, ... }: _: {
-      environment.systemPackages = [ config.packages.myOpencode ];
+    {config, ...}: _: {
+      environment.systemPackages = [config.packages.myOpencode];
     }
   );
 
-  perSystem = { pkgs, ... }: {
+  perSystem = {pkgs, ...}: {
     packages.myOpencode = inputs.wrapper-modules.wrappers.opencode.wrap {
       inherit pkgs;
       settings = {
@@ -18,11 +17,11 @@
         lsp = true;
         mcp.nixos = {
           type = "local";
-          command = [ "mcp-nixos" ];
+          command = ["mcp-nixos"];
           enabled = true;
         };
       };
-      runtimePkgs = with pkgs; [ mcp-nixos ];
+      runtimePkgs = with pkgs; [mcp-nixos];
     };
   };
 }

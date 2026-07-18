@@ -1,6 +1,6 @@
 _: {
   settings = {
-    prefer-no-csd = _: { };
+    prefer-no-csd = _: {};
 
     layout = {
       gaps = 10;
@@ -11,9 +11,9 @@ _: {
       };
 
       preset-column-widths = [
-        { proportion = 0.33333; }
-        { proportion = 0.5; }
-        { proportion = 0.66667; }
+        {proportion = 0.33333;}
+        {proportion = 0.5;}
+        {proportion = 0.66667;}
       ];
 
       focus-ring = {
@@ -38,7 +38,7 @@ _: {
     };
 
     hotkey-overlay = {
-      skip-at-startup = _: { };
+      skip-at-startup = _: {};
     };
 
     animations = {

@@ -1,6 +1,14 @@
-{ inputs, moduleWithSystem, ... }: {
+{
+  inputs,
+  moduleWithSystem,
+  ...
+}: {
   flake.nixosModules.zsh = moduleWithSystem (
-    _: { pkgs, lib, ... }: {
+    _: {
+      pkgs,
+      lib,
+      ...
+    }: {
       programs.zsh = {
         enable = true;
         syntaxHighlighting.enable = true;
@@ -46,13 +54,11 @@
     }
   );
 
-  perSystem =
-    { pkgs, ... }:
-    {
-      packages.myZsh = inputs.wrapper-modules.wrappers.zsh.wrap {
-        inherit pkgs;
-        runtimePkgs = [ pkgs.git ];
-        zshrc.content = "# i use nixos btw";
-      };
+  perSystem = {pkgs, ...}: {
+    packages.myZsh = inputs.wrapper-modules.wrappers.zsh.wrap {
+      inherit pkgs;
+      runtimePkgs = [pkgs.git];
+      zshrc.content = "# i use nixos btw";
     };
+  };
 }

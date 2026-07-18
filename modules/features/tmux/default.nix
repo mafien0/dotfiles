@@ -2,10 +2,9 @@
   inputs,
   moduleWithSystem,
   ...
-}:
-{
+}: {
   flake.nixosModules.tmux = moduleWithSystem (
-    { config, ... }: _: {
+    {config, ...}: _: {
       programs.tmux = {
         enable = true;
         package = config.packages.myTmux;
@@ -13,7 +12,7 @@
     }
   );
 
-  perSystem = { pkgs, ... }: {
+  perSystem = {pkgs, ...}: {
     packages.myTmux = inputs.wrapper-modules.wrappers.tmux.wrap {
       inherit pkgs;
 

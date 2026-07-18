@@ -2,12 +2,11 @@
   pkgs,
   lib,
   footPkg,
-}:
-{
+}: {
   settings = {
     input = {
       keyboard = {
-        numlock = _: { };
+        numlock = _: {};
         xkb = {
           layout = "us,ru";
           options = "grp:win_space_toggle,caps:escape";
@@ -17,8 +16,8 @@
 
     recent-windows = {
       binds = {
-        "Mod+Tab"."next-window" = _: { };
-        "Mod+Shift+Tab"."previous-window" = _: { };
+        "Mod+Tab"."next-window" = _: {};
+        "Mod+Shift+Tab"."previous-window" = _: {};
 
         "Mod+grave"."next-window" = _: {
           props.filter = "app-id";
@@ -58,27 +57,27 @@
       # Base actions
       "Mod+Shift+Q" = _: {
         props.repeat = false;
-        content."close-window" = _: { };
+        content."close-window" = _: {};
       };
       "Mod+Escape" = _: {
         props.repeat = false;
-        content."toggle-overview" = _: { };
+        content."toggle-overview" = _: {};
       };
       "Mod+F" = _: {
         props.repeat = false;
-        content."maximize-column" = _: { };
+        content."maximize-column" = _: {};
       };
       "Mod+Shift+F" = _: {
         props.repeat = false;
-        content."fullscreen-window" = _: { };
+        content."fullscreen-window" = _: {};
       };
       "Mod+Shift+V" = _: {
         props.repeat = false;
-        content."toggle-window-floating" = _: { };
+        content."toggle-window-floating" = _: {};
       };
       "Mod+V" = _: {
         props.repeat = false;
-        content."switch-focus-between-floating-and-tiling" = _: { };
+        content."switch-focus-between-floating-and-tiling" = _: {};
       };
 
       # Util
@@ -88,46 +87,45 @@
       };
       "Mod+Shift+Slash" = _: {
         props.repeat = false;
-        content."show-hotkey-overlay" = _: { };
+        content."show-hotkey-overlay" = _: {};
       };
       "Mod+S" = _: {
         props.repeat = false;
-        content.screenshot = _: { };
+        content.screenshot = _: {};
       };
       "Mod+Shift+S" = _: {
         props.repeat = false;
-        content."screenshot-screen" = _: { };
+        content."screenshot-screen" = _: {};
       };
       "Mod+Alt+S" = _: {
         props.repeat = false;
-        content."spawn-sh" =
-          "niri msg action screenshot-screen && sleep 0.5; ${lib.getExe' pkgs.wl-clipboard "wl-paste"} | ${lib.getExe pkgs.satty} --filename -";
+        content."spawn-sh" = "niri msg action screenshot-screen && sleep 0.5; ${lib.getExe' pkgs.wl-clipboard "wl-paste"} | ${lib.getExe pkgs.satty} --filename -";
       };
       "Mod+Z" = _: {
         props.repeat = false;
-        content."set-dynamic-cast-window" = _: { };
+        content."set-dynamic-cast-window" = _: {};
       };
 
       # Focus
-      "Mod+H"."focus-column-left" = _: { };
-      "Mod+J"."focus-window-or-workspace-down" = _: { };
-      "Mod+K"."focus-window-or-workspace-up" = _: { };
-      "Mod+L"."focus-column-right" = _: { };
+      "Mod+H"."focus-column-left" = _: {};
+      "Mod+J"."focus-window-or-workspace-down" = _: {};
+      "Mod+K"."focus-window-or-workspace-up" = _: {};
+      "Mod+L"."focus-column-right" = _: {};
 
       # Move windows
-      "Mod+Shift+H"."move-column-left" = _: { };
-      "Mod+Shift+J"."move-window-down-or-to-workspace-down" = _: { };
-      "Mod+Shift+K"."move-window-up-or-to-workspace-up" = _: { };
-      "Mod+Shift+L"."move-column-right" = _: { };
+      "Mod+Shift+H"."move-column-left" = _: {};
+      "Mod+Shift+J"."move-window-down-or-to-workspace-down" = _: {};
+      "Mod+Shift+K"."move-window-up-or-to-workspace-up" = _: {};
+      "Mod+Shift+L"."move-column-right" = _: {};
 
       # Column center
-      "Mod+Ctrl+C"."center-column" = _: { };
+      "Mod+Ctrl+C"."center-column" = _: {};
 
       # Move to first/last
-      "Mod+G"."focus-column-first" = _: { };
-      "Mod+Shift+G"."focus-column-last" = _: { };
-      "Mod+Ctrl+G"."move-column-to-first" = _: { };
-      "Mod+Ctrl+Shift+G"."move-column-to-last" = _: { };
+      "Mod+G"."focus-column-first" = _: {};
+      "Mod+Shift+G"."focus-column-last" = _: {};
+      "Mod+Ctrl+G"."move-column-to-first" = _: {};
+      "Mod+Ctrl+Shift+G"."move-column-to-last" = _: {};
 
       # Column width
       "Mod+Minus"."set-column-width" = "-10%";
@@ -138,33 +136,33 @@
       "Mod+Shift+Equal"."set-window-height" = "+10%";
 
       # In/Out of column
-      "Mod+BracketLeft"."consume-or-expel-window-left" = _: { };
-      "Mod+BracketRight"."consume-or-expel-window-right" = _: { };
-      "Mod+Comma"."consume-window-into-column" = _: { };
-      "Mod+Period"."expel-window-from-column" = _: { };
+      "Mod+BracketLeft"."consume-or-expel-window-left" = _: {};
+      "Mod+BracketRight"."consume-or-expel-window-right" = _: {};
+      "Mod+Comma"."consume-window-into-column" = _: {};
+      "Mod+Period"."expel-window-from-column" = _: {};
 
       # Window size presets
-      "Mod+R"."switch-preset-column-width" = _: { };
-      "Mod+Ctrl+R"."reset-window-height" = _: { };
-      "Mod+Shift+R"."switch-preset-window-height" = _: { };
-      "Mod+Ctrl+Shift+R"."switch-preset-window-height" = _: { };
+      "Mod+R"."switch-preset-column-width" = _: {};
+      "Mod+Ctrl+R"."reset-window-height" = _: {};
+      "Mod+Shift+R"."switch-preset-window-height" = _: {};
+      "Mod+Ctrl+Shift+R"."switch-preset-window-height" = _: {};
 
       # Mouse scroll
       "Mod+WheelScrollDown" = _: {
         props."cooldown-ms" = 150;
-        content."focus-workspace-down" = _: { };
+        content."focus-workspace-down" = _: {};
       };
       "Mod+WheelScrollUp" = _: {
         props."cooldown-ms" = 150;
-        content."focus-workspace-up" = _: { };
+        content."focus-workspace-up" = _: {};
       };
       "Mod+Shift+WheelScrollDown" = _: {
         props."cooldown-ms" = 100;
-        content."focus-column-right" = _: { };
+        content."focus-column-right" = _: {};
       };
       "Mod+Shift+WheelScrollUp" = _: {
         props."cooldown-ms" = 100;
-        content."focus-column-left" = _: { };
+        content."focus-column-left" = _: {};
       };
 
       # Workspace switch

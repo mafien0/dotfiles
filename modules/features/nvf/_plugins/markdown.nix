@@ -1,5 +1,4 @@
-{ pkgs }:
-{
+{pkgs}: {
   extraPlugins = {
     live-preview-nvim = {
       package = pkgs.vimPlugins.live-preview-nvim;

@@ -1,10 +1,6 @@
-{
-  moduleWithSystem,
-  ...
-}:
-{
+{moduleWithSystem, ...}: {
   flake.nixosModules.apps = moduleWithSystem (
-    _: { pkgs, ... }: {
+    _: {pkgs, ...}: {
       services = {
         gvfs.enable = true;
         udisks2.enable = true;
@@ -24,7 +20,7 @@
 
       programs.thunar = {
         enable = true;
-        plugins = [ pkgs.thunar-volman ];
+        plugins = [pkgs.thunar-volman];
       };
 
       environment.systemPackages = with pkgs; [

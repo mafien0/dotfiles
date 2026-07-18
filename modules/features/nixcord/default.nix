@@ -2,11 +2,10 @@
   inputs,
   moduleWithSystem,
   ...
-}:
-{
+}: {
   flake.nixosModules.nixcord = moduleWithSystem (
-    _: { config, ... }: {
-      imports = [ inputs.nixcord.nixosModules.nixcord ];
+    _: {config, ...}: {
+      imports = [inputs.nixcord.nixosModules.nixcord];
 
       programs.nixcord = {
         enable = true;
@@ -37,17 +36,15 @@
         };
       };
 
-      system.activationScripts.nixcord-fix-vesktop-perms =
-        let
-          user = config.programs.nixcord.user;
-          home = "/home/${user}";
-        in
-        {
-          text = ''
-            chown -R ${user}:users ${home}/.config/vesktop 2>/dev/null || true
-          '';
-          deps = [ "nixcord-writeFiles" ];
-        };
+      system.activationScripts.nixcord-fix-vesktop-perms = let
+        user = config.programs.nixcord.user;
+        home = "/home/${user}";
+      in {
+        text = ''
+          chown -R ${user}:users ${home}/.config/vesktop 2>/dev/null || true
+        '';
+        deps = ["nixcord-writeFiles"];
+      };
     }
   );
 }

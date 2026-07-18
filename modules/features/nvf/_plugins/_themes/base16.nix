@@ -1,4 +1,4 @@
-{ pkgs }: {
+{pkgs}: {
   extraPlugins.base16-nvim = {
     package = pkgs.vimPlugins.base16-nvim;
   };

@@ -2,15 +2,14 @@
   inputs,
   moduleWithSystem,
   ...
-}:
-{
+}: {
   flake.nixosModules.btop = moduleWithSystem (
-    { config, ... }: _: {
-      environment.systemPackages = [ config.packages.myBtop ];
+    {config, ...}: _: {
+      environment.systemPackages = [config.packages.myBtop];
     }
   );
 
-  perSystem = { pkgs, ... }: {
+  perSystem = {pkgs, ...}: {
     packages.myBtop = inputs.wrapper-modules.wrappers.btop.wrap {
       inherit pkgs;
       settings = {

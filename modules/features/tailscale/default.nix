@@ -1,8 +1,4 @@
-{
-  moduleWithSystem,
-  ...
-}:
-{
+{moduleWithSystem, ...}: {
   flake.nixosModules.tailscale = moduleWithSystem (
     _: _: {
       services.tailscale = {

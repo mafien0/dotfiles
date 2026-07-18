@@ -1,10 +1,6 @@
-{
-  moduleWithSystem,
-  ...
-}:
-{
+{moduleWithSystem, ...}: {
   flake.nixosModules.qt = moduleWithSystem (
-    _: { pkgs, ... }: {
+    _: {pkgs, ...}: {
       qt = {
         enable = true;
         platformTheme = "qt5ct";
@@ -16,7 +12,7 @@
         XCURSOR_SIZE = "20";
       };
 
-      home-manager.users.mafien0 = { config, ... }: {
+      home-manager.users.mafien0 = {config, ...}: {
         home.file.".config/qt6ct/qt6ct.conf".text = ''
           [Appearance]
           icon_theme=Colloid-Grey-Dark
