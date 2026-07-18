@@ -1,5 +1,5 @@
 {pkgs}: {
-  extraPlugins.vim-tpipeline = {
-    package = pkgs.vimPlugins.vim-tpipeline;
-  };
+	extraPlugins.vim-tpipeline = {
+		package = pkgs.vimPlugins.vim-tpipeline;
+	};
 }

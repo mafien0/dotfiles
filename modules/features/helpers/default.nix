@@ -1,28 +1,29 @@
 {
-  inputs,
-  self,
-  moduleWithSystem,
-  ...
+	inputs,
+	self,
+	moduleWithSystem,
+	...
 }: {
-  flake.nixosModules.helpers = moduleWithSystem (
-    _: {pkgs, ...}: {
-      imports = [
-        self.nixosModules.nh
-        inputs.nix-index-database.nixosModules.default
-      ];
+	flake.nixosModules.helpers =
+		moduleWithSystem (
+			_: {pkgs, ...}: {
+				imports = [
+					self.nixosModules.nh
+					inputs.nix-index-database.nixosModules.default
+				];
 
-      programs.nix-index-database = {
-        enable = true;
-        comma.enable = true;
-      };
+				programs.nix-index-database = {
+					enable = true;
+					comma.enable = true;
+				};
 
-      environment.systemPackages = with pkgs; [
-        deadnix
-        nil
-        alejandra
-        nixpkgs-lint-community
-        statix
-      ];
-    }
-  );
+				environment.systemPackages = with pkgs; [
+					deadnix
+					nil
+					alejandra
+					nixpkgs-lint-community
+					statix
+				];
+			}
+		);
 }
