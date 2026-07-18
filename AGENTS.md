@@ -12,7 +12,8 @@ Personal **NixOS flake** for host `desktop` (user `mafien0`). Modular architectu
 - **Test with `nix build`** before considering a task done
 - **Always Format all Nix code with `nixfmt`**
 - **Always Search for the dead code with `deadnix`** (`deadnix -q **/*.nix`) and fix it
-- **Always Check for anti-patterns with `statix`** (`statix check .`) and fix it
+- **Always Check for anti-patterns with `statix`** (`statix check .`) and **`nixpkgs-lint`** (`nixpkgs-lint .`) and fix both
+- **Ignore `modules/features/_DEPRECATED/`** — unused legacy configs kept for reference. Do not edit, import, or reference.
 - **When editing configuration update** `AGENTS.md`
 - **Don't make things up** — consult docs first, especially <https://birdeehub.github.io/nix-wrapper-modules/>, use `nix-locate` or `nix search` to find packages; for nvf see <https://nvf.notashelf.dev/options.html>
 - **Don't take shortcuts** — follow Nix standards and idioms
@@ -40,7 +41,7 @@ modules/
     foot/                    # Terminal emulator (wrapped + Noctalia themed)
     git/                     # SSH-signed commits (wrapped)
     gtk/                     # GTK theming via adw-gtk3 + Bibata cursors
-    helpers/                 # Aggregates nh + dev tools (deadnix, nixfmt, statix, nil)
+    helpers/                 # Aggregates nh + dev tools (deadnix, nixfmt, nixpkgs-lint, statix, nil)
     helium/                  # Web browser (default handler)
     imv/                     # Image viewer (MIME default)
     mousepad/                # Text editor (MIME default)
@@ -93,7 +94,7 @@ Every CLI tool uses `BirdeeHub/nix-wrapper-modules` to embed config into the Nix
 | `mpv` | `nixosModules.mpv` | — | Default video/audio player (all common codecs/containers) |
 | `neovim` | `nixosModules.neovim` → imports `nixosModules.nvf` | — | See Neovim section below |
 | `nvf` | `nixosModules.nvf` (uses `inputs.nvf`) | — | nvf Neovim framework: all `programs.nvf` options configured here |
-| `helpers` | `nixosModules.helpers` → imports `nixosModules.nh` + nix-index-database | — | Aggregates nh feature + nix-index-database + dev tools (deadnix, nixfmt, statix, nil) |
+| `helpers` | `nixosModules.helpers` → imports `nixosModules.nh` + nix-index-database | — | Aggregates nh feature + nix-index-database + dev tools (deadnix, nixfmt, nixpkgs-lint, statix, nil) |
 | `nh` | `nixosModules.nh` | `myNh` | nh (flake path baked in, auto-clean 4d/3) |
 | `niri` | `nixosModules.niri` | `myNiri` | See niri section below. System pkgs: cliphist, wl-clip-persist, wl-clipboard |
 | `nixcord` | `nixcord.nixosModules.nixcord` | — | Vesktop enabled (requires `nixpkgs.config.permittedInsecurePackages` for EOL electron), adblock CSS, plugins: hideMedia/callTimer/fakeNitro/friendsSince/keepCurrentChannel/mentionAvatars/noF1 |

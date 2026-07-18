@@ -21,6 +21,7 @@
         deadnix
         nil
         nixfmt
+        nixpkgs-lint-community
         statix
       ];
     }
