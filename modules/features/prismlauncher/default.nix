@@ -19,7 +19,7 @@ in {
 		);
 
 	perSystem = {pkgs, ...}: let
-		lwjglGlfw = final: prev: {
+		lwjglGlfw = _: prev: {
 			glfw3-minecraft =
 				prev.glfw3.overrideAttrs (old: {
 						pname = "glfw-minecraft";

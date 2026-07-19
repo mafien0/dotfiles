@@ -1,7 +1,4 @@
-{
-	pkgs,
-	lib,
-}: {
+{pkgs}: {
 	lsp = {
 		enable = true;
 		lspconfig.enable = true;

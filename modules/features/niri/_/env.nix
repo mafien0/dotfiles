@@ -1,8 +1,4 @@
-{
-	pkgs,
-	lib,
-	...
-}: {
+{lib, ...}: {
 	settings = {
 		environment = {
 			ELECTRON_OZONE_PLATFORM_HINT = "wayland";

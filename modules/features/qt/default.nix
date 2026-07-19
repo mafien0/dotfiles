@@ -1,7 +1,7 @@
 {moduleWithSystem, ...}: {
 	flake.nixosModules.qt =
 		moduleWithSystem (
-			_: {pkgs, ...}: {
+			_: {...}: {
 				qt = {
 					enable = true;
 					platformTheme = "qt5ct";

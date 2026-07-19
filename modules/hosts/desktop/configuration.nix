@@ -38,7 +38,9 @@
 		system.stateVersion = "26.05";
 		nixpkgs.config = {
 			allowUnfree = true;
-			permittedInsecurePackages = ["electron-40.10.5"];
+			permittedInsecurePackages = [
+				# I hope no more insecure
+			];
 		};
 
 		nix.settings = {
