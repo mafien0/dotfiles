@@ -100,8 +100,10 @@
 		};
 
 		# Something other configuration
-		networking.hostName = "desktop";
-		networking.networkmanager.enable = true;
+		networking = {
+			hostName = "desktop";
+			networkmanager.enable = true;
+		};
 		time.timeZone = "Asia/Almaty";
 
 		i18n.defaultLocale = "en_US.UTF-8";
@@ -139,7 +141,6 @@
 			go
 			fastfetch # Cool
 
-			localsend
 			blockbench
 			obsidian
 
@@ -153,6 +154,11 @@
 		virtualisation.docker.enable = true;
 
 		programs = {
+			localsend = {
+				enable = true;
+				openFirewall = true;
+			};
+
 			nix-ld.enable = true;
 
 			obs-studio.enable = true;
