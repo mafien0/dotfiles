@@ -118,13 +118,6 @@
 			shell = pkgs.zsh;
 		};
 
-		swapDevices = [
-			{
-				device = "/swapfile";
-				size = 8192;
-			}
-		];
-
 		# Packages
 		environment.systemPackages = with pkgs; [
 			# Cli / Tui

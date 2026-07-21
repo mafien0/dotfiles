@@ -52,6 +52,13 @@ _: {
 			];
 		};
 
+		swapDevices = [
+			{
+				device = "/swapfile";
+				size = 8192;
+			}
+		];
+
 		systemd.tmpfiles.rules = [
 			"L+ /home/mafien0/drive - - - - /mnt/drive"
 		];
