@@ -83,7 +83,6 @@
 				device = "nodev";
 				efiSupport = true;
 				useOSProber = true;
-				theme = pkgs.minimal-grub-theme;
 			};
 			efi.canTouchEfiVariables = true;
 		};
