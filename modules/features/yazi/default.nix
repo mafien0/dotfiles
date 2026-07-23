@@ -10,12 +10,7 @@
 			}
 		);
 
-	perSystem = {
-		pkgs,
-		config,
-		lib,
-		...
-	}: {
+	perSystem = {pkgs, ...}: {
 		packages.myYazi =
 			inputs.wrapper-modules.wrappers.yazi.wrap {
 				inherit pkgs;
@@ -25,7 +20,7 @@
 				settings = {
 					yazi = {
 						manager = {
-							show_hidden = false;
+							show_hidden = true;
 							show_symlink = true;
 							sort_by = "natural";
 							sort_dir_first = true;
@@ -36,32 +31,6 @@
 							min_ratio = 0.2;
 							image_filter = "lanczos3";
 							image_quality = 75;
-						};
-						opener = {
-							edit = [
-								{
-									run = ''${lib.getExe config.packages.myFeet} -e nvim "$@"'';
-									block = true;
-									orphan = false;
-									desc = "Edit with Neovim";
-								}
-							];
-						};
-					};
-					keymap = {
-						manager = {
-							prepend_keymap = [
-								{
-									on = ["s"];
-									run = "shell '${lib.getExe pkgs.fzf} | xargs -r nvim' --block --confirm";
-									desc = "Fuzzy find and open in nvim";
-								}
-								{
-									on = ["S"];
-									run = "shell '${lib.getExe pkgs.fzf}' --block";
-									desc = "Fzf search";
-								}
-							];
 						};
 					};
 					theme = {

@@ -1,11 +1,34 @@
-{
-	pkgs,
-	lib,
-}: {
+{pkgs}: {
 	lsp = {
 		enable = true;
 		lspconfig.enable = true;
 		trouble.enable = true;
+		servers = {
+			gopls.settings = {
+				gopls = {
+					analyses = {
+						unusedparams = true;
+						unreachable = true;
+						nilness = true;
+						shadow = true;
+						fieldalignment = true;
+						simplifyrange = true;
+					};
+					staticcheck = true;
+					hints = {
+						assignVariableTypes = true;
+						compositeLiteralFields = true;
+						compositeLiteralTypes = true;
+						constantValues = true;
+						parameterNames = true;
+						rangeVariableTypes = true;
+					};
+					usePlaceholders = true;
+					completeUnimported = true;
+					gofumpt = true;
+				};
+			};
+		};
 	};
 	diagnostics = {
 		enable = true;
@@ -26,7 +49,16 @@
 			format.type = ["alejandra"];
 			treesitter.enable = true;
 		};
-		go.enable = true;
+		go = {
+			enable = true;
+			format = {
+				enable = true;
+				type = ["gofumpt" "goimports"];
+			};
+			dap.enable = true;
+			extraDiagnostics.enable = true;
+			extensions.gopher-nvim.enable = true;
+		};
 		python = {
 			enable = true;
 			format.type = ["ruff"];

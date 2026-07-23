@@ -20,6 +20,7 @@
 			self.nixosModules.mousepad
 			self.nixosModules.mpv
 			self.nixosModules.nvf
+			self.nixosModules.noctalia
 			self.nixosModules.niri
 			self.nixosModules.nixcord
 			self.nixosModules.opencode
@@ -68,6 +69,10 @@
 				"spicetify-nix.cachix.org-1:jjnwULkvMdu0E5KGBbtgrISEfDdJTGSZ4ATkiFzZn5I="
 				"helium-nix.cachix.org-1:a8YPjt9O4GPyX0u3gjg/aWpb14teU9aRiSG/MOaSFgw="
 			];
+		};
+		nix.gc = {
+			automatic = true;
+			dates = "03:45"; # Why all wikis set to 03:45?
 		};
 
 		systemd.services.nix-daemon.serviceConfig = {
@@ -135,6 +140,7 @@
 
 			blockbench
 			obsidian
+			pinta
 
 			ntfs3g
 			docker-compose

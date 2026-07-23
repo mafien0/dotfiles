@@ -2,7 +2,10 @@
 	pkgs,
 	lib,
 	footPkg,
-}: {
+	noctaliaPkg,
+}: let
+	ipc = "${lib.getExe noctaliaPkg} ipc --any-display call";
+in {
 	settings = {
 		input = {
 			keyboard = {
@@ -39,19 +42,19 @@
 			# Noctalia shell
 			"Mod+A" = _: {
 				props."cooldown-ms" = 500;
-				content."spawn-sh" = "${lib.getExe pkgs.noctalia-shell} ipc call launcher toggle";
+				content."spawn-sh" = "${ipc} launcher toggle";
 			};
 			"Mod+Shift+C" = _: {
 				props."cooldown-ms" = 500;
-				content."spawn-sh" = "${lib.getExe pkgs.noctalia-shell} ipc call launcher clipboard";
+				content."spawn-sh" = "${ipc} launcher clipboard";
 			};
 			"Mod+Shift+E" = _: {
 				props."cooldown-ms" = 500;
-				content."spawn-sh" = "${lib.getExe pkgs.noctalia-shell} ipc call launcher emoji";
+				content."spawn-sh" = "${ipc} launcher emoji";
 			};
 			"Mod+Shift+M" = _: {
 				props."cooldown-ms" = 500;
-				content."spawn-sh" = "${lib.getExe pkgs.noctalia-shell} ipc call sessionMenu toggle";
+				content."spawn-sh" = "${ipc} sessionMenu toggle";
 			};
 
 			# Base actions
@@ -196,7 +199,7 @@
 			"Mod+Alt+Shift+I"."spawn-sh" = "${lib.getExe pkgs.playerctl} previous";
 
 			# Obs control
-			"Mod+T"."spawn-sh" = "${lib.getExe pkgs.noctalia-shell} ipc call plugin:obs-control saveReplay";
+			"Mod+T"."spawn-sh" = "${ipc} plugin:obs-control saveReplay";
 
 			# Media keys
 			"XF86AudioRaiseVolume" = _: {

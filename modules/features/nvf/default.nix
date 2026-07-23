@@ -33,7 +33,7 @@
 							(import ./_config/theme.nix)
 
 							# Plugins
-							(import ./_plugins/languages.nix {inherit pkgs lib;})
+							(import ./_plugins/languages.nix {inherit pkgs;})
 							(import ./_plugins/cmp.nix)
 							(import ./_plugins/snacks.nix)
 							(import ./_plugins/mini.nix)
@@ -43,7 +43,6 @@
 							(import ./_plugins/aerial.nix)
 							(import ./_plugins/whichkey.nix)
 							(import ./_plugins/markdown.nix {inherit pkgs;})
-							(import ./_plugins/opencode.nix {inherit pkgs;})
 							(import ./_plugins/tpipeline.nix {inherit pkgs;})
 
 							# Themes

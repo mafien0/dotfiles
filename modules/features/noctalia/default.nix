@@ -1,4 +1,15 @@
-{inputs, ...}: {
+{
+	inputs,
+	moduleWithSystem,
+	...
+}: {
+	flake.nixosModules.noctalia =
+		moduleWithSystem (
+			{config, ...}: _: {
+				environment.systemPackages = [config.packages.myNoctalia];
+			}
+		);
+
 	perSystem = {pkgs, ...}: {
 		packages.myNoctalia =
 			inputs.wrapper-modules.wrappers.noctalia-shell.wrap {
@@ -7,6 +18,36 @@
 				outOfStoreConfig = "/home/mafien0/.config/noctalia";
 
 				inherit ((builtins.fromJSON (builtins.readFile ./noctalia.json))) settings;
+
+				plugins = {
+					sources = [
+						{
+							enabled = true;
+							name = "Noctalia Plugins";
+							url = "https://github.com/noctalia-dev/noctalia-plugins";
+						}
+					];
+					states = {
+						obs-control = {
+							enabled = true;
+							sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+						};
+						privacy-indicator = {
+							enabled = true;
+							sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+						};
+					};
+					version = 2;
+				};
+
+				preInstalledPlugins = {
+					obs-control = {
+						src = "${inputs.noctalia-plugins}/obs-control";
+					};
+					privacy-indicator = {
+						src = "${inputs.noctalia-plugins}/privacy-indicator";
+					};
+				};
 
 				runtimePkgs = with pkgs; [
 					cliphist

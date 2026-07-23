@@ -30,7 +30,7 @@
 		noctaliaPkg = config.packages.myNoctalia;
 		cfg = import ./_/config.nix {inherit pkgs lib noctaliaPkg;};
 		sty = import ./_/style.nix {inherit pkgs lib;};
-		inp = import ./_/input.nix {inherit pkgs lib footPkg;};
+		inp = import ./_/input.nix {inherit pkgs lib footPkg noctaliaPkg;};
 		env = import ./_/env.nix {inherit pkgs lib;};
 		msc = import ./_/misc.nix {inherit pkgs lib;};
 		wrl = import ./_/windowrules.nix {inherit pkgs lib;};

@@ -19,6 +19,7 @@
 
 				environment.systemPackages = with pkgs; [
 					deadnix
+					nixfmt
 					nil
 					alejandra
 					nixpkgs-lint-community

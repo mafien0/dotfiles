@@ -1,11 +1,12 @@
 {pkgs}: {
 	extraPlugins = {
-		live-preview-nvim = {
-			package = pkgs.vimPlugins.live-preview-nvim;
-		};
 		checkmate-nvim = {
 			package = pkgs.vimPlugins.checkmate-nvim;
 			setup = "require('checkmate').setup {}";
+		};
+		render-markdown-nvim = {
+			package = pkgs.vimPlugins.render-markdown-nvim;
+			setup = "require('render-markdown').setup {}";
 		};
 	};
 

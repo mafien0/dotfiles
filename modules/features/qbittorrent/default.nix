@@ -1,7 +1,7 @@
 {moduleWithSystem, ...}: {
 	flake.nixosModules.qbittorrent =
 		moduleWithSystem (
-			_: {pkgs, ...}: {
+			{pkgs, ...}: {
 				environment.systemPackages = [pkgs.qbittorrent];
 
 				xdg.mime.defaultApplications = {

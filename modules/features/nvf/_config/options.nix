@@ -6,7 +6,7 @@
 	lineNumberMode = "relNumber";
 	syntaxHighlighting = true;
 	hideSearchHighlight = true;
-	viAlias = false;
+	viAlias = true;
 	vimAlias = true;
 
 	options = {
