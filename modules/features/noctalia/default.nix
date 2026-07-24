@@ -5,8 +5,15 @@
 }: {
 	flake.nixosModules.noctalia =
 		moduleWithSystem (
-			{config, ...}: _: {
-				environment.systemPackages = [config.packages.myNoctalia];
+			{
+				pkgs,
+				config,
+				...
+			}: _: {
+				environment.systemPackages = [
+					config.packages.myNoctalia
+					pkgs.kdePackages.qtwebsockets
+				];
 			}
 		);
 
@@ -52,6 +59,7 @@
 				runtimePkgs = with pkgs; [
 					cliphist
 					wl-clipboard
+					kdePackages.qtwebsockets
 				];
 
 				user-templates = {

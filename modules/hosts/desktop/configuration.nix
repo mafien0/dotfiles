@@ -70,11 +70,9 @@
 				"helium-nix.cachix.org-1:a8YPjt9O4GPyX0u3gjg/aWpb14teU9aRiSG/MOaSFgw="
 			];
 		};
-		nix.gc = {
-			automatic = true;
-			dates = "03:45"; # Why all wikis set to 03:45?
-		};
-
+		nix.extraOptions = ''
+			!include /home/mafien0/.config/nix/access-tokens.conf
+		'';
 		systemd.services.nix-daemon.serviceConfig = {
 			CPUSchedulingPolicy = lib.mkForce "idle";
 			IOSchedulingClass = lib.mkForce "idle";
@@ -91,6 +89,10 @@
 			};
 			efi.canTouchEfiVariables = true;
 		};
+
+		security.sudo.extraConfig = ''
+			Defaults env_keep += "GITHUB_TOKEN"
+		'';
 
 		services = {
 			journald.extraConfig = ''

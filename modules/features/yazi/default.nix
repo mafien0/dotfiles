@@ -21,33 +21,10 @@
 					yazi = {
 						manager = {
 							show_hidden = true;
-							show_symlink = true;
+							show_symlink = false;
 							sort_by = "natural";
 							sort_dir_first = true;
 							linemode = "none";
-						};
-						preview = {
-							max_ratio = 0.6;
-							min_ratio = 0.2;
-							image_filter = "lanczos3";
-							image_quality = 75;
-						};
-					};
-					theme = {
-						manager = {
-							border_style = {
-								fg = "blue";
-							};
-							active_border_style = {
-								fg = "green";
-							};
-						};
-						status = {
-							separator_open = "[";
-							separator_close = "]";
-							separator_style = {
-								fg = "blue";
-							};
 						};
 					};
 				};
@@ -61,6 +38,8 @@
 					unzip
 					unar
 					chafa
+					fzf
+					zoxide
 				];
 			};
 	};

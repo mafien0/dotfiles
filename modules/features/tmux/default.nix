@@ -92,6 +92,10 @@
 					bind -T copy-mode-vi g send-keys -X history-top
 					bind -T copy-mode-vi G send-keys -X history-bottom
 
+					set -g allow-passthrough on
+					set -ga update-environment TERM
+					set -ga update-environment TERM_PROGRAM
+
 					bind p paste-buffer
 
 					set-option -g status-position top
