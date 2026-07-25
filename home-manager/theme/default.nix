@@ -4,4 +4,6 @@
 		./gtk.nix
 		./qt.nix
 	];
+
+	home.pointerCursor.enable = true;
 }

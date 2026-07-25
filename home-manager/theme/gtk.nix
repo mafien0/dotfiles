@@ -1,12 +1,10 @@
 {pkgs, ...}: {
-	stylix.target.gtk.enable = true;
+	stylix.targets.gtk.enable = true;
 
 	gtk = {
 		iconTheme = {
-			package =
-				pkgs.papirus-icon-theme.override {
-					color = "violet";
-				};
+			name = "Papirus-Dark";
+			package = pkgs.papirus-icon-theme;
 		};
 	};
 }

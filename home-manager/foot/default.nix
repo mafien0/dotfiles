@@ -1,5 +1,5 @@
 {
-	stylix.target.foot.enable = true;
+	stylix.targets.foot.enable = true;
 
 	programs.foot = {
 		enable = true;

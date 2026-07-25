@@ -19,19 +19,22 @@
 		};
 
 		fonts = {
+			sizes = {
+				terminal = 11;
+			};
 			serif = {
 				package = pkgs.dejavu_fonts;
 				name = "DejaVu Serif";
 			};
 
 			sansSerif = {
-				package = pkgs.dejavu_fonts;
-				name = "DejaVu Sans";
+				package = pkgs.ubuntu-classic;
+				name = "Ubuntu";
 			};
 
 			monospace = {
 				package = pkgs.nerd-fonts.jetbrains-mono;
-				name = "JetBrainsMono Nerd Font";
+				name = "JetBrainsMono Nerd Font Medium";
 			};
 
 			emoji = {

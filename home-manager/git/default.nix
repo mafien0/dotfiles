@@ -2,15 +2,15 @@
 	programs.git = {
 		enable = true;
 
-		userName = "mafien0";
-		userEmail = "mafien_0@tuta.io";
-
 		signing = {
 			key = "~/.ssh/id_ed25519.pub";
 			signByDefault = true;
 		};
 
-		extraConfig = {
+		settings = {
+			user.name = "mafien0";
+			user.email = "mafien_0@tuta.io";
+
 			init.defaultBranch = "main";
 
 			tag.gpgSign = true;
