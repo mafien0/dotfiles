@@ -1,17 +1,6 @@
 {
 	programs.niri.settings."window-rules" = [
 		{
-			matches = [];
-			geometry-corner-radius = {
-				top-left = 12.0;
-				top-right = 12.0;
-				bottom-right = 12.0;
-				bottom-left = 12.0;
-			};
-			clip-to-geometry = true;
-		}
-
-		{
 			matches = [{title = "^Picture-in-Picture$";}];
 			draw-border-with-background = false;
 			focus-ring.enable = false;
@@ -78,25 +67,6 @@
 			block-out-from = "screencast";
 		}
 
-		# Opacity
-		{
-			matches = [{is-focused = true;}];
-			opacity = 0.95;
-			background-effect = {
-				xray = true;
-				blur = true;
-			};
-		}
-
-		{
-			matches = [{is-focused = false;}];
-			opacity = 0.97;
-			background-effect = {
-				xray = true;
-				blur = true;
-			};
-		}
-
 		# full opacity
 		{
 			matches = [
@@ -111,7 +81,7 @@
 	programs.niri.settings."layer-rules" = [
 		{
 			matches = [
-				{namespace = "^noctalia-overview*";}
+				{namespace = "^noctalia-overview.*$";}
 			];
 			place-within-backdrop = true;
 		}

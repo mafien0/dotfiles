@@ -28,8 +28,5 @@
 				autowrite = true;
 			};
 		};
-		statusline = {
-			enable = true;
-		};
 	};
 }

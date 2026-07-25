@@ -1,0 +1,5 @@
+{
+	statusline.lualine = {
+		enable = true;
+	};
+}

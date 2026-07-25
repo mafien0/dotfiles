@@ -13,7 +13,6 @@
 
 		quickCss = ''
 			@import url("https://codeberg.org/ridge/Discord-Adblock/raw/branch/main/discord-adblock.css");
-			@import url("https://raw.githubusercontent.com/refact0r/system24/refs/heads/main/theme/flavors/system24-catppuccin-mocha.theme.css")
 		'';
 
 		config = {

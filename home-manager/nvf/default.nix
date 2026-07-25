@@ -18,6 +18,7 @@
 
 	programs.nvf.settings.vim =
 		lib.mkMerge [
+			(import ./statusline.nix)
 			(import ./options.nix)
 			(import ./keybinds.nix)
 			(import ./autocmds.nix {inherit lib;})
@@ -31,6 +32,5 @@
 			(import ./aerial.nix)
 			(import ./whichkey.nix)
 			(import ./markdown.nix {inherit pkgs;})
-			(import ./tpipeline.nix {inherit pkgs;})
 		];
 }
