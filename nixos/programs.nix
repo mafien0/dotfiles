@@ -33,6 +33,10 @@
 	virtualisation.docker.enable = true;
 
 	programs = {
+		nix-index-database = {
+			enable = true;
+			comma.enable = true;
+		};
 		dconf.enable = true;
 		nh = {
 			enable = true;
@@ -43,7 +47,10 @@
 			};
 		};
 
-		niri.enable = true;
+		niri = {
+			enable = true;
+			package = pkgs.niri;
+		};
 
 		zsh.enable = true;
 

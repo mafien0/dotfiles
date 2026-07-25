@@ -1,4 +1,6 @@
 {pkgs, ...}: {
+	stylix.targets.yazi.enable = true;
+
 	home.packages = with pkgs; [
 		yazi
 		file
