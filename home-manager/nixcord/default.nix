@@ -1,4 +1,8 @@
-{
+{inputs, ...}: {
+	imports = [
+		inputs.nixcord.homeModules.nixcord
+	];
+
 	# stylix.targets.discord.enable = true;
 
 	programs.nixcord = {

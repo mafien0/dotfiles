@@ -1,4 +1,8 @@
-{spicetifyExtensions, ...}: {
+{spicetifyExtensions, inputs, ...}: {
+	imports = [
+		inputs.spicetify-nix.homeManagerModules.spicetify
+	];
+
 	stylix.targets.spicetify.enable = true;
 
 	programs.spicetify = {

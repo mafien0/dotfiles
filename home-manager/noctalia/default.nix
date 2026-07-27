@@ -2,8 +2,13 @@
 	noctaliaPackage,
 	pkgs,
 	lib,
+	inputs,
 	...
 }: {
+	imports = [
+		inputs.noctalia-shell.homeModules.default
+	];
+
 	stylix.targets.noctalia-shell.enable = true;
 
 	programs.noctalia-shell = let

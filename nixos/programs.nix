@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{pkgs, inputs, ...}: {
+	imports = [
+		inputs.nix-index-database.nixosModules.default
+		inputs.niri-flake.nixosModules.niri
+	];
+
 	environment.systemPackages = with pkgs; [
 		# Nix
 		deadnix

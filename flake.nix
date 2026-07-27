@@ -1,19 +1,19 @@
 {
 	inputs = {
-		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+		nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+
+		home-manager = {
+			url = "github:nix-community/home-manager/release-26.05";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 
 		disko = {
 			url = "github:nix-community/disko";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
-		home-manager = {
-			url = "github:nix-community/home-manager";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
-
 		stylix = {
-			url = "github:nix-community/stylix";
+			url = "github:nix-community/stylix/release-26.05";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
@@ -44,6 +44,7 @@
 
 		niri-flake = {
 			url = "github:epireyn/niri-flake";
+			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
 		noctalia-shell = {
@@ -53,27 +54,6 @@
 		noctalia-qs = {
 			url = "github:noctalia-dev/noctalia-qs";
 		};
-	};
-
-	nixConfig = {
-		extra-substituters = [
-			"https://nix-community.cachix.org"
-			"https://nvf.cachix.org"
-			"https://hercules-ci.cachix.org"
-			"https://vic.cachix.org"
-			"https://spicetify-nix.cachix.org"
-			"https://helium-nix.cachix.org"
-			"https://noctalia.cachix.org"
-		];
-		extra-trusted-public-keys = [
-			"nix-community.cachix-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-			"nvf.cachix.org-1:GMQWiUhZ6ux9D5CvFFMwnc2nFrUHTeGaXRlVBXo+naI="
-			"hercules-ci.cachix.org-1:ZZeDl9Va+xe9j+KqdzoBZMFJHVQ42Uu/c/1/KMC5Lw0="
-			"vic.cachix.org-1:1fQNG1DxLTGd47MBAtr/IrUYIk+TTXDojOItpqFoxII="
-			"spicetify-nix.cachix.org-1:jjnwULkvMdu0E5KGBbtgrISEfDdJTGSZ4ATkiFzZn5I="
-			"helium-nix.cachix.org-1:a8YPjt9O4GPyX0u3gjg/aWpb14teU9aRiSG/MOaSFgw="
-			"noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
-		];
 	};
 
 	outputs = inputs: let
@@ -100,11 +80,6 @@
 					modules = [
 						./nixos/configuration.nix
 						./nixos/disko.nix
-						inputs.nix-index-database.nixosModules.default
-						inputs.home-manager.nixosModules.home-manager
-						inputs.niri-flake.nixosModules.niri
-						inputs.disko.nixosModules.disko
-						inputs.noctalia-shell.nixosModules.default
 					];
 				};
 		};
@@ -115,13 +90,6 @@
 					extraSpecialArgs = specialArgs;
 					modules = [
 						./home-manager/home.nix
-						inputs.stylix.homeModules.stylix
-						inputs.niri-flake.homeModules.niri
-						inputs.niri-flake.homeModules.stylix
-						inputs.noctalia-shell.homeModules.default
-						inputs.nixcord.homeModules.nixcord
-						inputs.spicetify-nix.homeManagerModules.spicetify
-						inputs.nvf.homeManagerModules.nvf
 					];
 				};
 		};

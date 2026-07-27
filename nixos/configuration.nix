@@ -1,19 +1,42 @@
 {
 	pkgs,
 	config,
+	inputs,
 	...
 }: {
 	imports = [
 		./hardware.nix
 		./apps.nix
 		./programs.nix
+		inputs.home-manager.nixosModules.home-manager
+		inputs.noctalia-shell.nixosModules.default
 	];
 
 	system.stateVersion = "26.05";
 
 	home-manager.backupFileExtension = ".bak";
 	nixpkgs.config.allowUnfree = true;
+	nixpkgs.overlays = [ inputs.niri-flake.overlays.niri ];
 	nix.settings = {
+		trusted-users = ["@wheel"];
+		extra-substituters = [
+			"https://nix-community.cachix.org"
+			"https://nvf.cachix.org"
+			"https://vic.cachix.org"
+			"https://spicetify-nix.cachix.org"
+			"https://helium-nix.cachix.org"
+			"https://noctalia.cachix.org"
+			"https://niri-epireyn.cachix.org"
+		];
+		extra-trusted-public-keys = [
+			"nix-community.cachix-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+			"nvf.cachix.org-1:GMQWiUhZ6ux9D5CvFFMwnc2nFrUHTeGaXRlVBXo+naI="
+			"vic.cachix.org-1:1fQNG1DxLTGd47MBAtr/IrUYIk+TTXDojOItpqFoxII="
+			"spicetify-nix.cachix.org-1:jjnwULkvMdu0E5KGBbtgrISEfDdJTGSZ4ATkiFzZn5I="
+			"helium-nix.cachix.org-1:a8YPjt9O4GPyX0u3gjg/aWpb14teU9aRiSG/MOaSFgw="
+			"noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+			"niri-epireyn.cachix.org-1:tlVyFN7CtsDT+ZcLPS+ekFWeT1X6X4OqvWqbBMyIzFA="
+		];
 		experimental-features = [
 			"nix-command"
 			"flakes"

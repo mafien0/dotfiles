@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, inputs, ...}: {
 	imports = [
 		./config.nix
 		./input.nix
@@ -6,6 +6,8 @@
 		./env.nix
 		./misc.nix
 		./windowrules.nix
+		inputs.niri-flake.homeModules.niri
+		inputs.niri-flake.homeModules.stylix
 	];
 
 	programs.niri = {

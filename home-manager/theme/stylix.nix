@@ -1,5 +1,6 @@
-{pkgs, ...}: {
+{pkgs, inputs, ...}: {
 	imports = [
+		inputs.stylix.homeModules.stylix
 	];
 
 	stylix = {
@@ -34,7 +35,7 @@
 
 			monospace = {
 				package = pkgs.nerd-fonts.jetbrains-mono;
-				name = "JetBrainsMono Nerd Font Medium";
+				name = "JetBrainsMono Nerd Font";
 			};
 
 			emoji = {

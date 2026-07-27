@@ -1,8 +1,13 @@
 {
 	pkgs,
 	lib,
+	inputs,
 	...
 }: {
+	imports = [
+		inputs.nvf.homeManagerModules.nvf
+	];
+
 	programs.nvf.enable = true;
 	stylix.targets.nvf.enable = true;
 
