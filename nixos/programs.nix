@@ -1,18 +1,14 @@
-{pkgs, inputs, ...}: {
+{
+	pkgs,
+	inputs,
+	...
+}: {
 	imports = [
 		inputs.nix-index-database.nixosModules.default
 		inputs.niri-flake.nixosModules.niri
 	];
 
 	environment.systemPackages = with pkgs; [
-		# Nix
-		deadnix
-		nixfmt
-		nil
-		alejandra
-		nixpkgs-lint-community
-		statix
-
 		# Cli / Tui
 		devenv
 		python3

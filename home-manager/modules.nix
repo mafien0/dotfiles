@@ -1,5 +1,6 @@
 {
 	imports = [
+		./nixtools
 		./theme
 		./niri
 		./helium

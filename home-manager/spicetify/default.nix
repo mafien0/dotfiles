@@ -1,4 +1,8 @@
-{spicetifyExtensions, inputs, ...}: {
+{
+	spicetifyExtensions,
+	inputs,
+	...
+}: {
 	imports = [
 		inputs.spicetify-nix.homeManagerModules.spicetify
 	];

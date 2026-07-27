@@ -16,7 +16,7 @@
 
 	home-manager.backupFileExtension = ".bak";
 	nixpkgs.config.allowUnfree = true;
-	nixpkgs.overlays = [ inputs.niri-flake.overlays.niri ];
+	nixpkgs.overlays = [inputs.niri-flake.overlays.niri];
 	nix.settings = {
 		trusted-users = ["@wheel"];
 		extra-substituters = [
