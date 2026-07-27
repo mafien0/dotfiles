@@ -8,8 +8,8 @@
 
 		base16Scheme =
 			builtins.fetchurl {
-				url = "https://raw.githubusercontent.com/catppuccin/base16/main/base16/mocha.yaml";
-				sha256 = "1wyn8ww8d9q8m6cycppx98n15sbms62aydf25wp9wkbv3p64bnfg";
+				url = "https://raw.githubusercontent.com/tinted-theming/schemes/refs/heads/spec-0.11/base16/everforest-dark-hard.yaml";
+				sha256 = "17wccvb42j2bizzl7pp0ad0hqq843sn7yv0ghhbwdmd0b9gbqgm6";
 			};
 
 		cursor = {

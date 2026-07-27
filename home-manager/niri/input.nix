@@ -67,6 +67,7 @@ in {
 				action."toggle-window-floating" = {};
 				repeat = false;
 			};
+			# toggle-window-rule-opacity
 			"Mod+W" = {
 				action."toggle-window-rule-opacity" = {};
 				repeat = false;
@@ -78,6 +79,7 @@ in {
 			};
 
 			# Util
+			# Hyprpicker
 			"Mod+X" = {
 				action."spawn-sh" = "${lib.getExe pkgs.hyprpicker} -a -l";
 				repeat = false;
@@ -97,6 +99,7 @@ in {
 				action."screenshot-screen" = {};
 				repeat = false;
 			};
+			# Smart screenshot
 			"Mod+Alt+S" = {
 				action."spawn-sh" = "${lib.getExe' config.programs.niri.package "niri"} msg action screenshot-screen && ${lib.getExe' pkgs.coreutils "sleep"} 0.5; ${lib.getExe' pkgs.wl-clipboard "wl-paste"} | ${lib.getExe pkgs.satty} --filename -";
 				repeat = false;

@@ -32,6 +32,13 @@
 
 	virtualisation.docker.enable = true;
 
+	xdg.portal = {
+		enable = true;
+		xdgOpenUsePortal = true;
+		extraPortals = [pkgs.xdg-desktop-portal-gtk];
+		config.niri.default = ["gnome" "gtk"];
+	};
+
 	programs = {
 		nix-index-database = {
 			enable = true;

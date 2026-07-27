@@ -62,7 +62,7 @@
 			matches = [
 				{app-id = "org.telegram.desktop";}
 				{app-id = "com.rtosta.zapzap";}
-				{app-id = "Spotify";}
+				{app-id = "(?i).*spotify";}
 			];
 			block-out-from = "screencast";
 		}

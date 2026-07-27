@@ -87,7 +87,7 @@
         {
           "characterCount": 2,
           "colorizeIcons": false,
-          "emptyColor": "secondary",
+          "emptyColor": "none",
           "enableScrollWheel": true,
           "focusedColor": "primary",
           "followFocusedScreen": false,
@@ -97,7 +97,7 @@
           "iconScale": 0.8,
           "id": "Workspace",
           "labelMode": "index",
-          "occupiedColor": "secondary",
+          "occupiedColor": "none",
           "pillSize": 0.6,
           "showApplications": false,
           "showApplicationsHover": false,
