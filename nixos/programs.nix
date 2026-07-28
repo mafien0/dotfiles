@@ -22,13 +22,13 @@
 		wrangler
 		go
 		fastfetch # Cool
+		lazygit
+		lazydocker
 
 		obsidian
 
 		ntfs3g
 		docker-compose
-
-		# Im sorry, but i need kotlin
 	];
 
 	virtualisation.docker.enable = true;
