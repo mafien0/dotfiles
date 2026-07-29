@@ -29,6 +29,8 @@
 
 		ntfs3g
 		docker-compose
+
+		jetbrains.idea
 	];
 
 	virtualisation.docker.enable = true;

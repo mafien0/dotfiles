@@ -20,6 +20,8 @@
 		];
 
 		extraConfig = ''
+			set -g default-terminal "tmux-256color"
+			set -ga terminal-overrides ",*256col*:Tc"
 			set -g cursor-style bar
 
 			bind q killp

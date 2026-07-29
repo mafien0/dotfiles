@@ -27,7 +27,7 @@
 			(import ./options.nix)
 			(import ./keybinds.nix)
 			(import ./autocmds.nix {inherit lib;})
-			(import ./languages.nix {inherit pkgs;})
+			(import ./languages.nix {inherit pkgs lib;})
 			(import ./cmp.nix)
 			(import ./snacks.nix)
 			(import ./mini.nix)

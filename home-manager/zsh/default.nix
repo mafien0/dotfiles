@@ -35,10 +35,6 @@
 
 			unsetopt PROMPT_SP
 
-			function precmd {
-			    print -Pn "\e[ q"
-			}
-
 			if [[ ! -f ~/tokens.sh ]]; then
 			  echo '#!/usr/bin/sh' > ~/tokens.sh
 			  echo 'echo "change ~/tokens.sh"' >> ~/tokens.sh

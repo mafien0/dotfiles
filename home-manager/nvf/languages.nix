@@ -1,4 +1,4 @@
-{pkgs}: {
+{pkgs, lib, ...}: {
 	lsp = {
 		enable = true;
 		lspconfig.enable = true;
@@ -74,7 +74,10 @@
 		rust.enable = true;
 		sql.enable = true;
 		toml.enable = true;
-		java.enable = true;
+		java = {
+			enable = true;
+			extensions.gradle-nvim.enable = true;
+		};
 	};
 
 	treesitter = {
@@ -101,8 +104,14 @@
 				lsp_format = "fallback";
 				timeout_ms = 500;
 			};
-			formatters_by_ft = {};
-			formatters = {};
+			formatters_by_ft = lib.mkForce {
+				java = ["google-java-format"];
+			};
+			formatters = {
+				google-java-format = {
+					stdin = true;
+				};
+			};
 		};
 	};
 
@@ -111,6 +120,7 @@
 	extraPackages = with pkgs; [
 		ripgrep
 		fd
+		google-java-format
 	];
 
 	extraPlugins = {
@@ -125,6 +135,9 @@
 		tiny-inline-diagnostic-nvim = {
 			package = pkgs.vimPlugins.tiny-inline-diagnostic-nvim;
 			setup = "require('tiny-inline-diagnostic').setup { preset = 'simple' }";
+		};
+		nvim-jdtls = {
+			package = pkgs.vimPlugins.nvim-jdtls;
 		};
 	};
 
@@ -154,6 +167,17 @@
 			map("n", "<leader>ge", function()
 			  require("trouble").toggle({ mode = "diagnostics" })
 			end, { desc = "Toggle trouble" })
+		'';
+
+		jdtls-compat = ''
+			local ok, util = pcall(require, "jdtls.util")
+			if ok then
+				local _get = util.get_clients
+				util.get_clients = function(o)
+					if o.name == "jdtls" then o.name = "jdt-language-server" end
+					return _get(o)
+				end
+			end
 		'';
 
 		lsp_glance = ''
