@@ -25,6 +25,7 @@
 		lazygit
 		lazydocker
 
+		aseprite
 		obsidian
 
 		ntfs3g
