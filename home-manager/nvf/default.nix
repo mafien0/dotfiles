@@ -37,5 +37,6 @@
 			(import ./aerial.nix)
 			(import ./whichkey.nix)
 			(import ./markdown.nix {inherit pkgs;})
+			(import ./nixd.nix)
 		];
 }

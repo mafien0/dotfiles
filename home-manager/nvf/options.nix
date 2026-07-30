@@ -15,7 +15,7 @@
 		scrolloff = 10;
 		autoindent = true;
 		undofile = true;
-		expandtab = false;
+		expandtab = true;
 		formatoptions = "tcqj";
 		signcolumn = "yes";
 	};
