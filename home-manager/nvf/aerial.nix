@@ -1,3 +1,3 @@
 {
-	utility.outline.aerial-nvim.enable = true;
+  utility.outline.aerial-nvim.enable = true;
 }

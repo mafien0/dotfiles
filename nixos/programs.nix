@@ -1,140 +1,140 @@
 {
-	pkgs,
-	inputs,
-	...
+  pkgs,
+  inputs,
+  ...
 }: {
-	imports = [
-		inputs.nix-index-database.nixosModules.default
-		inputs.niri-flake.nixosModules.niri
-	];
+  imports = [
+    inputs.nix-index-database.nixosModules.default
+    inputs.niri-flake.nixosModules.niri
+  ];
 
-	environment.systemPackages = with pkgs; [
-		# Cli / Tui
-		devenv
-		python3
-		zip
-		unzip
-		cloc
-		fzf
-		wget
-		ripgrep
-		killall
-		wrangler
-		go
-		fastfetch # Cool
-		lazygit
-		lazydocker
+  environment.systemPackages = with pkgs; [
+    # Cli / Tui
+    devenv
+    python3
+    zip
+    unzip
+    cloc
+    fzf
+    wget
+    ripgrep
+    killall
+    wrangler
+    go
+    fastfetch # Cool
+    lazygit
+    lazydocker
 
-		aseprite
-		obsidian
+    libresprite
+    obsidian
 
-		ntfs3g
-		docker-compose
+    ntfs3g
+    docker-compose
 
-		jetbrains.idea
-	];
+    jetbrains.idea
+  ];
 
-	virtualisation.docker.enable = true;
+  virtualisation.docker.enable = true;
 
-	xdg.portal = {
-		enable = true;
-		xdgOpenUsePortal = true;
-		extraPortals = [pkgs.xdg-desktop-portal-gtk];
-		config.niri.default = ["gnome" "gtk"];
-	};
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    config.niri.default = ["gnome" "gtk"];
+  };
 
-	programs = {
-		nix-index-database = {
-			enable = true;
-			comma.enable = true;
-		};
-		dconf.enable = true;
-		nh = {
-			enable = true;
-			flake = "/home/mafien0/nix";
-			clean = {
-				enable = true;
-				extraArgs = "--keep 5 --keep-since 3d";
-			};
-		};
+  programs = {
+    nix-index-database = {
+      enable = true;
+      comma.enable = true;
+    };
+    dconf.enable = true;
+    nh = {
+      enable = true;
+      flake = "/home/mafien0/nix";
+      clean = {
+        enable = true;
+        extraArgs = "--keep 5 --keep-since 3d";
+      };
+    };
 
-		niri = {
-			enable = true;
-			package = pkgs.niri;
-		};
+    niri = {
+      enable = true;
+      package = pkgs.niri;
+    };
 
-		zsh.enable = true;
+    zsh.enable = true;
 
-		localsend = {
-			enable = true;
-			openFirewall = true;
-		};
+    localsend = {
+      enable = true;
+      openFirewall = true;
+    };
 
-		nix-ld.enable = true;
-		obs-studio.enable = true;
-		gamescope.enable = true;
+    nix-ld.enable = true;
+    obs-studio.enable = true;
+    gamescope.enable = true;
 
-		steam = {
-			enable = true;
-			remotePlay.openFirewall = true;
-			dedicatedServer.openFirewall = true;
-			localNetworkGameTransfers.openFirewall = true;
-			gamescopeSession.enable = true;
-			extraPackages = with pkgs; [
-				pulseaudio
-				bibata-cursors
-			];
-		};
-	};
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+      localNetworkGameTransfers.openFirewall = true;
+      gamescopeSession.enable = true;
+      extraPackages = with pkgs; [
+        pulseaudio
+        bibata-cursors
+      ];
+    };
+  };
 
-	fonts.packages = with pkgs; [
-		# Nerd Fonts
-		nerd-fonts.fira-code
-		nerd-fonts.hack
-		nerd-fonts.jetbrains-mono
-		nerd-fonts.noto
-		nerd-fonts.sauce-code-pro
+  fonts.packages = with pkgs; [
+    # Nerd Fonts
+    nerd-fonts.fira-code
+    nerd-fonts.hack
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.noto
+    nerd-fonts.sauce-code-pro
 
-		# General purpose
-		noto-fonts
-		noto-fonts-cjk-sans
-		noto-fonts-color-emoji
-		dejavu_fonts
-		ubuntu-classic
+    # General purpose
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-color-emoji
+    dejavu_fonts
+    ubuntu-classic
 
-		# Metric-compatible MS fonts
-		liberation_ttf
-		carlito
-		caladea
+    # Metric-compatible MS fonts
+    liberation_ttf
+    carlito
+    caladea
 
-		# Adobe Source fonts
-		source-code-pro
-		source-sans-pro
-		source-serif-pro
-	];
+    # Adobe Source fonts
+    source-code-pro
+    source-sans-pro
+    source-serif-pro
+  ];
 
-	fonts.fontconfig.defaultFonts = {
-		monospace = [
-			"JetBrainsMono Nerd Font"
-			"FiraCode Nerd Font"
-			"Hack Nerd Font"
-			"Source Code Pro"
-			"DejaVu Sans Mono"
-			"Noto Sans Mono"
-		];
-		sansSerif = [
-			"Noto Sans"
-			"Ubuntu"
-			"DejaVu Sans"
-			"Source Sans Pro"
-		];
-		serif = [
-			"Noto Serif"
-			"Source Serif Pro"
-			"DejaVu Serif"
-		];
-		emoji = [
-			"Noto Color Emoji"
-		];
-	};
+  fonts.fontconfig.defaultFonts = {
+    monospace = [
+      "JetBrainsMono Nerd Font"
+      "FiraCode Nerd Font"
+      "Hack Nerd Font"
+      "Source Code Pro"
+      "DejaVu Sans Mono"
+      "Noto Sans Mono"
+    ];
+    sansSerif = [
+      "Noto Sans"
+      "Ubuntu"
+      "DejaVu Sans"
+      "Source Sans Pro"
+    ];
+    serif = [
+      "Noto Serif"
+      "Source Serif Pro"
+      "DejaVu Serif"
+    ];
+    emoji = [
+      "Noto Color Emoji"
+    ];
+  };
 }

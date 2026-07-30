@@ -1,6 +1,6 @@
 {pkgs, ...}: {
-	home.packages = with pkgs; [
-		opencode
-		mcp-nixos
-	];
+  home.packages = with pkgs; [
+    opencode
+    mcp-nixos
+  ];
 }

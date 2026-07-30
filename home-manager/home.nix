@@ -1,23 +1,23 @@
 {
-	imports = [
-		./modules.nix
-	];
+  imports = [
+    ./modules.nix
+  ];
 
-	#	useGlobalPkgs = true;
-	#x	useUserPackages = true;
-	home = {
-		username = "mafien0";
-		homeDirectory = "/home/mafien0";
-		stateVersion = "26.05";
-	};
+  #	useGlobalPkgs = true;
+  #x	useUserPackages = true;
+  home = {
+    username = "mafien0";
+    homeDirectory = "/home/mafien0";
+    stateVersion = "26.05";
+  };
 
-	programs.home-manager.enable = true;
+  programs.home-manager.enable = true;
 
-	xdg.userDirs = {
-		enable = true;
-		createDirectories = true;
-		download = "$HOME/Downloads";
-		pictures = "$HOME/Pictures";
-		videos = "$HOME/Videos/";
-	};
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+    download = "$HOME/Downloads";
+    pictures = "$HOME/Pictures";
+    videos = "$HOME/Videos/";
+  };
 }

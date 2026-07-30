@@ -1,22 +1,22 @@
 {
-	imports = [
-		./nixtools
-		./theme
-		./niri
-		./helium
-		./apps
-		./nixcord
-		./spicetify
-		./noctalia
-		./btop
-		./git
-		./foot
-		./zsh
-		./tmux
-		./nvf
-		./opencode
-		./qbittorrent
-		./yazi
-		./prismlauncher
-	];
+  imports = [
+    ./nixtools
+    ./theme
+    ./niri
+    ./helium
+    ./apps
+    ./nixcord
+    ./spicetify
+    ./noctalia
+    ./btop
+    ./git
+    ./foot
+    ./zsh
+    ./tmux
+    ./nvf
+    ./opencode
+    ./qbittorrent
+    ./yazi
+    ./prismlauncher
+  ];
 }

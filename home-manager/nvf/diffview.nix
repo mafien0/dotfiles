@@ -1,3 +1,3 @@
 {
-	utility.diffview-nvim.enable = true;
+  utility.diffview-nvim.enable = true;
 }
