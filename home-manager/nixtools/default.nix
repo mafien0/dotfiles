@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  modules = [
+  imports = [
     ./builders.nix
   ];
   home.packages = with pkgs; [
