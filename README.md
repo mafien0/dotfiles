@@ -5,6 +5,17 @@
 - Formatted with `alejandra`
 - Checked with `deadnix`, `statix` and `nixpkgs-lint`
 
+<table>
+    <tr>
+        <td><img src="./pictures/01.png" alt="preview 1"></td>
+        <td><img src="./pictures/02.png" alt="Preview 2"></td>
+    </tr>
+    <tr>
+        <td><img src="./pictures/03.png" alt="Preview 3"></td>
+        <td><img src="./pictures/04.png" alt="Preview 4"></td>
+    </tr>
+</table>
+
 ## Install
 
 1. Clone repo
@@ -29,10 +40,6 @@ sed -i 's/mafien0/<YOUR_USERNAME>/g' \
   nixos/programs.nix
 ```
 
-> also update the hardcoded UID in `home-manager/niri/env.nix`
-> (`SSH_AUTH_SOCK = "/run/user/1000/ssh-agent"`) if your user id is not 1000
-
-
 3. run installer script:
 
 > you need to cd into directory with `flake.nix`
@@ -40,5 +47,3 @@ sed -i 's/mafien0/<YOUR_USERNAME>/g' \
 ```bash
 nix --extra-experimental-features 'nix-command flakes' run .#build -- -foh
 ```
-
-i eat goo
