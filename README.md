@@ -23,10 +23,14 @@ sed -i 's/mafien0/<YOUR_USERNAME>/g' \
   home-manager/nixcord/default.nix \
   home-manager/niri/env.nix \
   home-manager/noctalia/settings.json \
+  home-manager/nixtools/default.nix \
   nixos/configuration.nix \
   nixos/hardware.nix \
   nixos/programs.nix
 ```
+
+> also update the hardcoded UID in `home-manager/niri/env.nix`
+> (`SSH_AUTH_SOCK = "/run/user/1000/ssh-agent"`) if your user id is not 1000
 
 
 3. run installer script:

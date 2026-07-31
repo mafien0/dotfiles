@@ -37,16 +37,10 @@
     };
   };
 
-  powerManagement.cpuFreqGovernor = "performance";
+  powerManagement.cpuFreqGovernor = "schedutil";
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
-  systemd.services.nix-daemon.serviceConfig = {
-    CPUSchedulingPolicy = lib.mkForce "idle";
-    IOSchedulingClass = lib.mkForce "idle";
-    Nice = lib.mkForce 19;
-  };
 
   fileSystems."/mnt/drive" = {
     device = "/dev/disk/by-uuid/3cc52577-7ebc-46ca-a059-0276e80fcb46";

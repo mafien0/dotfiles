@@ -50,14 +50,11 @@
     noctalia-shell = {
       url = "github:noctalia-dev/noctalia-shell/v4.7.7";
     };
-
-    noctalia-qs = {
-      url = "github:noctalia-dev/noctalia-qs";
-    };
   };
 
   outputs = inputs: let
     system = "x86_64-linux";
+    flakePath = "/home/mafien0/nix";
 
     pkgs = import inputs.nixpkgs {
       inherit system;
@@ -65,7 +62,7 @@
     };
 
     specialArgs = {
-      inherit inputs system;
+      inherit inputs system flakePath;
       noctaliaPackage = inputs.noctalia-shell.packages.${system}.default;
       helium = inputs.helium.packages.${system}.default;
       spicetifyExtensions = inputs.spicetify-nix.legacyPackages.${system}.extensions;
@@ -74,8 +71,7 @@
 
     packages.${system} = {
       build = import ./pkgs/build.nix {
-        inherit pkgs lib;
-        flakePath = "/home/mafien0/nix";
+        inherit pkgs lib flakePath;
       };
       nixtest = import ./pkgs/nixtest.nix {inherit pkgs;};
       nixformat = import ./pkgs/nixformat.nix {inherit pkgs;};

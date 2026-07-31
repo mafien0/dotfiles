@@ -8,13 +8,11 @@
     ./hardware.nix
     ./apps.nix
     ./programs.nix
-    inputs.home-manager.nixosModules.home-manager
     inputs.noctalia-shell.nixosModules.default
   ];
 
   system.stateVersion = "26.05";
 
-  home-manager.backupFileExtension = ".bak";
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [inputs.niri-flake.overlays.niri];
   nix.settings = {
@@ -55,7 +53,7 @@
       enable = true;
       device = "nodev";
       efiSupport = true;
-      useOSProber = true;
+      useOSProber = false;
     };
     efi.canTouchEfiVariables = true;
   };
@@ -100,6 +98,7 @@
 
   # Nvidia gtx1060 drivers
   hardware = {
+    enableRedistributableFirmware = true;
     graphics = {
       enable = true;
       enable32Bit = true;

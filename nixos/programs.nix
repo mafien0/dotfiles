@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  flakePath,
   ...
 }: {
   imports = [
@@ -51,7 +52,7 @@
     dconf.enable = true;
     nh = {
       enable = true;
-      flake = "/home/mafien0/nix";
+      flake = flakePath;
       clean = {
         enable = true;
         extraArgs = "--keep 5 --keep-since 3d";

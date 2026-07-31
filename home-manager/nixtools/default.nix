@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  flakePath,
   ...
 }: {
   home.packages = with pkgs; [
@@ -11,10 +12,9 @@
     statix
 
     (import ../../pkgs/build.nix {
-      inherit pkgs lib;
-      flakePath = "/home/mafien0/nix";
+      inherit pkgs lib flakePath;
     })
-    (import ../../pkgs/nixtest.nix { inherit pkgs; })
-    (import ../../pkgs/nixformat.nix { inherit pkgs; })
+    (import ../../pkgs/nixtest.nix {inherit pkgs;})
+    (import ../../pkgs/nixformat.nix {inherit pkgs;})
   ];
 }

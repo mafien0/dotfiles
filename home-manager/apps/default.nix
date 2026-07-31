@@ -83,9 +83,5 @@
     "audio/x-ape" = "mpv.desktop";
     "audio/opus" = "mpv.desktop";
     "audio/x-opus+ogg" = "mpv.desktop";
-
-    # Torrents -> qbittorrent
-    "application/x-bittorrent" = "qbittorrent.desktop";
-    "x-scheme-handler/magnet" = "qbittorrent.desktop";
   };
 }
