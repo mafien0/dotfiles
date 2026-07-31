@@ -21,31 +21,4 @@ in {
       };
     };
   };
-  programs.jujutsu = {
-    enable = true;
-    settings = {
-      inherit user;
-
-      signing = {
-        behavior = "drop";
-        backend = "ssh";
-        key = signingKey;
-        sign-all = true;
-      };
-
-      git = {
-        sign-on-push = true;
-      };
-
-      aliases = {
-        mm = [
-          "bookmark"
-          "move"
-          "main"
-          "--to"
-          "origin/main"
-        ];
-      };
-    };
-  };
 }
