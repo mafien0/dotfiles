@@ -1,6 +1,11 @@
 {
   stylix.targets.foot.enable = true;
 
+  xdg.terminal-exec.enable = true;
+  xdg.terminal-exec.settings = {
+    default = ["foot.desktop"];
+  };
+
   programs.foot = {
     enable = true;
 

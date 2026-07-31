@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, lib, ...}: {
   home.packages = with pkgs; [
     qalculate-gtk
     thunar
@@ -7,9 +7,24 @@
     mpv
     pinta
     blockbench
+    (pkgs.writeShellScriptBin "x-terminal-emulator" "exec ${lib.getExe pkgs.foot} \"$@\"")
   ];
 
+  xdg.desktopEntries.imv = {
+    name = "imv";
+    genericName = "Image viewer";
+    exec = "imv %F";
+    mimeType = ["image/x-farbfeld" "image/tiff" "image/png" "image/x-png" "image/jpeg" "image/svg+xml" "image/gif" "image/bmp" "image/heif" "image/avif" "image/jxl" "image/webp" "image/qoi"];
+    type = "Application";
+  };
+
+  xdg.mimeApps.enable = true;
+  xdg.configFile."mimeapps.list".force = true;
+
   xdg.mimeApps.defaultApplications = {
+    # Terminal -> foot
+    "application/x-terminal-emulator" = "foot.desktop";
+
     # Archives -> thunar
     "inode/directory" = "thunar.desktop";
     "application/gzip" = "thunar.desktop";
