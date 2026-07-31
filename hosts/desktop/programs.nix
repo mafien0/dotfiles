@@ -17,6 +17,8 @@
     unzip
     wget
     killall
+    ncdu
+    cloc
 
     devenv
     docker-compose
