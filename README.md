@@ -1,9 +1,12 @@
+
 # Nix dotfiles
 
 - uses stable nixos(26.05)
 - Styled with `stylix`
 - Formatted with `alejandra`
 - Checked with `deadnix`, `statix` and `nixpkgs-lint`
+
+## Screenshots
 
 <table>
     <tr>
@@ -15,6 +18,8 @@
         <td><img src="./pictures/04.png" alt="Preview 4"></td>
     </tr>
 </table>
+
+
 
 ## Install
 
@@ -40,7 +45,7 @@ sed -i 's/mafien0/<YOUR_USERNAME>/g' \
   nixos/programs.nix
 ```
 
-3. run installer script:
+3. run builder script:
 
 > you need to cd into directory with `flake.nix`
 
