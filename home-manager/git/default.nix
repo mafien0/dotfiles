@@ -36,6 +36,16 @@ in {
       git = {
         sign-on-push = true;
       };
+
+      aliases = {
+        mm = [
+          "bookmark"
+          "move"
+          "main"
+          "--to"
+          "origin/main"
+        ];
+      };
     };
   };
 }
