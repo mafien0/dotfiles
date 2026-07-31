@@ -10,13 +10,9 @@
     ./env.nix
     ./misc.nix
     ./windowrules.nix
-    inputs.niri-flake.homeModules.niri
     inputs.niri-flake.homeModules.stylix
   ];
 
-  programs.niri = {
-    enable = true;
-    package = pkgs.niri;
-  };
+  programs.niri.package = pkgs.niri;
   stylix.targets.niri.enable = true;
 }

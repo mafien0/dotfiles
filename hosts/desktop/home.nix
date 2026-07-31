@@ -3,8 +3,6 @@
     ./modules.nix
   ];
 
-  #	useGlobalPkgs = true;
-  #x	useUserPackages = true;
   home = {
     username = "mafien0";
     homeDirectory = "/home/mafien0";

@@ -8,8 +8,22 @@
     ./hardware.nix
     ./apps.nix
     ./programs.nix
+    ./disko.nix
     inputs.noctalia-shell.nixosModules.default
   ];
+
+  home-manager = {
+    backupFileExtension = "bak";
+    useGlobalPkgs = true;
+    users.mafien0.imports = [./home.nix];
+    extraSpecialArgs = {
+      inherit inputs;
+      flakePath = "/home/mafien0/nix";
+      noctaliaPackage = inputs.noctalia-shell.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      helium = inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      spicetifyExtensions = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system}.extensions;
+    };
+  };
 
   system.stateVersion = "26.05";
 

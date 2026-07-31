@@ -11,26 +11,27 @@
 
   environment.systemPackages = with pkgs; [
     # Cli / Tui
-    devenv
-    python3
+
+    # Basic
     zip
     unzip
-    cloc
-    fzf
     wget
-    ripgrep
     killall
-    wrangler
-    go
+
+    devenv
+    docker-compose
     fastfetch # Cool
+    fzf
+    go
     lazygit
     lazydocker
+    ntfs3g
+    python3
+    ripgrep
 
+    # -- Gui Gui
     libresprite
     obsidian
-
-    ntfs3g
-    docker-compose
 
     jetbrains.idea
   ];

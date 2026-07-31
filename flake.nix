@@ -83,17 +83,8 @@
         inherit system specialArgs;
 
         modules = [
-          ./nixos/configuration.nix
-          ./nixos/disko.nix
-        ];
-      };
-    };
-    homeConfigurations = {
-      mafien0 = inputs.home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = specialArgs;
-        modules = [
-          ./home-manager/home.nix
+          inputs.home-manager.nixosModules.home-manager
+          ./hosts/desktop/configuration.nix
         ];
       };
     };
