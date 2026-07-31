@@ -37,3 +37,4 @@ sed -i 's/mafien0/<YOUR_USERNAME>/g' \
 nix --extra-experimental-features 'nix-command flakes' run .#build -- -foh
 ```
 
+i eat goo
