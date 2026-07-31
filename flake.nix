@@ -75,7 +75,7 @@
     packages.${system} = {
       build = import ./pkgs/build.nix {
         inherit pkgs lib;
-        flakePath = toString ./.;
+        flakePath = "/home/mafien0/nix";
       };
       nixtest = import ./pkgs/nixtest.nix {inherit pkgs;};
       nixformat = import ./pkgs/nixformat.nix {inherit pkgs;};

@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   home.packages = with pkgs; [
     deadnix
     nixd
@@ -6,7 +10,11 @@
     nixpkgs-lint-community
     statix
 
-    (import ../../pkgs/nixtest.nix {inherit pkgs;})
-    (import ../../pkgs/nixformat.nix {inherit pkgs;})
+    (import ../../pkgs/build.nix {
+      inherit pkgs lib;
+      flakePath = "/home/mafien0/nix";
+    })
+    (import ../../pkgs/nixtest.nix { inherit pkgs; })
+    (import ../../pkgs/nixformat.nix { inherit pkgs; })
   ];
 }

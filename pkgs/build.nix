@@ -23,6 +23,7 @@ python
   parser = ArgumentParser(
       add_help=False, description="default"
   )
+  parser.add_argument("path", nargs="?", default=None)
   parser.add_argument("-b", "--boot", action="store_true")
   parser.add_argument("-f", "--flake", action="store_true")
   parser.add_argument("-h", "--home", action="store_true")
@@ -51,7 +52,7 @@ python
           print(f"{RED}No arguments were provided.{RESET}")
           sys.exit(1)
 
-      user_flake = r"${flakePath}"
+      user_flake = args.path or r"${flakePath}"
 
       if args.os:
           print(f"{RED}Building os requires sudo{RESET}")
