@@ -5,6 +5,7 @@ let
     "foot"
     "git"
     "helium"
+    "mfetch"
     "niri"
     "nixcord"
     "nixtools"

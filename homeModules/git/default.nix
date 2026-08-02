@@ -7,6 +7,7 @@ let
 in {
   programs.git = {
     enable = true;
+    lfs.enable = true;
     signing = {
       key = signingKey;
       signByDefault = true;

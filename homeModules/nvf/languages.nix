@@ -59,7 +59,6 @@
         type = ["gofumpt" "goimports"];
       };
       dap.enable = true;
-      extraDiagnostics.enable = true;
       extensions.gopher-nvim.enable = true;
     };
     python = {

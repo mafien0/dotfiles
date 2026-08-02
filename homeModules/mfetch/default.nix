@@ -1,0 +1,3 @@
+{mfetch, ...}: {
+  home.packages = [mfetch];
+}

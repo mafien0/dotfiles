@@ -79,12 +79,7 @@
       bind p paste-buffer
 
       set-option -g status-position top
-      set -g status-interval 1
       set -g status-style bg=default
-      set -g status-left '#(cat #{socket_path}-#{session_id}-vimbridge)'
-      set -g status-left-length 99
-      set -g status-right '#(cat #{socket_path}-#{session_id}-vimbridge-R)'
-      set -g status-right-length 99
       set -g status-justify absolute-centre
       set -g window-status-style         "bg=default,fg=default"
       set -g window-status-current-style "bg=default,fg=default,bold"

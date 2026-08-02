@@ -50,6 +50,11 @@
     noctalia-shell = {
       url = "github:noctalia-dev/noctalia-shell/v4.7.7";
     };
+
+    mfetch = {
+      # Damn what a cool package i wonder who made it
+      url = "git+https://codeberg.org/mafien0/mfetch";
+    };
   };
 
   outputs = inputs: let
@@ -65,6 +70,7 @@
       inherit inputs system flakePath;
       noctaliaPackage = inputs.noctalia-shell.packages.${system}.default;
       helium = inputs.helium.packages.${system}.default;
+      mfetch = inputs.mfetch.packages.${system}.default;
       spicetifyExtensions = inputs.spicetify-nix.legacyPackages.${system}.extensions;
     };
     lib = inputs.nixpkgs.lib;
