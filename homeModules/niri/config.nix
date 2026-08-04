@@ -12,7 +12,6 @@
           (lib.getExe pkgs.wl-clip-persist)
           "--clipboard"
           "regular"
-          "--primary"
         ];
       }
       {sh = "${lib.getExe' pkgs.wl-clipboard "wl-paste"} --type text --watch ${lib.getExe pkgs.cliphist} store";}
@@ -24,6 +23,8 @@
     xwayland-satellite = {
       path = lib.getExe pkgs.xwayland-satellite;
     };
+
+    clipboard.disable-primary = true;
 
     outputs."HDMI-A-1" = {
       mode = {

@@ -293,11 +293,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1785834420,
-        "narHash": "sha256-KHXqsUgrEreJysOgKKjDXu4EEs1tZ5iYRRV9XJlm5uU=",
+        "lastModified": 1785834678,
+        "narHash": "sha256-/PYP0NxLQjTIoOFBZjzEXYiBFevpVlbagwq1n9SDBhs=",
         "ref": "refs/heads/main",
-        "rev": "2d49c108044538c1eaa6866f8bee716027dc2549",
-        "revCount": 22,
+        "rev": "740a44163e5cea98379028153155f4639317efbc",
+        "revCount": 23,
         "type": "git",
         "url": "https://codeberg.org/mafien0/mfetch"
       },
@@ -333,11 +333,11 @@
         "xwayland-satellite-unstable": "xwayland-satellite-unstable"
       },
       "locked": {
-        "lastModified": 1785777405,
-        "narHash": "sha256-CMfZ1bcKBMWnnpIQKpovUrl0K7+dPYEuWXWGV+TNhiw=",
+        "lastModified": 1785857530,
+        "narHash": "sha256-1vLSWImqtcJ2GAVxcSqFnjx42VaTvaxWiXJJZzy/TiE=",
         "owner": "epireyn",
         "repo": "niri-flake",
-        "rev": "64dee63e0aac6697435ca21f1d793dbe3d801464",
+        "rev": "4551f7d6554fcaaa6a5967ac04d326abc46f2ce7",
         "type": "github"
       },
       "original": {
@@ -409,11 +409,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1785816618,
-        "narHash": "sha256-qtCZ3cKMQCstSYEA//QvJO7fl8UXsbE0h8ExKGVkTH0=",
+        "lastModified": 1785840384,
+        "narHash": "sha256-flAhSIdh6FbpQ7PZTWDzfskCgMBBqRMR9EFNiQjLbAY=",
         "owner": "FlameFlag",
         "repo": "nixcord",
-        "rev": "2df75d4efb21b1f0b18d8713c48633448a924bf1",
+        "rev": "c2d7410937e517e4d40fe0fd9a3873a8d08a249b",
         "type": "github"
       },
       "original": {
@@ -594,11 +594,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785805913,
-        "narHash": "sha256-MWrMx8gFp6A/ueWDdT8mNM06G9Wh6GdFZlBBLdw/MQk=",
+        "lastModified": 1785857293,
+        "narHash": "sha256-E7WXL/pYNph1ChKv4BixI9Pev6osdJL43322uZqLw5w=",
         "owner": "NotAShelf",
         "repo": "nvf",
-        "rev": "118286cd362be3f31700e55ae21ef71d169d06ea",
+        "rev": "64cbd0ffea1a76dc0248528985e1c8ee711fae99",
         "type": "github"
       },
       "original": {
