@@ -1,14 +1,8 @@
 {
   pkgs,
-  inputs,
   flakePath,
   ...
 }: {
-  imports = [
-    inputs.nix-index-database.nixosModules.default
-    inputs.niri-flake.nixosModules.niri
-  ];
-
   environment.systemPackages = with pkgs; [
     # Cli / Tui
 
@@ -21,8 +15,7 @@
     cloc
 
     devenv
-    docker-compose
-    fastfetch # Cool
+    fastfetch # Not cool, use mfetch
     fzf
     go
     lazygit
@@ -38,20 +31,7 @@
     jetbrains.idea
   ];
 
-  virtualisation.docker.enable = true;
-
-  xdg.portal = {
-    enable = true;
-    xdgOpenUsePortal = true;
-    extraPortals = [pkgs.xdg-desktop-portal-gtk];
-    config.niri.default = ["gnome" "gtk"];
-  };
-
   programs = {
-    nix-index-database = {
-      enable = true;
-      comma.enable = true;
-    };
     dconf.enable = true;
     nh = {
       enable = true;
@@ -62,33 +42,7 @@
       };
     };
 
-    niri = {
-      enable = true;
-      package = pkgs.niri;
-    };
-
     zsh.enable = true;
-
-    localsend = {
-      enable = true;
-      openFirewall = true;
-    };
-
-    nix-ld.enable = true;
-    obs-studio.enable = true;
-    gamescope.enable = true;
-
-    steam = {
-      enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-      localNetworkGameTransfers.openFirewall = true;
-      gamescopeSession.enable = true;
-      extraPackages = with pkgs; [
-        pulseaudio
-        bibata-cursors
-      ];
-    };
   };
 
   fonts.packages = with pkgs; [

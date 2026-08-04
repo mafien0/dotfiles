@@ -1,11 +1,8 @@
-{
-  pkgs,
-  lib,
-  ...
-}: let
+{pkgs, ...}: let
   prism = pkgs.prismlauncher.override {
-    additionalPrograms = [
+    additionalLibs = [
       pkgs.fontconfig
+      pkgs.libxkbcommon
     ];
     jdks = with pkgs; [
       temurin-bin-25
@@ -15,18 +12,5 @@
     ];
   };
 in {
-  home.packages = [
-    (prism.overrideAttrs (old: {
-      qtWrapperArgs =
-        (old.qtWrapperArgs or [])
-        ++ [
-          "--prefix"
-          "LD_LIBRARY_PATH"
-          ":"
-          (lib.makeLibraryPath [
-            pkgs.fontconfig
-          ])
-        ];
-    }))
-  ];
+  home.packages = [prism];
 }

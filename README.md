@@ -19,7 +19,17 @@
     </tr>
 </table>
 
+## Layout
 
+```
+flake.nix
+pkgs/               # exposed packages
+hosts/desktop/      # per-system configuration
+homeModules/        # shared modules(home-manager)
+nixosModules/       # shared modules(nixos)
+```
+i try to put everything in home-manager first  
+then if cannot i put it into nixos modules
 
 ## Install
 
@@ -34,15 +44,14 @@ git clone ssh://git@codeberg.org/mafien0/dotfiles.git ~/nix
 ```bash
 sed -i 's/mafien0/<YOUR_USERNAME>/g' \
   flake.nix \
-  home-manager/home.nix \
-  home-manager/git/default.nix \
-  home-manager/nixcord/default.nix \
-  home-manager/niri/env.nix \
-  home-manager/noctalia/settings.json \
-  home-manager/nixtools/default.nix \
-  nixos/configuration.nix \
-  nixos/hardware.nix \
-  nixos/programs.nix
+  homeModules/git/default.nix \
+  homeModules/niri/env.nix \
+  homeModules/nixcord/default.nix \
+  homeModules/noctalia/settings.json \
+  hosts/desktop/configuration.nix \
+  hosts/desktop/hardware.nix \
+  hosts/desktop/home.nix \
+  nixosModules/ssh/default.nix
 ```
 
 3. run builder script:
