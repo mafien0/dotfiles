@@ -38,6 +38,18 @@
           files = {
             hidden = true;
             ignored = true;
+            exclude = [
+              "**/build"
+              "**/bin"
+              "**/dist"
+              "**/node_modules"
+              "**/.gradle"
+              "**/.devenv"
+              "**/run"
+              "**/libs"
+              "**/out"
+              "**/target"
+            ];
           };
           grep = {
             hidden = true;

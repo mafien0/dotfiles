@@ -15,6 +15,7 @@
     cloc
 
     devenv
+    ffmpeg
     fastfetch # Not cool, use mfetch
     fzf
     go

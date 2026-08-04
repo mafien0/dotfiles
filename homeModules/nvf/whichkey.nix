@@ -7,6 +7,7 @@
     register = {
       "<leader>f" = "Find";
       "<leader>g" = "LSP";
+      "<leader>m" = "Minecraft";
     };
   };
 

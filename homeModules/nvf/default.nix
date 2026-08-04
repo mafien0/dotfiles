@@ -37,5 +37,6 @@
     (import ./whichkey.nix)
     (import ./markdown.nix {inherit pkgs;})
     (import ./nixd.nix)
+    (import ./mcmodding.nix)
   ];
 }
