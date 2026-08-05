@@ -18,5 +18,6 @@
     expandtab = true;
     formatoptions = "tcqj";
     signcolumn = "yes";
+    cmdheight = 0;
   };
 }

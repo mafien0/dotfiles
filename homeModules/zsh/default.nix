@@ -17,6 +17,7 @@
       lt = "${lib.getExe pkgs.eza} --tree --icons=auto --classify --group-directories-first --header --time-style=long-iso";
       g = "${lib.getExe pkgs.git}";
       c = "clear";
+      cdtmp = "cd $(mktemp -d)";
     };
 
     oh-my-zsh = {
