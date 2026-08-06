@@ -11,6 +11,7 @@
     mpv
     pinta
     blockbench
+    kdePackages.ark
     (pkgs.writeShellScriptBin "x-terminal-emulator" "exec ${lib.getExe pkgs.foot} \"$@\"")
   ];
 
@@ -32,16 +33,16 @@
 
       # Archives -> thunar
       "inode/directory" = "thunar.desktop";
-      "application/gzip" = "thunar.desktop";
-      "application/x-bzip2" = "thunar.desktop";
-      "application/x-xz" = "thunar.desktop";
-      "application/zstd" = "thunar.desktop";
-      "application/zip" = "thunar.desktop";
-      "application/x-tar" = "thunar.desktop";
-      "application/x-7z-compressed" = "thunar.desktop";
-      "application/x-rar" = "thunar.desktop";
-      "application/x-brotli" = "thunar.desktop";
-      "application/vnd.rar" = "thunar.desktop";
+      "application/gzip" = "org.kde.ark.desktop";
+      "application/x-bzip2" = "org.kde.ark.desktop";
+      "application/x-xz" = "org.kde.ark.desktop";
+      "application/zstd" = "org.kde.ark.desktop";
+      "application/zip" = "org.kde.ark.desktop";
+      "application/x-tar" = "org.kde.ark.desktop";
+      "application/x-7z-compressed" = "org.kde.ark.desktop";
+      "application/x-rar" = "org.kde.ark.desktop";
+      "application/x-brotli" = "org.kde.ark.desktop";
+      "application/vnd.rar" = "org.kde.ark.desktop";
 
       # Images -> imv, edit in pinta
       "image/avif" = ["imv.desktop" "com.github.PintaProject.Pinta.desktop"];
