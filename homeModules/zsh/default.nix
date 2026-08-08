@@ -4,6 +4,9 @@
   config,
   ...
 }: {
+  programs.direnv = {
+    enable = true;
+  };
   programs.zsh = {
     enable = true;
     syntaxHighlighting.enable = true;

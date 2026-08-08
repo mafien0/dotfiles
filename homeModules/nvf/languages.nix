@@ -27,7 +27,7 @@
             parameterNames = true;
             rangeVariableTypes = true;
           };
-          usePlaceholders = true;
+          usePlaceholders = false;
           completeUnimported = true;
           gofumpt = true;
         };

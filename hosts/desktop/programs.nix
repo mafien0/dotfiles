@@ -14,7 +14,7 @@
     ncdu
     cloc
 
-    devenv
+    gcc
     ffmpeg
     fastfetch # Not cool, use mfetch
     fzf
@@ -26,6 +26,7 @@
     ripgrep
 
     # -- Gui
+    bruno
     libresprite
     obsidian
 
