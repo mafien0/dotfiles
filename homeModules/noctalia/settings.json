@@ -208,6 +208,12 @@
         {
           "displayMode": "onhover",
           "iconColor": "none",
+          "id": "Brightness",
+          "textColor": "none"
+        },
+        {
+          "displayMode": "onhover",
+          "iconColor": "none",
           "id": "Volume",
           "middleClickCommand": "pwvucontrol || pavucontrol",
           "textColor": "none"
@@ -228,7 +234,7 @@
   "brightness": {
     "backlightDeviceMappings": [],
     "brightnessStep": 5,
-    "enableDdcSupport": false,
+    "enableDdcSupport": true,
     "enforceMinimum": true
   },
   "calendar": {

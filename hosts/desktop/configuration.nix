@@ -6,6 +6,7 @@
   nixosModules = [
     "avahi"
     "cachix"
+    "ddc"
     "docker"
     "gvfs"
     "localsend"

@@ -11,11 +11,14 @@
       event = ["TextYankPost"];
       group = "HighlightYank";
       desc = "Highlight yanked text";
-      callback = lib.generators.mkLuaInline ''
-        function()
-          vim.highlight.on_yank({ higroup = "IncSearch", timeout = 100 })
-        end
-      '';
+      callback =
+        lib.generators.mkLuaInline
+        # lua
+        ''
+          function()
+            vim.highlight.on_yank({ higroup = "IncSearch", timeout = 100 })
+          end
+        '';
     }
   ];
 }
