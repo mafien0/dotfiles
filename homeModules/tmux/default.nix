@@ -32,8 +32,8 @@
 
       unbind '"'
       unbind %
-      bind | split-window -h -c "#{pane_current_path}"
-      bind - split-window -v -c "#{pane_current_path}"
+      bind i split-window -h -c "#{pane_current_path}"
+      bind o split-window -v -c "#{pane_current_path}"
 
       bind c new-window -c "#{pane_current_path}"
 
@@ -65,6 +65,11 @@
       bind-key -r J resize-pane -D 1
       bind-key -r K resize-pane -U 1
       bind-key -r L resize-pane -R 1
+
+      bind-key -r M-H resize-pane -L 5
+      bind-key -r M-J resize-pane -D 5
+      bind-key -r M-K resize-pane -U 5
+      bind-key -r M-L resize-pane -R 5
 
       bind -T copy-mode-vi V send-keys -X select-line
       bind -T copy-mode-vi PageUp   send-keys -X halfpage-up

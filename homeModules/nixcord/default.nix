@@ -1,16 +1,20 @@
-{inputs, ...}: {
+{
+  inputs,
+  config,
+  ...
+}: {
   imports = [
     inputs.nixcord.homeModules.nixcord
   ];
 
-  # stylix.targets.discord.enable = true;
+  stylix.targets.nixcord.enable = true;
 
   programs.nixcord = {
     enable = true;
     user = "mafien0";
     vesktop.enable = true;
     vesktop.settings = {
-      splashBackground = "#121214";
+      splashBackground = "#${config.lib.stylix.colors.base00}";
       enableSplashScreen = false;
     };
     discord.enable = false;

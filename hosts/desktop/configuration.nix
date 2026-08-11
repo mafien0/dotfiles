@@ -98,6 +98,7 @@ in {
     isNormalUser = true;
     initialPassword = "passwd";
     extraGroups = [
+      "input"
       "wheel"
       "disk"
     ];
