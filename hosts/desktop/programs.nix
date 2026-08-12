@@ -1,8 +1,4 @@
-{
-  pkgs,
-  flakePath,
-  ...
-}: {
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     # Cli / Tui
 
@@ -35,15 +31,6 @@
 
   programs = {
     dconf.enable = true;
-    nh = {
-      enable = true;
-      flake = flakePath;
-      clean = {
-        enable = true;
-        extraArgs = "--keep 5 --keep-since 3d";
-      };
-    };
-
     zsh.enable = true;
   };
 

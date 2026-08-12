@@ -2,6 +2,7 @@ let
   modules = [
     "apps"
     "btop"
+    "eza"
     "foot"
     "git"
     "helium"

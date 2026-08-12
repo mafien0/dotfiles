@@ -11,6 +11,7 @@
     "gvfs"
     "localsend"
     "ly"
+    "nh"
     "niri"
     "nix-index"
     "nix-ld"
@@ -32,6 +33,7 @@ in {
     ]
     ++ (map (m: ../../nixosModules/${m}) nixosModules);
 
+  # Home-manager
   home-manager = {
     backupFileExtension = "bak";
     useGlobalPkgs = true;
@@ -46,8 +48,8 @@ in {
     };
   };
 
+  # Nix(OS)
   system.stateVersion = "26.05";
-
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [inputs.niri-flake.overlays.niri];
   nix.settings = {
@@ -75,25 +77,21 @@ in {
     efi.canTouchEfiVariables = true;
   };
 
+  # Preserve token
   security.sudo.extraConfig = ''
     Defaults env_keep += "GITHUB_TOKEN"
   '';
 
-  services = {
-    journald.extraConfig = ''
-      SystemMaxUse=500M
-    '';
-  };
-
+  # Me specific
   networking = {
     hostName = "desktop";
     networkmanager.enable = true;
   };
   time.timeZone = "Asia/Almaty";
-
   services.xserver.xkb.layout = "us";
   i18n.defaultLocale = "en_US.UTF-8";
 
+  # Users
   users.users.mafien0 = {
     isNormalUser = true;
     initialPassword = "passwd";
@@ -103,5 +101,12 @@ in {
       "disk"
     ];
     shell = pkgs.zsh;
+  };
+
+  # Varios
+  services = {
+    journald.extraConfig = ''
+      SystemMaxUse=500M
+    '';
   };
 }

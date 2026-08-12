@@ -1,4 +1,8 @@
-let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   user = {
     name = "mafien0";
     email = "mafien_0@tuta.io";
@@ -21,5 +25,8 @@ in {
         ssh.allowedSignersFile = "~/.ssh/allowed_signers";
       };
     };
+  };
+  home.shellAliases = {
+    g = "${lib.getExe pkgs.git}";
   };
 }
