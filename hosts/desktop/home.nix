@@ -2,6 +2,7 @@ let
   modules = [
     "apps"
     "btop"
+    "direnv"
     "eza"
     "foot"
     "git"

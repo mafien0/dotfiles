@@ -26,7 +26,7 @@
     libresprite
     obsidian
 
-    jetbrains.idea
+    # jetbrains.idea
   ];
 
   programs = {
