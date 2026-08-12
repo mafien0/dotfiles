@@ -109,4 +109,8 @@ in {
       SystemMaxUse=500M
     '';
   };
+  programs = {
+    dconf.enable = true;
+    zsh.enable = true;
+  };
 }

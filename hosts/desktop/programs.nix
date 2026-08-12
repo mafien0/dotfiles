@@ -29,11 +29,6 @@
     # jetbrains.idea
   ];
 
-  programs = {
-    dconf.enable = true;
-    zsh.enable = true;
-  };
-
   fonts.packages = with pkgs; [
     # Nerd Fonts
     nerd-fonts.fira-code
