@@ -55,6 +55,11 @@
       # Damn what a cool package i wonder who made it
       url = "git+https://codeberg.org/mafien0/mfetch";
     };
+
+    nix-alien = {
+      url = "github:thiagokokada/nix-alien";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: let
@@ -68,10 +73,6 @@
 
     specialArgs = {
       inherit inputs system flakePath;
-      noctaliaPackage = inputs.noctalia-shell.packages.${system}.default;
-      helium = inputs.helium.packages.${system}.default;
-      mfetch = inputs.mfetch.packages.${system}.default;
-      spicetifyExtensions = inputs.spicetify-nix.legacyPackages.${system}.extensions;
     };
 
     packages.${system} = {

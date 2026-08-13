@@ -1,8 +1,8 @@
 {
-  noctaliaPackage,
   pkgs,
   lib,
   inputs,
+  system,
   ...
 }: {
   imports = [
@@ -15,7 +15,7 @@
     pluginURL = "https://github.com/noctalia-dev/noctalia-plugins";
   in {
     enable = true;
-    package = noctaliaPackage;
+    package = inputs.noctalia-shell.packages.${system}.default;
     settings = lib.mkForce (builtins.fromJSON (builtins.readFile ./settings.json));
     plugins = {
       sources = [

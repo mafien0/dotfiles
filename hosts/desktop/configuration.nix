@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  system,
   ...
 }: let
   nixosModules = [
@@ -39,12 +40,8 @@ in {
     useGlobalPkgs = true;
     users.mafien0.imports = [./home.nix];
     extraSpecialArgs = {
-      inherit inputs;
+      inherit inputs system;
       flakePath = "/home/mafien0/nix";
-      noctaliaPackage = inputs.noctalia-shell.packages.${pkgs.stdenv.hostPlatform.system}.default;
-      helium = inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default;
-      mfetch = inputs.mfetch.packages.${pkgs.stdenv.hostPlatform.system}.default;
-      spicetifyExtensions = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system}.extensions;
     };
   };
 

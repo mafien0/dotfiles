@@ -1,7 +1,4 @@
 {config, ...}: {
-  programs.direnv = {
-    enable = true;
-  };
   programs.zsh = {
     enable = true;
     syntaxHighlighting.enable = true;
@@ -12,6 +9,7 @@
     shellAliases = {
       c = "clear";
       cdtmp = "cd $(mktemp -d)";
+      na = "nix-alien-ld";
     };
 
     oh-my-zsh = {

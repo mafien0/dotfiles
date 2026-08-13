@@ -2,10 +2,11 @@
   pkgs,
   lib,
   config,
-  noctaliaPackage,
+  inputs,
+  system,
   ...
 }: let
-  ipc = "${lib.getExe noctaliaPackage} ipc --any-display call";
+  ipc = "${lib.getExe inputs.noctalia-shell.packages.${system}.default} ipc --any-display call";
 in {
   programs.niri.settings = {
     input.keyboard = {

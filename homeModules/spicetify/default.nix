@@ -1,6 +1,6 @@
 {
-  spicetifyExtensions,
   inputs,
+  system,
   ...
 }: {
   imports = [
@@ -11,7 +11,7 @@
 
   programs.spicetify = {
     enable = true;
-    enabledExtensions = with spicetifyExtensions; [
+    enabledExtensions = with inputs.spicetify-nix.legacyPackages.${system}.extensions; [
       adblockify
       hidePodcasts
     ];

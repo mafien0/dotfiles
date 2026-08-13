@@ -3,6 +3,11 @@
   lib,
   ...
 }: {
+  programs.eza = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   home.shellAliases = {
     l = "${lib.getExe pkgs.eza} -la --icons=auto --classify --group-directories-first --header --time-style=long-iso";
     ls = "${lib.getExe pkgs.eza} --icons=auto --classify --group-directories-first --header --time-style=long-iso";

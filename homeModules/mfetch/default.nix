@@ -1,3 +1,7 @@
-{mfetch, ...}: {
-  home.packages = [mfetch];
+{
+  inputs,
+  system,
+  ...
+}: {
+  home.packages = [inputs.mfetch.packages.${system}.default];
 }

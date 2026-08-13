@@ -1,5 +1,9 @@
-{helium, ...}: {
-  home.packages = [helium];
+{
+  inputs,
+  system,
+  ...
+}: {
+  home.packages = [inputs.helium.packages.${system}.default];
 
   xdg.mimeApps.defaultApplications = {
     "text/html" = "helium.desktop";
