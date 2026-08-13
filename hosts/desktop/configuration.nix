@@ -31,6 +31,7 @@ in {
       ./programs.nix
       ./disko.nix
       inputs.noctalia-shell.nixosModules.default
+      inputs.home-manager.nixosModules.home-manager
     ]
     ++ (map (m: ../../nixosModules/${m}) nixosModules);
 

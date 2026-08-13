@@ -86,7 +86,6 @@
         inherit system specialArgs;
 
         modules = [
-          inputs.home-manager.nixosModules.home-manager
           ./hosts/desktop/configuration.nix
         ];
       };
