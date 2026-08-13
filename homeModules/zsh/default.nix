@@ -9,7 +9,6 @@
     shellAliases = {
       c = "clear";
       cdtmp = "cd $(mktemp -d)";
-      na = "nix-alien-ld";
     };
 
     oh-my-zsh = {
@@ -17,28 +16,18 @@
       theme = "candy";
     };
 
-    initContent = ''
-      fpath=(~/.zsh $fpath)
+    initContent =
+      # Bash
+      ''
+        fpath=(~/.zsh $fpath)
 
-      autoload -U up-line-or-beginning-search down-line-or-beginning-search
-      zle -N up-line-or-beginning-search
-      zle -N down-line-or-beginning-search
-      bindkey "^[[A" up-line-or-beginning-search
-      bindkey "^[[B" down-line-or-beginning-search
+        autoload -U up-line-or-beginning-search down-line-or-beginning-search
+        zle -N up-line-or-beginning-search
+        zle -N down-line-or-beginning-search
+        bindkey "^[[A" up-line-or-beginning-search
+        bindkey "^[[B" down-line-or-beginning-search
 
-      unsetopt PROMPT_SP
-
-      if [[ ! -f ~/tokens.sh ]]; then
-        echo '#!/usr/bin/sh' > ~/tokens.sh
-        echo 'echo "change ~/tokens.sh"' >> ~/tokens.sh
-        echo 'export GITHUB_TOKEN="changeme"' >> ~/tokens.sh
-        chmod +x ~/tokens.sh
-      fi
-      [[ -f ~/tokens.sh ]] && source ~/tokens.sh
-      if [[ -n "$GITHUB_TOKEN" ]]; then
-        mkdir -p ~/.config/nix
-        echo "access-tokens = github.com=$GITHUB_TOKEN" > ~/.config/nix/access-tokens.conf
-      fi
-    '';
+        unsetopt PROMPT_SP
+      '';
   };
 }

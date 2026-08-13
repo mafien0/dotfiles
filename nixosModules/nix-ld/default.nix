@@ -7,4 +7,8 @@
   environment.systemPackages = [
     inputs.nix-alien.packages.${system}.default
   ];
+
+  environment.shellAliases = {
+    na = "nix-alien-ld";
+  };
 }
