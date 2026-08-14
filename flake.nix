@@ -61,8 +61,10 @@
 
     helium = {
       url = "github:AlvaroParker/helium-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-compat.follows = "flake-compat";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-compat.follows = "flake-compat";
+      };
     };
 
     nix-index-database = {
@@ -72,22 +74,23 @@
 
     nixcord = {
       url = "github:4evy/nixcord";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-nixcord.follows = "nixpkgs";
-      inputs.treefmt-nix.follows = "treefmt-nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        inputs.nixpkgs-nixcord.follows = "nixpkgs";
+        inputs.treefmt-nix.follows = "treefmt-nix";
+      };
     };
 
     niri-flake = {
       url = "github:epireyn/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows = "nixpkgs";
-      # niri-flake pins stable + unstable variants of niri and xwayland-satellite.
-      # Our config only uses niri/niri - and xwayland-satellite from nixpkgs,
-      # so collapse both variants onto single sources to dedupe the closure.
-      inputs.niri-stable.follows = "niri";
-      inputs.niri-unstable.follows = "niri";
-      inputs.xwayland-satellite-stable.follows = "xwayland-satellite";
-      inputs.xwayland-satellite-unstable.follows = "xwayland-satellite";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nixpkgs-stable.follows = "nixpkgs";
+        niri-stable.follows = "niri";
+        niri-unstable.follows = "niri";
+        xwayland-satellite-stable.follows = "xwayland-satellite";
+        xwayland-satellite-unstable.follows = "xwayland-satellite";
+      };
     };
 
     # shared by: niri-flake (stable + unstable variants)
@@ -104,8 +107,10 @@
 
     noctalia-shell = {
       url = "github:noctalia-dev/noctalia-shell/v4.7.7";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.noctalia-qs.inputs.treefmt-nix.follows = "treefmt-nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        noctalia-qs.inputs.treefmt-nix.follows = "treefmt-nix";
+      };
     };
 
     # Damn what a cool package i wonder who made it
@@ -116,9 +121,11 @@
 
     nix-alien = {
       url = "github:thiagokokada/nix-alien";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-compat.follows = "flake-compat";
-      inputs.nix-index-database.follows = "nix-index-database";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        inputs.flake-compat.follows = "flake-compat";
+        inputs.nix-index-database.follows = "nix-index-database";
+      };
     };
 
     # shared by: helium, nix-alien
