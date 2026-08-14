@@ -34,6 +34,9 @@ i try to put everything in home-manager first
 then if cannot i put it into nixos modules
 
 ## Install
+> You really shouldn't install this as your system configuration  
+> These dotfiles are heavily personalized for my system, configuration, choice and taste  
+> But you can use it as an example(not that these are good dotfiles)  
 
 1. Clone repo
 
