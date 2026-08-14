@@ -34,37 +34,6 @@ i try to put everything in home-manager first
 then if cannot i put it into nixos modules
 
 ## Install
-> You really shouldn't install this as your system configuration  
-> These dotfiles are heavily personalized for my system, configuration, choice and taste  
-> But you can use it as an example(not that these are good dotfiles)  
-
-1. Clone repo
-
-```bash
-git clone ssh://git@codeberg.org/mafien0/dotfiles.git ~/nix
-```
-
-2. if you is not `mafien0` (not cool, you should be), you need to change all my names to yours
-
-```bash
-sed -i 's/mafien0/<YOUR_USERNAME>/g' \
-  flake.nix \
-  homeModules/git/default.nix \
-  homeModules/niri/env.nix \
-  homeModules/nixcord/default.nix \
-  homeModules/noctalia/settings.json \
-  hosts/desktop/configuration.nix \
-  hosts/desktop/hardware.nix \
-  hosts/desktop/home.nix \
-  nixosModules/ssh/default.nix
-```
-
-3. run builder script:
-
-> you need to cd into directory with `flake.nix`
-
-```bash
-./install/firstbuild.sh desktop
-```
-
-4. Reboot
+You really shouldn't install this as your system configuration  
+These dotfiles are heavily personalized for my system, configuration, choice and taste  
+But you can use it as an example(not that these are good dotfiles)  
