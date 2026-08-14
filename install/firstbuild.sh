@@ -26,7 +26,7 @@ niri-epireyn.cachix.org-1:tlvyfn7ctsdt+zclps+ekfwet1x6x4oqvwqbbmyizfa=
 "
 
 sudo nixos-rebuild switch \
-    --flake ".#$1)" \
+    --flake ".#$1" \
     --extra-experimental-features 'nix-command flakes' \
     --option extra-substituters "$SUBSTITUTERS" \
     --option extra-trusted-public-keys "$TRUSTED_PUBLIC_KEYS"
