@@ -30,6 +30,7 @@
     helium = {
       url = "github:AlvaroParker/helium-nix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-compat.follows = "flake-compat";
     };
 
     nix-index-database = {
@@ -38,8 +39,9 @@
     };
 
     nixcord = {
-      url = "github:FlameFlag/nixcord";
+      url = "github:4evy/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.treefmt-nix.follows = "treefmt-nix";
     };
 
     niri-flake = {
@@ -49,15 +51,32 @@
 
     noctalia-shell = {
       url = "github:noctalia-dev/noctalia-shell/v4.7.7";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.noctalia-qs.inputs.treefmt-nix.follows = "treefmt-nix";
     };
 
     mfetch = {
       # Damn what a cool package i wonder who made it
       url = "git+https://codeberg.org/mafien0/mfetch";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-alien = {
       url = "github:thiagokokada/nix-alien";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.nix-index-database.follows = "nix-index-database";
+    };
+
+    # shared by: helium, nix-alien
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flake = false;
+    };
+
+    # shared by: nixcord, noctalia-shell
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
