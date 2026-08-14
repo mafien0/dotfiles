@@ -1,4 +1,36 @@
 {
+  outputs = inputs: let
+    system = "x86_64-linux";
+    flakePath = "/home/mafien0/nix";
+
+    pkgs = import inputs.nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    };
+
+    specialArgs = {
+      inherit inputs system flakePath;
+    };
+
+    packages.${system} = {
+      nixtest = import ./pkgs/nixtest.nix {inherit pkgs;};
+      nixformat = import ./pkgs/nixformat.nix {inherit pkgs;};
+    };
+  in {
+    formatter.${system} = pkgs.alejandra;
+
+    inherit packages;
+    nixosConfigurations = {
+      desktop = inputs.nixpkgs.lib.nixosSystem {
+        inherit system specialArgs;
+
+        modules = [
+          ./hosts/desktop/configuration.nix
+        ];
+      };
+    };
+  };
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 
@@ -41,12 +73,33 @@
     nixcord = {
       url = "github:4evy/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-nixcord.follows = "nixpkgs";
       inputs.treefmt-nix.follows = "treefmt-nix";
     };
 
     niri-flake = {
       url = "github:epireyn/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
+      # niri-flake pins stable + unstable variants of niri and xwayland-satellite.
+      # Our config only uses niri/niri - and xwayland-satellite from nixpkgs,
+      # so collapse both variants onto single sources to dedupe the closure.
+      inputs.niri-stable.follows = "niri";
+      inputs.niri-unstable.follows = "niri";
+      inputs.xwayland-satellite-stable.follows = "xwayland-satellite";
+      inputs.xwayland-satellite-unstable.follows = "xwayland-satellite";
+    };
+
+    # shared by: niri-flake (stable + unstable variants)
+    niri = {
+      url = "github:niri-wm/niri";
+      flake = false;
+    };
+
+    # shared by: niri-flake (stable + unstable variants)
+    xwayland-satellite = {
+      url = "github:Supreeeme/xwayland-satellite";
+      flake = false;
     };
 
     noctalia-shell = {
@@ -55,8 +108,8 @@
       inputs.noctalia-qs.inputs.treefmt-nix.follows = "treefmt-nix";
     };
 
+    # Damn what a cool package i wonder who made it
     mfetch = {
-      # Damn what a cool package i wonder who made it
       url = "git+https://codeberg.org/mafien0/mfetch";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -78,38 +131,6 @@
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
-
-  outputs = inputs: let
-    system = "x86_64-linux";
-    flakePath = "/home/mafien0/nix";
-
-    pkgs = import inputs.nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-    };
-
-    specialArgs = {
-      inherit inputs system flakePath;
-    };
-
-    packages.${system} = {
-      nixtest = import ./pkgs/nixtest.nix {inherit pkgs;};
-      nixformat = import ./pkgs/nixformat.nix {inherit pkgs;};
-    };
-  in {
-    formatter.${system} = pkgs.alejandra;
-
-    inherit packages;
-    nixosConfigurations = {
-      desktop = inputs.nixpkgs.lib.nixosSystem {
-        inherit system specialArgs;
-
-        modules = [
-          ./hosts/desktop/configuration.nix
-        ];
-      };
     };
   };
 }
