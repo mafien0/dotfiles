@@ -76,8 +76,8 @@
       url = "github:4evy/nixcord";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        inputs.nixpkgs-nixcord.follows = "nixpkgs";
-        inputs.treefmt-nix.follows = "treefmt-nix";
+        nixpkgs-nixcord.follows = "nixpkgs";
+        treefmt-nix.follows = "treefmt-nix";
       };
     };
 
@@ -123,8 +123,8 @@
       url = "github:thiagokokada/nix-alien";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        inputs.flake-compat.follows = "flake-compat";
-        inputs.nix-index-database.follows = "nix-index-database";
+        flake-compat.follows = "flake-compat";
+        nix-index-database.follows = "nix-index-database";
       };
     };
 
