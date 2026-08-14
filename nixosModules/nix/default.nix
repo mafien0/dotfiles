@@ -1,5 +1,18 @@
 {
+  nixpkgs.config = {
+    allowBroken = false;
+    allowUnfree = true;
+  };
   nix.settings = {
+    trusted-users = ["@wheel"];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    auto-optimise-store = true;
+    max-jobs = 4;
+    cores = 0;
+    warn-dirty = false;
     extra-substituters = [
       "https://nix-community.cachix.org"
       "https://nvf.cachix.org"
@@ -19,4 +32,7 @@
       "niri-epireyn.cachix.org-1:tlVyFN7CtsDT+ZcLPS+ekFWeT1X6X4OqvWqbBMyIzFA="
     ];
   };
+  nix.extraOptions = ''
+    !include /home/mafien0/.config/nix/access-tokens.conf
+  '';
 }

@@ -7,7 +7,7 @@
 }: let
   nixosModules = [
     "avahi"
-    "cachix"
+    "nix"
     "ddc"
     "docker"
     "gvfs"
@@ -48,20 +48,20 @@ in {
 
   # Nix(OS)
   system.stateVersion = "26.05";
-  nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [inputs.niri-flake.overlays.niri];
-  nix.settings = {
-    trusted-users = ["@wheel"];
-    experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-    auto-optimise-store = true;
-    max-jobs = 4;
-    cores = 0;
+
+  # Me specific
+  networking = {
+    hostName = "desktop";
+    networkmanager.enable = true;
   };
-  nix.extraOptions = ''
-    !include /home/mafien0/.config/nix/access-tokens.conf
+  time.timeZone = "Asia/Almaty";
+  services.xserver.xkb.layout = "us";
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  # Preserve token
+  security.sudo.extraConfig = ''
+    Defaults env_keep += "GITHUB_TOKEN"
   '';
 
   # Grub
@@ -74,20 +74,6 @@ in {
     };
     efi.canTouchEfiVariables = true;
   };
-
-  # Preserve token
-  security.sudo.extraConfig = ''
-    Defaults env_keep += "GITHUB_TOKEN"
-  '';
-
-  # Me specific
-  networking = {
-    hostName = "desktop";
-    networkmanager.enable = true;
-  };
-  time.timeZone = "Asia/Almaty";
-  services.xserver.xkb.layout = "us";
-  i18n.defaultLocale = "en_US.UTF-8";
 
   # Users
   users.users.mafien0 = {
