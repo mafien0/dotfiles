@@ -1,5 +1,6 @@
-
-# Nix dotfiles
+<h1 id="header" align="center">
+    <pre>Dotfiles</pre>
+</h1>
 
 - uses stable nixos(26.05)
 - Styled with `stylix`
@@ -23,6 +24,7 @@
 
 ```
 flake.nix
+install/            # not needed after first build
 pkgs/               # exposed packages
 hosts/desktop/      # per-system configuration
 homeModules/        # shared modules(home-manager)
@@ -59,5 +61,7 @@ sed -i 's/mafien0/<YOUR_USERNAME>/g' \
 > you need to cd into directory with `flake.nix`
 
 ```bash
-nix --extra-experimental-features 'nix-command flakes' run .#build -- -foh
+./install/firstbuild.sh desktop
 ```
+
+4. Reboot
