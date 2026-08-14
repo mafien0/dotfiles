@@ -99,6 +99,8 @@
       nixformat = import ./pkgs/nixformat.nix {inherit pkgs;};
     };
   in {
+    formatter.${system} = pkgs.alejandra;
+
     inherit packages;
     nixosConfigurations = {
       desktop = inputs.nixpkgs.lib.nixosSystem {

@@ -2,6 +2,7 @@
   pkgs,
   inputs,
   system,
+  flakePath,
   ...
 }: let
   nixosModules = [
@@ -41,8 +42,7 @@ in {
     useGlobalPkgs = true;
     users.mafien0.imports = [./home.nix];
     extraSpecialArgs = {
-      inherit inputs system;
-      flakePath = "/home/mafien0/nix";
+      inherit inputs system flakePath;
     };
   };
 
