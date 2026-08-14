@@ -12,12 +12,14 @@
   programs.nixcord = {
     enable = true;
     user = "mafien0";
-    vesktop.enable = true;
-    vesktop.settings = {
-      splashBackground = "#${config.lib.stylix.colors.base00}";
-      enableSplashScreen = false;
-    };
     discord.enable = false;
+    vesktop = {
+      enable = true;
+      settings = {
+        splashBackground = "#${config.lib.stylix.colors.base00}";
+        enableSplashScreen = false;
+      };
+    };
 
     quickCss = ''
       @import url("https://codeberg.org/ridge/Discord-Adblock/raw/branch/main/discord-adblock.css");
@@ -28,6 +30,9 @@
       frameless = true;
 
       plugins = {
+        permissionFreeWill.enable = true;
+        showHiddenChannels.enable = true;
+        serverInfo.enable = true;
         hideMedia.enable = true;
         callTimer.enable = true;
         fakeNitro.enable = true;
