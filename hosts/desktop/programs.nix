@@ -10,6 +10,10 @@
     ncdu
     cloc
 
+    cargo
+    cargo-generate
+    cargo-mommy
+
     gcc
     ffmpeg
     fastfetch # Not cool, use mfetch
