@@ -21,11 +21,11 @@
 
     inherit packages;
     nixosConfigurations = {
-      desktop = inputs.nixpkgs.lib.nixosSystem {
+      ataraxia = inputs.nixpkgs.lib.nixosSystem {
         inherit system specialArgs;
 
         modules = [
-          ./hosts/desktop/configuration.nix
+          ./hosts/ataraxia/configuration.nix
         ];
       };
     };

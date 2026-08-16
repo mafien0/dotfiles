@@ -52,7 +52,7 @@ in {
 
   # Me specific
   networking = {
-    hostName = "desktop";
+    hostName = "ataraxia";
     networkmanager.enable = true;
   };
   time.timeZone = "Asia/Almaty";
