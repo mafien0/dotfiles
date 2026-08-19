@@ -14,6 +14,7 @@
     cargo-generate
     cargo-mommy
 
+    chess-tui
     gcc
     ffmpeg
     fastfetch # Not cool, use mfetch

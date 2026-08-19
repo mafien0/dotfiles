@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   programs = {
     gamescope.enable = true;
+    gamemode.enable = true;
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
@@ -10,6 +11,9 @@
       extraPackages = with pkgs; [
         pulseaudio
         bibata-cursors
+      ];
+      extraCompatPackages = with pkgs; [
+        proton-ge-bin
       ];
     };
   };

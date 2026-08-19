@@ -1,5 +1,8 @@
 {
   mini = {
+    statusline = {
+      enable = true;
+    };
     icons = {
       enable = true;
     };
