@@ -30,8 +30,6 @@
     bruno
     libresprite
     obsidian
-
-    # jetbrains.idea
   ];
 
   fonts.packages = with pkgs; [

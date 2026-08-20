@@ -11,12 +11,12 @@
 
 <table>
     <tr>
-        <td><img src="./pictures/01.png" alt="preview 1"></td>
-        <td><img src="./pictures/02.png" alt="Preview 2"></td>
+        <td><img src="./assets/readme/01.png" alt="preview 1"></td>
+        <td><img src="./assets/readme/02.png" alt="Preview 2"></td>
     </tr>
     <tr>
-        <td><img src="./pictures/03.png" alt="Preview 3"></td>
-        <td><img src="./pictures/04.png" alt="Preview 4"></td>
+        <td><img src="./assets/readme/03.png" alt="Preview 3"></td>
+        <td><img src="./assets/readme/04.png" alt="Preview 4"></td>
     </tr>
 </table>
 
