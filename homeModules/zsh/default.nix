@@ -27,6 +27,9 @@
         bindkey "^[[A" up-line-or-beginning-search
         bindkey "^[[B" down-line-or-beginning-search
 
+        bindkey '^H' backward-kill-word
+        bindkey '^[[3;5~' backward-kill-word
+
         unsetopt PROMPT_SP
       '';
   };

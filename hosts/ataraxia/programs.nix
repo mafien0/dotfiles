@@ -1,7 +1,5 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
-    # Cli / Tui
-
     # Basic
     zip
     unzip
@@ -17,7 +15,6 @@
     chess-tui
     gcc
     ffmpeg
-    fastfetch # Not cool, use mfetch
     fzf
     go
     lazygit
@@ -30,6 +27,8 @@
     bruno
     libresprite
     obsidian
+
+    mindustry-wayland
   ];
 
   fonts.packages = with pkgs; [
