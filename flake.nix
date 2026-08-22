@@ -46,7 +46,10 @@
 
     stylix = {
       url = "github:nix-community/stylix/release-26.05";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
     };
 
     nvf = {
@@ -78,6 +81,7 @@
         nixpkgs.follows = "nixpkgs";
         nixpkgs-nixcord.follows = "nixpkgs";
         treefmt-nix.follows = "treefmt-nix";
+        flake-parts.follows = "flake-parts";
       };
     };
 
@@ -138,6 +142,11 @@
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # shared by: stylix, nixcord
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
     };
   };
 }

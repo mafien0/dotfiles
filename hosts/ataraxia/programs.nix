@@ -28,7 +28,7 @@
     libresprite
     obsidian
 
-    mindustry-wayland
+    vscodium
   ];
 
   fonts.packages = with pkgs; [
