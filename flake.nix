@@ -132,6 +132,11 @@
       };
     };
 
+    hosts = {
+      url = "github:StevenBlack/hosts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # shared by: helium, nix-alien
     flake-compat = {
       url = "github:edolstra/flake-compat";
