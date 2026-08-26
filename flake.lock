@@ -190,6 +190,26 @@
         "type": "github"
       }
     },
+    "flint": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1787593025,
+        "narHash": "sha256-EWF7m/owKIFCafcx9CHOHFg1cmzNoqGHW4O44Fpgpd8=",
+        "owner": "NotAShelf",
+        "repo": "flint",
+        "rev": "f7068f0dd680a03a2e582e41f84edc209953bf6f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NotAShelf",
+        "repo": "flint",
+        "type": "github"
+      }
+    },
     "fromYaml": {
       "flake": false,
       "locked": {
@@ -275,11 +295,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787527074,
-        "narHash": "sha256-23LbJ9ADxnAhIhqBBFb6NLDbHYu9mOfdjAOSOZQWuJ8=",
+        "lastModified": 1787707572,
+        "narHash": "sha256-tYcRpkBOrwcW+j+6iZGgnRu6vUnuodUld4LDrvakmr4=",
         "owner": "StevenBlack",
         "repo": "hosts",
-        "rev": "9d7273b7e16d02fbe0ce2eb8c6cd3772a377590c",
+        "rev": "fbfd5ca4e9f278f671607dfb085c090d6f606111",
         "type": "github"
       },
       "original": {
@@ -437,11 +457,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787632366,
-        "narHash": "sha256-PZuvIVFEgfJWwp/OuDE7HO4KbnQRghIo5mgUYj3Qtqo=",
+        "lastModified": 1787718824,
+        "narHash": "sha256-JQFXFuhIUAptwpqPyIam82X4FtEhUHbXOjp1yrBJF6U=",
         "owner": "4evy",
         "repo": "nixcord",
-        "rev": "4a125b90e4eaeaa99781554965212a27ed9c9561",
+        "rev": "23c16138eabc4880cb730a7db18d43c3df6a3e5e",
         "type": "github"
       },
       "original": {
@@ -580,6 +600,7 @@
         "disko": "disko",
         "flake-compat": "flake-compat",
         "flake-parts": "flake-parts",
+        "flint": "flint",
         "helium": "helium",
         "home-manager": "home-manager",
         "hosts": "hosts",
