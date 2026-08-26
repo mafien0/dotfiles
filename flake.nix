@@ -97,6 +97,11 @@
       };
     };
 
+    flint = {
+      url = "github:NotAShelf/flint";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # shared by: niri-flake (stable + unstable variants)
     niri = {
       url = "github:niri-wm/niri";

@@ -4,6 +4,7 @@ let
     "btop"
     "direnv"
     "eza"
+    "flint"
     "foot"
     "git"
     "helium"
