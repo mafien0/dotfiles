@@ -13,7 +13,7 @@ let
     "nixcord"
     "nixtools"
     "noctalia"
-    "nvf"
+    "neovim"
     "opencode"
     "prismlauncher"
     "qbittorrent"
