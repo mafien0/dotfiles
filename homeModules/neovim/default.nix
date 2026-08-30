@@ -3,6 +3,11 @@
   stylix.targets.neovim.transparentBackground.numberLine = true;
   stylix.targets.neovim.transparentBackground.signColumn = true;
 
+  home.shellAliases = {
+    v = "nvim";
+    view = "nvim -R";
+    y = "nvim -c 'Oil'";
+  };
   programs.neovim = let
     toLua = str: "${str}\n";
     toLuaFile = file: "${builtins.readFile file}\n";
@@ -28,7 +33,7 @@
       sqls
     ];
 
-    extraLuaConfig = ''
+    initLua = ''
       ${builtins.readFile ./options.lua}
       ${builtins.readFile ./autocmds.lua}
     '';
