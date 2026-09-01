@@ -1,4 +1,5 @@
 {config, ...}: {
+  home.shell.enableZshIntegration = true;
   programs.zsh = {
     enable = true;
     syntaxHighlighting.enable = true;

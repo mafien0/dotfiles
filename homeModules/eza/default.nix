@@ -5,7 +5,6 @@
 }: {
   programs.eza = {
     enable = true;
-    enableZshIntegration = true;
   };
 
   home.shellAliases = {

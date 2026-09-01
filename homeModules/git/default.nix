@@ -9,26 +9,28 @@
   };
   signingKey = "~/.ssh/id_ed25519.pub";
 in {
-  programs.git = {
-    enable = true;
-    lfs.enable = true;
-    signing = {
-      key = signingKey;
-      signByDefault = true;
-    };
-    settings = {
-      inherit user;
-      init.defaultBranch = "main";
-      tag.gpgSign = true;
-      gpg = {
-        format = "ssh";
-        ssh.allowedSignersFile = "~/.ssh/allowed_signers";
+  programs = {
+    git = {
+      enable = true;
+      lfs.enable = true;
+      signing = {
+        key = signingKey;
+        signByDefault = true;
+      };
+      settings = {
+        inherit user;
+        init.defaultBranch = "main";
+        tag.gpgSign = true;
+        gpg = {
+          format = "ssh";
+          ssh.allowedSignersFile = "~/.ssh/allowed_signers";
+        };
       };
     };
+    lazygit = {
+      enable = true;
+    };
   };
-  home.packages = with pkgs; [
-    lazygit
-  ];
   home.shellAliases = {
     g = "${lib.getExe pkgs.git}";
     lg = "${lib.getExe pkgs.lazygit}";
