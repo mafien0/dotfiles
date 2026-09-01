@@ -22,10 +22,12 @@
       wl-clipboard
       ripgrep
       fd
-      google-java-format
+
+      # Lsp & Formatters
       rust-analyzer
       gopls
       ruff
+      google-java-format
       nixd
       lua-language-server
       bash-language-server
@@ -39,6 +41,8 @@
     '';
 
     plugins = with pkgs.vimPlugins; [
+      nvim-web-devicons
+
       # Mini
       {
         plugin = mini-nvim;
@@ -76,13 +80,6 @@
         config = toLuaFile ./plugins/markdown.lua;
       }
       render-markdown-nvim
-
-      # Dashboard
-      {
-        plugin = dashboard-nvim;
-        config = toLuaFile ./plugins/dashboard.lua;
-      }
-      nvim-web-devicons
 
       # LSP
       {
