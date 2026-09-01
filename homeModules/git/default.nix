@@ -26,7 +26,11 @@ in {
       };
     };
   };
+  home.packages = with pkgs; [
+    lazygit
+  ];
   home.shellAliases = {
     g = "${lib.getExe pkgs.git}";
+    lg = "${lib.getExe pkgs.lazygit}";
   };
 }

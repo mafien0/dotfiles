@@ -17,7 +17,6 @@
     ffmpeg
     fzf
     go
-    lazygit
     lazydocker
     ntfs3g
     python3
