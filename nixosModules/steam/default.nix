@@ -1,4 +1,8 @@
 {pkgs, ...}: {
+  hardware.uinput.enable = true;
+  services.udev.packages = [
+    pkgs.game-devices-udev-rules
+  ];
   programs = {
     gamescope.enable = true;
     gamemode.enable = true;
