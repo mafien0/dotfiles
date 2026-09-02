@@ -32,6 +32,7 @@
       plugins = {
         permissionFreeWill.enable = true;
         showHiddenChannels.enable = true;
+        showHiddenThings.enable = true;
         serverInfo.enable = true;
         hideMedia.enable = true;
         callTimer.enable = true;
