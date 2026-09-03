@@ -6,7 +6,7 @@
     nixpkgs-lint-community
     statix
 
-    (import ../../pkgs/nixtest.nix {inherit pkgs;})
+    (import ../../pkgs/nixcheck.nix {inherit pkgs;})
     (import ../../pkgs/nixformat.nix {inherit pkgs;})
   ];
 }

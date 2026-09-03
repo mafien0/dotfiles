@@ -1,6 +1,6 @@
 {pkgs}:
 pkgs.writeShellApplication {
-  name = "nixtest";
+  name = "nixcheck";
 
   runtimeInputs = with pkgs; [
     nixpkgs-lint-community

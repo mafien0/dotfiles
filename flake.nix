@@ -13,7 +13,7 @@
     };
 
     packages.${system} = {
-      nixtest = import ./pkgs/nixtest.nix {inherit pkgs;};
+      nixcheck = import ./pkgs/nixcheck.nix {inherit pkgs;};
       nixformat = import ./pkgs/nixformat.nix {inherit pkgs;};
     };
   in {
