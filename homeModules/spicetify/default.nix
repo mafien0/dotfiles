@@ -14,6 +14,7 @@
     enabledExtensions = with inputs.spicetify-nix.legacyPackages.${system}.extensions; [
       adblockify
       hidePodcasts
+      aiBandBlocker
     ];
     wayland = true;
     windowManagerPatch = true;

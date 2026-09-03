@@ -24,7 +24,6 @@
 
 ```
 flake.nix
-install/            # not needed after first build
 pkgs/               # exposed packages
 hosts/*/            # per-system configuration
 homeModules/        # shared modules(home-manager)

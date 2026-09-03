@@ -23,9 +23,14 @@
     nixosConfigurations = {
       ataraxia = inputs.nixpkgs.lib.nixosSystem {
         inherit system specialArgs;
-
         modules = [
           ./hosts/ataraxia/configuration.nix
+        ];
+      };
+      iso = inputs.nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [
+          ./hosts/iso/configuration.nix
         ];
       };
     };
