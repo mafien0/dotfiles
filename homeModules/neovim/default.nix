@@ -1,7 +1,9 @@
 {pkgs, ...}: {
-  stylix.targets.neovim.enable = true;
-  stylix.targets.neovim.transparentBackground.numberLine = true;
-  stylix.targets.neovim.transparentBackground.signColumn = true;
+  stylix.targets.neovim = {
+    enable = true;
+    transparentBackground.numberLine = true;
+    transparentBackground.signColumn = true;
+  };
 
   home.shellAliases = {
     v = "nvim";
