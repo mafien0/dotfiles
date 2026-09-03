@@ -24,7 +24,7 @@
 
     # -- Gui
     bruno
-    libresprite
+    pixelorama
     obsidian
 
     vscodium
