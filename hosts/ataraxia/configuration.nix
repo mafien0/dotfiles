@@ -37,6 +37,8 @@ in {
     ]
     ++ (map (m: ../../nixosModules/${m}) nixosModules);
 
+  networking.firewall.allowedTCPPorts = [8000];
+
   # Home-manager
   home-manager = {
     backupFileExtension = "bak";
