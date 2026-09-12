@@ -29,6 +29,7 @@
       rust-analyzer
       gopls
       ruff
+      pyright
       google-java-format
       nixd
       lua-language-server

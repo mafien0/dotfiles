@@ -28,6 +28,10 @@
     obsidian
 
     vscodium
+
+    (olympus.override {
+      celesteWrapper = "steam-run";
+    })
   ];
 
   fonts.packages = with pkgs; [

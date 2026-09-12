@@ -81,7 +81,6 @@
         nixpkgs.follows = "nixpkgs";
         nixpkgs-nixcord.follows = "nixpkgs";
         treefmt-nix.follows = "treefmt-nix";
-        flake-parts.follows = "flake-parts";
       };
     };
 
@@ -154,7 +153,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # shared by: stylix, nixcord
+    # shared by: stylix
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
     };

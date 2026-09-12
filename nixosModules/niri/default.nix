@@ -12,6 +12,9 @@
     enable = true;
     package = pkgs.niri;
   };
+  environment.systemPackages = [
+    pkgs.xwayland-satellite-unstable
+  ];
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;

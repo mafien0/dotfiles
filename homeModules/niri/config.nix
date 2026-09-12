@@ -21,10 +21,6 @@
       {argv = [(lib.getExe' pkgs.tailscale "systray")];}
     ];
 
-    xwayland-satellite = {
-      path = lib.getExe pkgs.xwayland-satellite;
-    };
-
     clipboard.disable-primary = true;
 
     outputs."HDMI-A-1" = {

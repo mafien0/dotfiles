@@ -46,11 +46,24 @@ vim.lsp.config("nixd", {
   },
 })
 
+vim.lsp.config("pyright", {
+  settings = {
+    python = {
+      analysis = {
+        typeCheckingMode = "basic",
+        diagnosticMode = "openFilesOnly",
+        useLibraryCodeForTypes = true,
+      },
+    },
+  },
+})
+
 vim.lsp.enable({
   "rust_analyzer",
   "gopls",
   "nixd",
   "ruff",
+  "pyright",
   "lua_ls",
   "bashls",
   "jsonls",
