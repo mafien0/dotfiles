@@ -1,9 +1,9 @@
 {pkgs, ...}: {
-  stylix.targets.neovim = {
-    enable = true;
-    transparentBackground.numberLine = true;
-    transparentBackground.signColumn = true;
-  };
+  # stylix.targets.neovim = {
+  #   enable = true;
+  #   transparentBackground.numberLine = true;
+  #   transparentBackground.signColumn = true;
+  # };
 
   home.shellAliases = {
     v = "nvim";
@@ -44,6 +44,11 @@
     '';
 
     plugins = with pkgs.vimPlugins; [
+      {
+        plugin = gruvbox-nvim;
+        config = toLuaFile ./plugins/colorscheme.lua;
+      }
+
       nvim-web-devicons
 
       # Mini

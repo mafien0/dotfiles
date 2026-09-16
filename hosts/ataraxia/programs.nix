@@ -26,6 +26,7 @@
     bruno
     pixelorama
     obsidian
+    rustdesk
 
     vscodium
 

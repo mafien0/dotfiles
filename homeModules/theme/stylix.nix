@@ -3,7 +3,7 @@
   inputs,
   ...
 }: let
-  wallpaperPath = ../../assets/wallpapers/v1.png;
+  wallpaperPath = ../../assets/wallpapers/gruvbox_city.png;
 in {
   imports = [
     inputs.stylix.homeModules.stylix
@@ -13,9 +13,23 @@ in {
     enable = true;
     autoEnable = false;
 
-    base16Scheme = builtins.fetchurl {
-      url = "https://raw.githubusercontent.com/tinted-theming/schemes/refs/heads/spec-0.11/base16/everforest-dark-hard.yaml";
-      sha256 = "17wccvb42j2bizzl7pp0ad0hqq843sn7yv0ghhbwdmd0b9gbqgm6";
+    base16Scheme = {
+      base00 = "#1d2021";
+      base01 = "#282828";
+      base02 = "#504945";
+      base03 = "#665c54";
+      base04 = "#bdae93";
+      base05 = "#d5c4a1";
+      base06 = "#ebdbb2";
+      base07 = "#fbf1c7";
+      base08 = "#fb4934";
+      base09 = "#fe8019";
+      base0A = "#fabd2f";
+      base0B = "#b8bb26";
+      base0C = "#8ec07c";
+      base0D = "#83a598";
+      base0E = "#d3869b";
+      base0F = "#d65d0e";
     };
 
     image = wallpaperPath;
