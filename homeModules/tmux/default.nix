@@ -24,6 +24,10 @@
       set -ga terminal-overrides ",*256col*:Tc"
       set -g cursor-style bar
 
+      set -g extended-keys on
+      set -g extended-keys-format csi-u
+      set -as terminal-features ',*:extkeys'
+
       bind q killp
       bind v copy-mode
       bind R source-file ~/.config/tmux/tmux.conf \; display "config reloaded"

@@ -14,7 +14,7 @@ let
     "nixtools"
     "noctalia"
     "neovim"
-    "opencode"
+    "pi"
     "prismlauncher"
     "qbittorrent"
     "spicetify"
