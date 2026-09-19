@@ -3,8 +3,13 @@
     system = "x86_64-linux";
     flakePath = "/home/mafien0/nix";
 
+    overlays = [
+      inputs.niri-flake.overlays.niri
+      inputs.llm-agents.overlays.shared-nixpkgs
+    ];
+
     pkgs = import inputs.nixpkgs {
-      inherit system;
+      inherit system overlays;
       config.allowUnfree = true;
     };
 
@@ -24,6 +29,7 @@
       ataraxia = inputs.nixpkgs.lib.nixosSystem {
         inherit system specialArgs;
         modules = [
+          {nixpkgs.overlays = overlays;}
           ./hosts/ataraxia/configuration.nix
         ];
       };
@@ -135,6 +141,11 @@
         flake-compat.follows = "flake-compat";
         nix-index-database.follows = "nix-index-database";
       };
+    };
+
+    llm-agents = {
+      url = "github:numtide/llm-agents.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # shared by: helium, nix-alien

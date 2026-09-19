@@ -1,5 +1,6 @@
 let
   modules = [
+    "ai"
     "apps"
     "btop"
     "direnv"
@@ -14,7 +15,6 @@ let
     "nixtools"
     "noctalia"
     "neovim"
-    "pi"
     "prismlauncher"
     "qbittorrent"
     "spicetify"

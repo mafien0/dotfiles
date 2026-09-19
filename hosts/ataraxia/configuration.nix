@@ -50,7 +50,6 @@ in {
 
   # Nix(OS)
   system.stateVersion = "26.05";
-  nixpkgs.overlays = [inputs.niri-flake.overlays.niri];
 
   # Me specific
   networking = {

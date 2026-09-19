@@ -1,7 +1,9 @@
+# MADE BY AI
 {pkgs, ...}: {
   home.packages = [
     pkgs.pi-coding-agent
     pkgs.mcp-nixos
+    pkgs.llm-agents.dsh
   ];
 
   home.file.".pi/agent/APPEND_SYSTEM.md".text = ''
