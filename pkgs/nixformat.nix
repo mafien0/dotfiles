@@ -1,3 +1,4 @@
+# MADE BY AI
 {pkgs}:
 pkgs.writeShellApplication {
   name = "nixformat";
@@ -9,16 +10,28 @@ pkgs.writeShellApplication {
   ];
 
   text = ''
-    echo "--- alejandra format ---"
-    alejandra -q "$1"
-    echo "end"
+    set +e
 
-    echo "--- statix fix ---"
-    statix fix "$1"
-    echo "end"
+    targets=("$@")
+    if [ ''${#targets[@]} -eq 0 ]; then
+      targets=(".")
+    fi
 
-    echo "--- deadnix edit ---"
-    deadnix -e "$1"
-    echo "end"
+    status=0
+    run() {
+      local name="$1"
+      shift
+      echo "--- $name ---"
+      "$@"
+      local code=$?
+      [ "$code" -eq 0 ] || status=$code
+      echo "end"
+    }
+
+    run "statix fix" statix fix "''${targets[@]}"
+    run "deadnix edit" deadnix -e "''${targets[@]}"
+    run "alejandra format" alejandra -q "''${targets[@]}"
+
+    exit "$status"
   '';
 }

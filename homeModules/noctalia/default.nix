@@ -41,6 +41,7 @@
 
   home.packages = with pkgs; [
     cliphist
+    pwvucontrol
     wl-clipboard
     kdePackages.qtwebsockets
   ];

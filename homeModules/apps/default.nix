@@ -5,7 +5,6 @@
 }: {
   home.packages = with pkgs; [
     qalculate-gtk
-    thunar
     imv
     mousepad
     mpv

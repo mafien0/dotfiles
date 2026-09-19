@@ -16,9 +16,7 @@ require("blink.cmp").setup({
   },
 })
 
-require("luasnip.loaders.from_vscode").load({
-  paths = vim.fn.stdpath("config") .. "/snippets",
-})
+require("luasnip.loaders.from_vscode").lazy_load()
 
 local ls = require("luasnip")
 local s = ls.snippet

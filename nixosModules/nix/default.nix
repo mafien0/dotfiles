@@ -21,7 +21,6 @@
         "flakes"
       ];
       auto-optimise-store = true;
-      max-jobs = 4;
       cores = 0;
       warn-dirty = false;
       extra-substituters = [

@@ -102,7 +102,7 @@ in {
       };
       # Smart screenshot
       "Mod+Alt+S" = {
-        action."spawn-sh" = "${lib.getExe' config.programs.niri.package "niri"} msg action screenshot-screen && ${lib.getExe' pkgs.coreutils "sleep"} 0.5; ${lib.getExe' pkgs.wl-clipboard "wl-paste"} | ${lib.getExe pkgs.satty} --filename -";
+        action."spawn-sh" = "${lib.getExe' config.programs.niri.package "niri"} msg action screenshot-screen; ${lib.getExe' pkgs.coreutils "sleep"} 0.5; ${lib.getExe' pkgs.wl-clipboard "wl-paste"} --type image | ${lib.getExe pkgs.satty} --filename -";
         repeat = false;
       };
       # set-dynamic-cast-window
@@ -150,7 +150,6 @@ in {
       "Mod+R".action."switch-preset-column-width" = {};
       "Mod+Ctrl+R".action."reset-window-height" = {};
       "Mod+Shift+R".action."switch-preset-window-height" = {};
-      "Mod+Ctrl+Shift+R".action."switch-preset-window-height" = {};
 
       # Mouse scroll
       "Mod+WheelScrollDown" = {

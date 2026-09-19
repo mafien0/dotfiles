@@ -19,7 +19,7 @@
       ];
       kernelModules = [];
     };
-    kernelModules = ["tcp_bbr"];
+    kernelModules = ["tcp_bbr" "sch_cake"];
     extraModulePackages = [];
 
     kernelParams = [
@@ -48,6 +48,7 @@
     options = [
       "defaults"
       "noatime"
+      "nofail"
     ];
   };
 

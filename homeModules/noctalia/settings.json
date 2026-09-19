@@ -28,7 +28,7 @@
     "showCategories": true,
     "showIconBackground": false,
     "sortByMostUsed": true,
-    "terminalCommand": "alacritty -e",
+    "terminalCommand": "foot -e",
     "viewMode": "grid"
   },
   "audio": {
@@ -381,7 +381,6 @@
     "animationDisabled": false,
     "animationSpeed": 1,
     "autoStartAuth": false,
-    "avatarImage": "/home/mafien0/.face",
     "boxRadiusRatio": 1,
     "clockFormat": "hh\\nmm",
     "clockStyle": "custom",

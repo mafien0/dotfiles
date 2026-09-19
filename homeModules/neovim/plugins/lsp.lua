@@ -83,7 +83,7 @@ map("n", "<leader>gi", vim.lsp.buf.implementation, { desc = "Go to implementatio
 map("n", "<leader>gR", vim.lsp.buf.references, { desc = "Find references" })
 map("n", "<leader>gt", vim.lsp.buf.type_definition, { desc = "Type definition" })
 map("n", "K", vim.lsp.buf.hover, { desc = "Hover documentation" })
-map("n", "<C-k>", vim.lsp.buf.signature_help, { desc = "Signature help" })
+map("n", "<leader>gs", vim.lsp.buf.signature_help, { desc = "Signature help" })
 map("n", "<leader>gr", vim.lsp.buf.rename, { desc = "Rename symbol" })
 map("n", "<leader>ga", vim.lsp.buf.code_action, { desc = "Code action" })
 map("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end, { desc = "Previous diagnostic" })

@@ -17,8 +17,7 @@
       }
       {sh = "${lib.getExe' pkgs.wl-clipboard "wl-paste"} --type text --watch ${lib.getExe pkgs.cliphist} store";}
       {sh = "${lib.getExe' pkgs.wl-clipboard "wl-paste"} --type image --watch ${lib.getExe pkgs.cliphist} store";}
-      {argv = [(lib.getExe' pkgs.polkit_gnome "polkit-gnome-authentication-agent-1")];}
-      {argv = [(lib.getExe' pkgs.tailscale "systray")];}
+      {argv = ["${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"];}
     ];
 
     clipboard.disable-primary = true;

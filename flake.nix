@@ -80,6 +80,7 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         nixpkgs-nixcord.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
         treefmt-nix.follows = "treefmt-nix";
       };
     };
@@ -134,11 +135,6 @@
         flake-compat.follows = "flake-compat";
         nix-index-database.follows = "nix-index-database";
       };
-    };
-
-    hosts = {
-      url = "github:StevenBlack/hosts";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # shared by: helium, nix-alien

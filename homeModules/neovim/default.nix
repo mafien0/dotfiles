@@ -31,6 +31,8 @@
       ruff
       pyright
       google-java-format
+      gofumpt
+      gotools
       nixd
       lua-language-server
       bash-language-server

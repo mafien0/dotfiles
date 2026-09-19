@@ -1,3 +1,4 @@
+# MADE BY AI
 {pkgs}:
 pkgs.writeShellApplication {
   name = "nixcheck";
@@ -10,20 +11,29 @@ pkgs.writeShellApplication {
   ];
 
   text = ''
-    echo "--- nixpkgs-lint ---"
-    nixpkgs-lint "$1"
-    echo "end"
+    set +e
 
-    echo "--- alejandra check ---"
-    alejandra -c -q "$1"
-    echo "end"
+    targets=("$@")
+    if [ ''${#targets[@]} -eq 0 ]; then
+      targets=(".")
+    fi
 
-    echo "--- statix check ---"
-    statix check "$1"
-    echo "end"
+    status=0
+    run() {
+      local name="$1"
+      shift
+      echo "--- $name ---"
+      "$@"
+      local code=$?
+      [ "$code" -eq 0 ] || status=$code
+      echo "end"
+    }
 
-    echo "--- deadnix check ---"
-    deadnix "$1"
-    echo "end"
+    run "nixpkgs-lint" nixpkgs-lint "''${targets[@]}"
+    run "alejandra check" alejandra -c -q "''${targets[@]}"
+    run "statix check" statix check "''${targets[@]}"
+    run "deadnix check" deadnix "''${targets[@]}"
+
+    exit "$status"
   '';
 }

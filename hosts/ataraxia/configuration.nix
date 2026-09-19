@@ -11,7 +11,6 @@
     "ddc"
     "docker"
     "gvfs"
-    "hosts-block"
     "localsend"
     "ly"
     "nh"
