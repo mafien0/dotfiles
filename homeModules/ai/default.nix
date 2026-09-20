@@ -2,24 +2,27 @@
 {
   pkgs,
   lib,
+  inputs,
+  system,
   ...
 }: let
-  opencode2 = pkgs.llm-agents.opencode2;
-
-  cavemanPrompt = builtins.readFile ./caveman.md;
+  llmAgents = inputs.llm-agents.packages.${system};
 in {
   home = {
     packages = [
-      opencode2
+      llmAgents.opencode2
       pkgs.mcp-nixos
-      pkgs.llm-agents.dsh
+      llmAgents.dsh
+
+      pkgs.ripgrep
+      pkgs.fd
     ];
 
-    shellAliases.op = lib.getExe opencode2;
+    shellAliases.op = lib.getExe llmAgents.opencode2;
 
     file = {
       ".config/opencode/AGENTS.md".text =
-        "${cavemanPrompt}\n\n"
+        "${builtins.readFile ./caveman.md}\n\n"
         + ''
           - Prefer `rg` over `grep`, `fd` over `find`.
           - Never commit without being asked.

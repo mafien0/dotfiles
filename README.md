@@ -2,7 +2,7 @@
     <pre>Dotfiles</pre>
 </h1>
 
-- uses stable nixos(26.05)
+- uses unstable nixpkgs
 - Styled with `stylix`
 - Formatted with `alejandra`
 - Checked with `deadnix`, `statix` and `nixpkgs-lint`

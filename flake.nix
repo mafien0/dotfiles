@@ -5,7 +5,6 @@
 
     overlays = [
       inputs.niri-flake.overlays.niri
-      inputs.llm-agents.overlays.shared-nixpkgs
     ];
 
     pkgs = import inputs.nixpkgs {
@@ -43,10 +42,15 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    # shared by: llm-agents, stylix
+    systems = {
+      url = "github:nix-systems/default";
+    };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-26.05";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -56,10 +60,11 @@
     };
 
     stylix = {
-      url = "github:nix-community/stylix/release-26.05";
+      url = "github:nix-community/stylix/master";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
+        systems.follows = "systems";
       };
     };
 
@@ -145,7 +150,10 @@
 
     llm-agents = {
       url = "github:numtide/llm-agents.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
     };
 
     # shared by: helium, nix-alien

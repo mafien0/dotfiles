@@ -90,9 +90,7 @@ in {
 
   # Varios
   services = {
-    journald.extraConfig = ''
-      SystemMaxUse=500M
-    '';
+    journald.settings.Journal.SystemMaxUse = "500M";
   };
   programs = {
     dconf.enable = true;
