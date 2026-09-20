@@ -28,7 +28,7 @@ in {
   home = {
     username = "mafien0";
     homeDirectory = "/home/mafien0";
-    stateVersion = "26.05";
+    stateVersion = "26.11";
   };
 
   programs.home-manager.enable = true;
