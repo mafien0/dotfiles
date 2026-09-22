@@ -9,6 +9,7 @@ let
     "foot"
     "git"
     "helium"
+    "mcsr"
     "mfetch"
     "niri"
     "nixcord"
