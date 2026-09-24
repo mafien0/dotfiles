@@ -40,6 +40,7 @@
         keepCurrentChannel.enable = true;
         mentionAvatars.enable = true;
         noF1.enable = true;
+        customRpc.enable = true;
       };
     };
   };

@@ -13,6 +13,7 @@ local config = {
 
     remaps = {
       ["CAPSLOCK"] = "F3",
+      ["GRAVE"] = "F5",
     },
   },
   theme = {
