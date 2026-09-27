@@ -8,7 +8,7 @@ local config = {
     repeat_rate = 40,
     repeat_delay = 300,
 
-    sensitivity = 1.0,
+    sensitivity = 13.001755676740837,
     confine_pointer = false,
 
     remaps = {
@@ -22,7 +22,7 @@ local config = {
   },
 }
 
-local screen_eye = helpers.toggle_res(384, 16384, 0.50077085)
+local screen_eye = helpers.toggle_res(384, 16384, 0.8770906605517489)
 local screen_preemptive = helpers.toggle_res(350, 1080)
 local screen_wide = helpers.toggle_res(1920, 300)
 
@@ -30,6 +30,11 @@ helpers.res_mirror({
   src = { x = (384 - 30) / 2, y = (16384 - 580) / 2, w = 30, h = 580 },
   dst = { x = 34, y = 34, w = 700, h = 500 },
   depth = 2,
+}, 384, 16384)
+
+helpers.res_image(nix.measuring_overlay, {
+  dst = { x = 34, y = 34, w = 700, h = 500 },
+  depth = 3,
 }, 384, 16384)
 
 helpers.res_mirror({

@@ -8,6 +8,8 @@
     export JAVA_TOOL_OPTIONS="''${JAVA_TOOL_OPTIONS:-} -Dswing.defaultlaf=javax.swing.plaf.metal.MetalLookAndFeel"
     exec ${pkgs.ninjabrain-bot}/bin/ninjabrain-bot "$@"
   '';
+
+  measuring-overlay = ../../assets/mcsr/measuring_overlay.png;
 in {
   home.packages = [
     pkgs.waywall
@@ -26,6 +28,7 @@ in {
         return {
             ninjabrain_bot = "${pkgs.lib.getExe ninjabrain-bot}",
             background = "#${config.lib.stylix.colors.base00}",
+            measuring_overlay = "${measuring-overlay}",
         }
       '';
 
