@@ -58,6 +58,16 @@ vim.lsp.config("pyright", {
   },
 })
 
+vim.lsp.config("html", {
+  settings = {
+    html = {
+      format = {
+        contentUnformatted = "pre,code,textarea",
+      },
+    },
+  },
+})
+
 vim.lsp.enable({
   "rust_analyzer",
   "gopls",

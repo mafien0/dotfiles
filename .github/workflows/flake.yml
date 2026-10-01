@@ -1,0 +1,38 @@
+name: Flake Checks
+on:
+  push:
+    paths:
+      - flake.nix
+      - flake.lock
+  pull_request:
+    paths:
+      - flake.nix
+      - flake.lock
+
+jobs:
+
+    flake-check:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Install Nix
+              uses: cachix/install-nix-action@v31.11.1
+
+            - name: Check flake
+              run: nix flake check
+
+    flint-check:
+        needs: [flake-check]
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Install Nix
+              uses: cachix/install-nix-action@v31.11.1
+
+            - name: Check for duplicate dependencies
+              run: |
+                  nix run github:NotAShelf/flint -- --fail-if-multiple-versions

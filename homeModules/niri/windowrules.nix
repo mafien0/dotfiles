@@ -76,6 +76,30 @@
       ];
       opacity = 1.0;
     }
+
+    # open apps on dedicated workspaces
+    {
+      matches = [
+        {app-id = "(?i).*steam.*";}
+        {app-id = "(?i).*minecraft.*";}
+      ];
+      open-on-workspace = "1";
+    }
+
+    {
+      matches = [{app-id = "(?i)^helium$";}];
+      open-on-workspace = "2";
+    }
+
+    {
+      matches = [{app-id = "(?i)^vesktop$";}];
+      open-on-workspace = "3";
+    }
+
+    {
+      matches = [{app-id = "(?i).*spotify.*";}];
+      open-on-workspace = "4";
+    }
   ];
 
   programs.niri.settings."layer-rules" = [

@@ -12,7 +12,6 @@ in {
     packages = [
       llmAgents.opencode2
       pkgs.mcp-nixos
-      llmAgents.dsh
 
       pkgs.ripgrep
       pkgs.fd

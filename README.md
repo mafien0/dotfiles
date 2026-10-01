@@ -24,6 +24,7 @@
 
 ```
 flake.nix
+assets              # varios images
 pkgs/               # exposed packages
 hosts/*/            # per-system configuration
 homeModules/        # shared modules(home-manager)

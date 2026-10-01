@@ -25,14 +25,15 @@
     # -- Gui
     bruno
     pixelorama
-    obsidian
     rustdesk
 
     vscodium
 
+    # -- Games
     (olympus.override {
       celesteWrapper = "steam-run";
     })
+    ckan
   ];
 
   fonts.packages = with pkgs; [

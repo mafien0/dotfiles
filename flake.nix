@@ -90,6 +90,7 @@
       url = "github:4evy/nixcord";
       inputs = {
         nixpkgs.follows = "nixpkgs";
+        nixpkgs-ci.follows = "nixpkgs";
         nixpkgs-nixcord.follows = "nixpkgs";
         home-manager.follows = "home-manager";
         treefmt-nix.follows = "treefmt-nix";

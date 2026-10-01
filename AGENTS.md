@@ -10,19 +10,29 @@ new code.
 Do **not** add it for small changes. One-liners, a few added/removed options,
 typo fixes, config tweaks, and other minor edits get no comment.
 
-check code with `nixcheck <dir>`, format with `nixformat <dir>`
-check flake with `flint` inside of a flake dir
-those are availabe in your PATH
+## Tools
+
+- Check code with `nixcheck <dir>`.
+- Format with `nixformat <dir>`.
+- Check flake with `flint` inside a flake dir.
+
+All of these are available in your PATH.
 
 ## Edits
-- Do not write into the project, unless i specificly tell you to.
-- Do not write large comments explaining nothing
 
+- Do not write into the project unless I specifically tell you to.
+- Do not write large comments that explain nothing.
 
 ## Structure
+
 ```plaintext
- ./
+./
+├──  .github/
+│   └──  workflows/
+│       └──  flake.yml
 ├──  assets/
+│   ├──  mcsr/
+│   │   └──  measuring_overlay.png
 │   ├──  readme/
 │   │   ├──  01.png
 │   │   ├──  02.png
@@ -32,6 +42,9 @@ those are availabe in your PATH
 │       ├──  gruvbox_city.png
 │       └──  v1.png
 ├──  homeModules/
+│   ├──  ai/
+│   │   ├── 󰂺 caveman.md
+│   │   └──  default.nix
 │   ├──  apps/
 │   │   └──  default.nix
 │   ├──  btop/
@@ -48,6 +61,9 @@ those are availabe in your PATH
 │   │   └──  default.nix
 │   ├──  helium/
 │   │   └──  default.nix
+│   ├──  mcsr/
+│   │   ├──  default.nix
+│   │   └──  init.lua
 │   ├──  mfetch/
 │   │   └──  default.nix
 │   ├──  neovim/
@@ -86,8 +102,6 @@ those are availabe in your PATH
 │   ├──  noctalia/
 │   │   ├──  default.nix
 │   │   └──  settings.json
-│   ├──  pi/
-│   │   └──  default.nix
 │   ├──  prismlauncher/
 │   │   └──  default.nix
 │   ├──  qbittorrent/
@@ -120,8 +134,6 @@ those are availabe in your PATH
 │   │   └──  default.nix
 │   ├──  gvfs/
 │   │   └──  default.nix
-│   ├──  hosts-block/
-│   │   └──  default.nix
 │   ├──  localsend/
 │   │   └──  default.nix
 │   ├──  ly/
@@ -153,6 +165,7 @@ those are availabe in your PATH
 ├──  pkgs/
 │   ├──  nixcheck.nix
 │   └──  nixformat.nix
+├──  .gitignore
 ├──  AGENTS.md
 ├──  flake.lock
 ├──  flake.nix
