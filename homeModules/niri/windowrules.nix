@@ -82,6 +82,8 @@
       matches = [
         {app-id = "(?i).*steam.*";}
         {app-id = "(?i).*minecraft.*";}
+        {title = "(?i).*minecraft.*";}
+        {app-id = "org\\.prismlauncher\\.PrismLauncher";}
       ];
       open-on-workspace = "1";
     }
@@ -92,7 +94,7 @@
     }
 
     {
-      matches = [{app-id = "(?i)^vesktop$";}];
+      matches = [{app-id = "(?i)^discord$";}];
       open-on-workspace = "3";
     }
 

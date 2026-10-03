@@ -1,8 +1,4 @@
-{
-  inputs,
-  config,
-  ...
-}: {
+{inputs, ...}: {
   imports = [
     inputs.nixcord.homeModules.nixcord
   ];
@@ -12,14 +8,12 @@
   programs.nixcord = {
     enable = true;
     user = "mafien0";
-    discord.enable = false;
-    vesktop = {
+    discord = {
       enable = true;
-      settings = {
-        splashBackground = "#${config.lib.stylix.colors.base00}";
-        enableSplashScreen = false;
-      };
+      vencord.enable = true;
+      krisp.enable = true;
     };
+    vesktop.enable = false;
 
     quickCss = ''
       @import url("https://codeberg.org/ridge/Discord-Adblock/raw/branch/main/discord-adblock.css");
