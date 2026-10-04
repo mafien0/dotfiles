@@ -1,26 +1,34 @@
 # MADE BY AI
 {
   pkgs,
-  lib,
   inputs,
   system,
   ...
 }: let
   llmAgents = inputs.llm-agents.packages.${system};
+  ompConfig = (pkgs.formats.yaml {}).generate "omp-config.yml" {
+    modelRoles.default = "deepseek/deepseek-v4-flash";
+    symbolPreset = "nerd";
+    composer.shape = "band";
+    theme = {
+      dark = "dark-gruvbox";
+      light = "light";
+    };
+    setupVersion = 2;
+    colorBlindMode = false;
+  };
 in {
   home = {
     packages = [
-      llmAgents.opencode2
+      llmAgents.omp
       pkgs.mcp-nixos
 
       pkgs.ripgrep
       pkgs.fd
     ];
 
-    shellAliases.op = lib.getExe llmAgents.opencode2;
-
     file = {
-      ".config/opencode/AGENTS.md".text =
+      ".omp/agent/AGENTS.md".text =
         "${builtins.readFile ./caveman.md}\n\n"
         + ''
           - Prefer `rg` over `grep`, `fd` over `find`.
@@ -30,11 +38,7 @@ in {
           - Dont write useless comments, code should be self-explaining
         '';
 
-      ".config/opencode/cli.json".text = builtins.toJSON {
-        "$schema" = "https://opencode.ai/v2/cli.json";
-        tabs.enabled = false;
-        theme.name = "system";
-      };
+      ".omp/agent/config.yml".source = ompConfig;
     };
   };
 }

@@ -1,5 +1,11 @@
-{config, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   home.shell.enableZshIntegration = true;
+  stylix.targets.starship.enable = true;
+
   programs.zsh = {
     enable = true;
     syntaxHighlighting.enable = true;
@@ -10,11 +16,6 @@
     shellAliases = {
       c = "clear";
       cdtmp = "cd $(mktemp -d)";
-    };
-
-    oh-my-zsh = {
-      enable = true;
-      theme = "candy";
     };
 
     initContent =
@@ -33,5 +34,11 @@
 
         unsetopt PROMPT_SP
       '';
+  };
+
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = lib.importTOML ./starship.toml;
   };
 }

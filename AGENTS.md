@@ -115,7 +115,8 @@ All of these are available in your PATH.
 │   ├──  tmux/
 │   │   └──  default.nix
 │   └──  zsh/
-│       └──  default.nix
+│       ├──  default.nix
+│       ├──  starship.toml
 ├──  hosts/
 │   ├──  ataraxia/
 │   │   ├──  configuration.nix
