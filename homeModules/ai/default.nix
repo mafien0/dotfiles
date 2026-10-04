@@ -1,26 +1,18 @@
 # MADE BY AI
 {
   pkgs,
+  config,
   inputs,
   system,
   ...
 }: let
   llmAgents = inputs.llm-agents.packages.${system};
-  ompConfig = (pkgs.formats.yaml {}).generate "omp-config.yml" {
-    modelRoles.default = "deepseek/deepseek-v4-flash";
-    symbolPreset = "nerd";
-    composer.shape = "band";
-    theme = {
-      dark = "dark-gruvbox";
-      light = "light";
-    };
-    setupVersion = 2;
-    colorBlindMode = false;
-  };
 in {
+  imports = [./theme.nix];
+
   home = {
     packages = [
-      llmAgents.omp
+      llmAgents.omp # No config, omp is yucky
       pkgs.mcp-nixos
 
       pkgs.ripgrep
@@ -38,7 +30,10 @@ in {
           - Dont write useless comments, code should be self-explaining
         '';
 
-      ".omp/agent/config.yml".source = ompConfig;
+      # Read-only settings layer, loaded above ~/.omp/agent/config.yml.
+      ".omp/agent/nix-settings.yml".source = ./nix-settings.yml;
     };
+
+    sessionVariables.PI_CONFIG_FILES = "${config.home.homeDirectory}/.omp/agent/nix-settings.yml";
   };
 }

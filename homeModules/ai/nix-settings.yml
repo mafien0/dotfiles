@@ -1,0 +1,20 @@
+theme:
+  dark: stylix
+  light: light
+
+symbolPreset: nerd
+defaultThinkingLevel: auto
+
+statusLine:
+  preset: default
+  separator: powerline-thin
+
+startup:
+  checkUpdate: false
+  changelogMode: hidden
+
+marketplace:
+  autoUpdate: "off"
+
+composer:
+  shape: band
