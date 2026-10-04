@@ -25,7 +25,6 @@
     # -- Gui
     bruno
     pixelorama
-    rustdesk
 
     vscodium
 
