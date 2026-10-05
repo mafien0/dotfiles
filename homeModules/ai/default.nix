@@ -21,14 +21,15 @@ in {
 
     file = {
       ".omp/agent/AGENTS.md".text =
-        "${builtins.readFile ./caveman.md}\n\n"
-        + ''
+        ''
           - Prefer `rg` over `grep`, `fd` over `find`.
           - Never commit without being asked.
           - Never edit without permission; if asked question, answer it, not implement it
           - Keep diffs minimal; no drive-by refactors.
           - Dont write useless comments, code should be self-explaining
-        '';
+        ''
+        + "${builtins.readFile ./caveman.md}\n\n"
+        + "${builtins.readFile ./judge.md}\n\n";
 
       # Read-only settings layer, loaded above ~/.omp/agent/config.yml.
       ".omp/agent/nix-settings.yml".source = ./nix-settings.yml;
