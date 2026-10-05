@@ -12,6 +12,7 @@
       enable = true;
       vencord.enable = true;
       krisp.enable = true;
+      commandLineArgs = ["--disable-gpu"];
     };
     vesktop.enable = false;
 

@@ -181,15 +181,15 @@ in {
       "Mod+9".action."focus-workspace" = 9;
 
       # Move to workspace 1-9
-      "Mod+Shift+1".action."move-window-to-workspace" = 1;
-      "Mod+Shift+2".action."move-window-to-workspace" = 2;
-      "Mod+Shift+3".action."move-window-to-workspace" = 3;
-      "Mod+Shift+4".action."move-window-to-workspace" = 4;
-      "Mod+Shift+5".action."move-window-to-workspace" = 5;
-      "Mod+Shift+6".action."move-window-to-workspace" = 6;
-      "Mod+Shift+7".action."move-window-to-workspace" = 7;
-      "Mod+Shift+8".action."move-window-to-workspace" = 8;
-      "Mod+Shift+9".action."move-window-to-workspace" = 9;
+      "Mod+Shift+1".action."move-window-to-workspace" = [{focus = false;} 1];
+      "Mod+Shift+2".action."move-window-to-workspace" = [{focus = false;} 2];
+      "Mod+Shift+3".action."move-window-to-workspace" = [{focus = false;} 3];
+      "Mod+Shift+4".action."move-window-to-workspace" = [{focus = false;} 4];
+      "Mod+Shift+5".action."move-window-to-workspace" = [{focus = false;} 5];
+      "Mod+Shift+6".action."move-window-to-workspace" = [{focus = false;} 6];
+      "Mod+Shift+7".action."move-window-to-workspace" = [{focus = false;} 7];
+      "Mod+Shift+8".action."move-window-to-workspace" = [{focus = false;} 8];
+      "Mod+Shift+9".action."move-window-to-workspace" = [{focus = false;} 9];
 
       # Audio control
       "Mod+C".action."spawn-sh" = "${lib.getExe' pkgs.wireplumber "wpctl"} set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
