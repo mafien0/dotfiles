@@ -67,7 +67,6 @@ format = '[ $user ]($style)'
 
 [directory]
 style = "fg:base07 bg:yellow"
-scan_timeout = 30
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"

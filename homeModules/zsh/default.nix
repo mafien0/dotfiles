@@ -1,10 +1,12 @@
 {
   config,
-  lib,
   ...
 }: {
+  imports = [
+    ./starship.nix
+  ];
+
   home.shell.enableZshIntegration = true;
-  stylix.targets.starship.enable = true;
 
   programs.zsh = {
     enable = true;
@@ -34,11 +36,5 @@
 
         unsetopt PROMPT_SP
       '';
-  };
-
-  programs.starship = {
-    enable = true;
-    enableZshIntegration = true;
-    settings = lib.importTOML ./starship.toml;
   };
 }
