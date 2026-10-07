@@ -1,5 +1,11 @@
 {
+  pkgs,
+  lib,
+  ...
+}: {
   stylix.targets.foot.enable = true;
+
+  home.sessionVariables.TERMINAL = lib.getExe pkgs.foot;
 
   xdg = {
     terminal-exec = {

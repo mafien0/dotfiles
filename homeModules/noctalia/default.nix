@@ -1,48 +1,12 @@
-{
-  pkgs,
-  lib,
-  inputs,
-  system,
-  ...
-}: {
+{inputs, ...}: {
   imports = [
-    inputs.noctalia-shell.homeModules.default
+    inputs.noctalia.homeModules.default
+    ./config.nix
   ];
 
-  stylix.targets.noctalia-shell.enable = true;
+  stylix.targets.noctalia.enable = true;
 
-  programs.noctalia-shell = let
-    pluginURL = "https://github.com/noctalia-dev/noctalia-plugins";
-  in {
+  programs.noctalia = {
     enable = true;
-    package = inputs.noctalia-shell.packages.${system}.default;
-    settings = lib.mkForce (builtins.fromJSON (builtins.readFile ./settings.json));
-    plugins = {
-      sources = [
-        {
-          enabled = true;
-          name = "Noctalia Plugins";
-          url = pluginURL;
-        }
-      ];
-      states = {
-        obs-control = {
-          enabled = true;
-          sourceUrl = pluginURL;
-        };
-        privacy-indicator = {
-          enabled = true;
-          sourceUrl = pluginURL;
-        };
-      };
-      version = 2;
-    };
   };
-
-  home.packages = with pkgs; [
-    cliphist
-    pwvucontrol
-    wl-clipboard
-    kdePackages.qtwebsockets
-  ];
 }

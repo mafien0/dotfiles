@@ -91,6 +91,7 @@ sub-files imported from the module's `default.nix`.
 - **Module args** — modules destructure only what they need from
   `{ pkgs, lib, config, inputs, system, ... }`. `inputs`, `system`,
   `flakePath` come from `specialArgs` in `flake.nix`.
+- **No-arg modules** — never write `_: {}`; always use plain `{}`.
 - **One module per dir** — `homeModules/<name>/default.nix` /
   `nixosModules/<name>/default.nix`. Big configs split into sub-files
   imported from `default.nix` (e.g. `niri/*.nix`, `neovim/plugins/*.lua`,

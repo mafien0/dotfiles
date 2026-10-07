@@ -7,7 +7,8 @@
     settings =
       lib.importTOML ./starship.toml
       // {
-        scan_timeout = 30;
+        scan_timeout = 100;
+        follow_symlinks = false;
       };
   };
 }

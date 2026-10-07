@@ -8,13 +8,8 @@
   programs.nixcord = {
     enable = true;
     user = "mafien0";
-    discord = {
-      enable = true;
-      vencord.enable = true;
-      krisp.enable = true;
-      commandLineArgs = ["--disable-gpu"];
-    };
-    vesktop.enable = false;
+    discord.enable = false;
+    equibop.enable = true;
 
     quickCss = ''
       @import url("https://codeberg.org/ridge/Discord-Adblock/raw/branch/main/discord-adblock.css");

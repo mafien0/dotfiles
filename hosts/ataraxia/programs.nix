@@ -7,6 +7,9 @@
     killall
     ncdu
     cloc
+    gnupg
+    gpa
+    pinentry-gnome3
 
     cargo
     cargo-generate

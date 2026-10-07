@@ -15,6 +15,25 @@
     }
 
     {
+      matches = [
+        {
+          title = "(?i)^notificationtoasts_[0-9]+_desktop$";
+          app-id = "(?i).*steam.*";
+        }
+      ];
+      open-floating = true;
+      open-focused = false;
+      draw-border-with-background = false;
+      focus-ring.enable = false;
+      shadow.enable = false;
+      default-floating-position = {
+        x = 0;
+        y = 0;
+        relative-to = "bottom-right";
+      };
+    }
+
+    {
       matches = [{app-id = "(?i)^qalculate-gtk$";}];
       open-floating = true;
       default-column-width = {fixed = 794;};
@@ -32,7 +51,6 @@
         {app-id = "(?i)modrinth-app.*";}
         {app-id = "(?i)Bitwarden";}
         {app-id = "(?i)ninjabrainbot.*";}
-        {app-id = "(?i)^.*\\.satty$";}
         {app-id = "(?i)^.*\\.Celluloid$";}
         {app-id = "(?i)^.*\\.pwvucontrol$";}
         {app-id = "(?i)^.*\\.MissionCenter$";}
@@ -99,7 +117,7 @@
     }
 
     {
-      matches = [{app-id = "(?i)^discord$";}];
+      matches = [{app-id = "(?i)^equibop$";}];
       open-on-workspace = "3";
       open-focused = false;
     }
@@ -114,14 +132,21 @@
   programs.niri.settings."layer-rules" = [
     {
       matches = [
-        {namespace = "(?i)^noctalia-overview.*$";}
+        {namespace = "^noctalia-backdrop";}
       ];
       place-within-backdrop = true;
     }
     {
       matches = [
-        {namespace = "(?i)^noctalia-(background|launcher-overlay|dock)-.*$";}
+        {namespace = "^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$";}
       ];
+      background-effect.xray = false;
+    }
+    {
+      matches = [
+        {namespace = "noctalia-window-switcher";}
+      ];
+      background-effect.blur = false;
       background-effect.xray = false;
     }
   ];

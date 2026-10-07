@@ -59,6 +59,9 @@
     debug = {
       "disable-cursor-plane" = [];
       "skip-cursor-only-updates-during-vrr" = [];
+
+      # Noctalia
+      "honor-xdg-activation-with-invalid-serial" = [];
     };
 
     hotkey-overlay = {
@@ -110,11 +113,6 @@
         "damping-ratio" = 0.6;
         stiffness = 500;
         epsilon = 0.01;
-      };
-
-      screenshot-ui-open.kind.easing = {
-        duration-ms = 200;
-        curve = "ease-out-quad";
       };
 
       overview-open-close.kind.spring = {
