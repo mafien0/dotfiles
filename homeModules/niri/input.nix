@@ -7,6 +7,7 @@
   ...
 }: let
   ipc = "${lib.getExe inputs.noctalia.packages.${system}.default} msg";
+  obsreplay = "${(import ../../pkgs/obsreplay.nix {inherit pkgs;})}/bin/obsreplay";
 in {
   programs.niri.settings = {
     input.keyboard = {
@@ -199,8 +200,8 @@ in {
       "Mod+Alt+I".action."spawn-sh" = "${lib.getExe pkgs.playerctl} next";
       "Mod+Alt+Shift+I".action."spawn-sh" = "${lib.getExe pkgs.playerctl} previous";
 
-      # OBS replay — v4 obs-control plugin has no v5 port
-      # "Mod+T".action."spawn-sh" = "${ipc} plugin:obs-control saveReplay";
+      # OBS replay
+      "Mod+T".action."spawn-sh" = "${obsreplay}";
 
       # Media keys (allow-when-locked)
       "XF86AudioRaiseVolume" = {

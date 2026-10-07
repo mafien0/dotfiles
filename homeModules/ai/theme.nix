@@ -1,4 +1,4 @@
-# MADE BY AI
+# MADE BY CLANKER
 {config, ...}: let
   c = name: "#${config.lib.stylix.colors.${name}}";
 

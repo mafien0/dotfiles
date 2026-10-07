@@ -1,4 +1,4 @@
-# MADE BY AI
+# MADE BY CLANKER
 {pkgs}:
 pkgs.writeShellApplication {
   name = "nixformat";

@@ -19,6 +19,7 @@
     packages.${system} = {
       nixcheck = import ./pkgs/nixcheck.nix {inherit pkgs;};
       nixformat = import ./pkgs/nixformat.nix {inherit pkgs;};
+      obsreplay = import ./pkgs/obsreplay.nix {inherit pkgs;};
     };
   in {
     formatter.${system} = pkgs.alejandra;

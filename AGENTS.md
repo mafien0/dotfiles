@@ -1,11 +1,11 @@
-## `MADE BY AI` comment
+## `MADE BY CLANKER` comment
 
-Use the `MADE BY AI` comment for **big changes**: writing a full module,
+Use the `MADE BY CLANKER` comment for **big changes**: writing a full module,
 rewriting/refactoring an existing module, or otherwise adding a large chunk of
 new code.
 
-- Full module write/rewrite: put `# MADE BY AI` at the very top of the file.
-- Large change inside an existing file: put `# MADE BY AI` right above the change.
+- Full module write/rewrite: put `# MADE BY CLANKER` at the very top of the file.
+- Large change inside an existing file: put `# MADE BY CLANKER` right above the change.
 
 Do **not** add it for small changes. One-liners, a few added/removed options,
 typo fixes, config tweaks, and other minor edits get no comment.
