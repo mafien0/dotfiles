@@ -6,8 +6,7 @@
   system,
   ...
 }: let
-  ipc = "${lib.getExe inputs.noctalia.packages.${system}.default} msg";
-  obsreplay = "${(import ../../pkgs/obsreplay.nix {inherit pkgs;})}/bin/obsreplay";
+  ipc = "${lib.getExe inputs.noctalia-shell.packages.${system}.default} ipc --any-display call";
 in {
   programs.niri.settings = {
     input.keyboard = {
@@ -27,19 +26,19 @@ in {
 
       # Noctalia shell
       "Mod+A" = {
-        action."spawn-sh" = "${ipc} panel-toggle launcher";
+        action."spawn-sh" = "${ipc} launcher toggle";
         cooldown-ms = 500;
       };
       "Mod+Shift+C" = {
-        action."spawn-sh" = "${ipc} panel-toggle clipboard";
+        action."spawn-sh" = "${ipc} launcher clipboard";
         cooldown-ms = 500;
       };
       "Mod+Shift+E" = {
-        action."spawn-sh" = "${ipc} panel-toggle launcher \"/emo\"";
+        action."spawn-sh" = "${ipc} launcher emoji";
         cooldown-ms = 500;
       };
       "Mod+Shift+M" = {
-        action."spawn-sh" = "${ipc} panel-toggle session";
+        action."spawn-sh" = "${ipc} sessionMenu toggle";
         cooldown-ms = 500;
       };
 
@@ -91,19 +90,19 @@ in {
         action."show-hotkey-overlay" = {};
         repeat = false;
       };
-      # screenshot (region)
+      # screenshot
       "Mod+S" = {
-        action."spawn-sh" = "${ipc} screenshot-region";
+        action.screenshot = {};
         repeat = false;
       };
-      # screenshot fullscreen
+      # screenshot-screen
       "Mod+Shift+S" = {
-        action."spawn-sh" = "${ipc} screenshot-fullscreen";
+        action."screenshot-screen" = {};
         repeat = false;
       };
-      # annotate screenshot
+      # Smart screenshot
       "Mod+Alt+S" = {
-        action."spawn-sh" = "${ipc} screenshot-annotate";
+        action."spawn-sh" = "${lib.getExe' config.programs.niri.package "niri"} msg action screenshot-screen; ${lib.getExe' pkgs.coreutils "sleep"} 0.5; ${lib.getExe' pkgs.wl-clipboard "wl-paste"} --type image | ${lib.getExe pkgs.satty} --filename -";
         repeat = false;
       };
       # set-dynamic-cast-window
@@ -201,19 +200,19 @@ in {
       "Mod+Alt+Shift+I".action."spawn-sh" = "${lib.getExe pkgs.playerctl} previous";
 
       # OBS replay
-      "Mod+T".action."spawn-sh" = "${obsreplay}";
+      "Mod+T".action."spawn-sh" = "${ipc} plugin:obs-control saveReplay";
 
       # Media keys (allow-when-locked)
       "XF86AudioRaiseVolume" = {
-        action."spawn-sh" = "${ipc} volume-up";
+        action."spawn-sh" = "${lib.getExe' pkgs.wireplumber "wpctl"} set-volume @DEFAULT_AUDIO_SINK@ 0.02+ -l 1.0";
         allow-when-locked = true;
       };
       "XF86AudioLowerVolume" = {
-        action."spawn-sh" = "${ipc} volume-down";
+        action."spawn-sh" = "${lib.getExe' pkgs.wireplumber "wpctl"} set-volume @DEFAULT_AUDIO_SINK@ 0.02-";
         allow-when-locked = true;
       };
       "XF86AudioMute" = {
-        action."spawn-sh" = "${ipc} volume-mute";
+        action."spawn-sh" = "${lib.getExe' pkgs.wireplumber "wpctl"} set-mute @DEFAULT_AUDIO_SINK@ toggle";
         allow-when-locked = true;
       };
       "XF86AudioMicMute" = {

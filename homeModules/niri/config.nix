@@ -7,7 +7,7 @@
 }: {
   programs.niri.settings = {
     spawn-at-startup = [
-      {argv = [(lib.getExe inputs.noctalia.packages.${system}.default)];}
+      {argv = [(lib.getExe inputs.noctalia-shell.packages.${system}.default)];}
       {
         argv = [
           (lib.getExe pkgs.wl-clip-persist)

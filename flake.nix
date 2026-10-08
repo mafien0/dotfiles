@@ -19,7 +19,6 @@
     packages.${system} = {
       nixcheck = import ./pkgs/nixcheck.nix {inherit pkgs;};
       nixformat = import ./pkgs/nixformat.nix {inherit pkgs;};
-      obsreplay = import ./pkgs/obsreplay.nix {inherit pkgs;};
     };
   in {
     formatter.${system} = pkgs.alejandra;
@@ -127,10 +126,11 @@
       flake = false;
     };
 
-    noctalia = {
-      url = "github:noctalia-dev/noctalia";
+    noctalia-shell = {
+      url = "github:noctalia-dev/noctalia-shell/v4.7.7";
       inputs = {
         nixpkgs.follows = "nixpkgs";
+        noctalia-qs.inputs.treefmt-nix.follows = "treefmt-nix";
       };
     };
 
