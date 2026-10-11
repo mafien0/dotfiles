@@ -85,49 +85,6 @@
       ];
       block-out-from = "screencast";
     }
-
-    # full opacity
-    {
-      matches = [
-        {app-id = "(?i)^helium$";}
-        {app-id = "(?i).*steam.*";}
-        {app-id = "(?i).*minecraft.*";}
-      ];
-      opacity = 1.0;
-    }
-
-    # open apps on dedicated workspaces
-    {
-      matches = [
-        {app-id = "(?i).*steam.*";}
-        {app-id = "(?i).*minecraft.*";}
-        {title = "(?i).*minecraft.*";}
-        {app-id = "(?i).*prismlauncher.*";}
-        {app-id = "(?i)EverestSplash-linux";}
-        {app-id = "(?i)Celeste";}
-        {app-id = "(?i)waywall";}
-      ];
-      open-on-workspace = "1";
-      open-focused = false;
-    }
-
-    {
-      matches = [{app-id = "(?i)^helium$";}];
-      open-on-workspace = "2";
-      open-focused = false;
-    }
-
-    {
-      matches = [{app-id = "(?i)^equibop$";}];
-      open-on-workspace = "3";
-      open-focused = false;
-    }
-
-    {
-      matches = [{app-id = "(?i).*spotify.*";}];
-      open-on-workspace = "4";
-      open-focused = false;
-    }
   ];
 
   programs.niri.settings."layer-rules" = [
@@ -136,13 +93,6 @@
         {namespace = "(?i)^noctalia-overview.*$";}
       ];
       place-within-backdrop = true;
-    }
-    {
-      matches = [
-        {namespace = "(?i)^noctalia-(background|launcher-overlay|dock)-.*$";}
-      ];
-      background-effect.blur = false;
-      background-effect.xray = false;
     }
   ];
 }
