@@ -126,6 +126,7 @@
       flake = false;
     };
 
+    # Noctalia v4. v5 freakin sux
     noctalia-shell = {
       url = "github:noctalia-dev/noctalia-shell/v4.7.7";
       inputs = {

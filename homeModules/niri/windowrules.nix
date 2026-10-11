@@ -45,6 +45,7 @@
         {title = "(?i)terminal-popup";}
         {app-id = "(?i)popup";}
         {app-id = "(?i)waypaper";}
+        {app-id = "(?i)^.*\\.satty$";}
         {app-id = "(?i)^[Tt]hunar$";}
         {app-id = "(?i)^imv$";}
         {app-id = "(?i)^org\\.xfce\\.mousepad$";}
@@ -132,19 +133,13 @@
   programs.niri.settings."layer-rules" = [
     {
       matches = [
-        {namespace = "^noctalia-backdrop";}
+        {namespace = "(?i)^noctalia-overview.*$";}
       ];
       place-within-backdrop = true;
     }
     {
       matches = [
-        {namespace = "^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$";}
-      ];
-      background-effect.xray = false;
-    }
-    {
-      matches = [
-        {namespace = "noctalia-window-switcher";}
+        {namespace = "(?i)^noctalia-(background|launcher-overlay|dock)-.*$";}
       ];
       background-effect.blur = false;
       background-effect.xray = false;

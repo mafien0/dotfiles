@@ -12,7 +12,7 @@ in {
 
   home = {
     packages = [
-      llmAgents.omp # No config, omp is yucky
+      llmAgents.omp
       pkgs.mcp-nixos
 
       pkgs.ripgrep
@@ -23,10 +23,17 @@ in {
       ".omp/agent/AGENTS.md".text =
         ''
           - Prefer `rg` over `grep`, `fd` over `find`.
-          - Never commit without being asked.
-          - Never edit without permission; if asked question, answer it, not implement it
+          - Use git read-only actions when needed.
+          - Never use git write actions without permission(eg. commits, pushes).
+          - Never edit without permission; if asked a question, answer it, don't implement it.
           - Keep diffs minimal; no drive-by refactors.
-          - Dont write useless comments, code should be self-explaining
+          - Don't write useless comments. Code should be self-explanatory.
+
+          - You have nix at your disposal
+          - You can run any software you need, but only from nixpkgs
+          - Pulling packages from other flakes is forbidden
+          - Ask for permission before running huge packages
+          - always use flakes (e.g. `nix run nixpkgs#cowsay`)
         ''
         + "${builtins.readFile ./caveman.md}\n\n"
         + "${builtins.readFile ./judge.md}\n\n";

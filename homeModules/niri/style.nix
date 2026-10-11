@@ -10,10 +10,10 @@
         bottom-left = 12.0;
       };
       # Opacity
-      opacity = 0.95;
+      opacity = 1.0;
       background-effect = {
-        xray = true;
-        blur = true;
+        xray = false;
+        blur = false;
       };
 
       clip-to-geometry = true;
