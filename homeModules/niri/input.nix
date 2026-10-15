@@ -22,7 +22,7 @@ in {
       "Mod+Return".action.spawn = [(lib.getExe pkgs.foot)];
       "Mod+Shift+Return".action."spawn-sh" = "${lib.getExe pkgs.foot} --title='terminal-popup'";
       "Mod+E".action.spawn = [(lib.getExe pkgs.thunar)];
-      "Mod+Alt+L".action."spawn-sh" = "${lib.getExe' config.programs.niri.package "niri"} msg action power-on-monitors";
+      "Mod+Alt+L".action."spawn-sh" = "${ipc} lockScreen lock";
 
       # Noctalia shell
       "Mod+A" = {
