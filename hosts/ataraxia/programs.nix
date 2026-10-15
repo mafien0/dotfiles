@@ -32,6 +32,7 @@
     vscodium
 
     # -- Games
+    mangohud
     (olympus.override {
       celesteWrapper = "steam-run";
     })

@@ -11,6 +11,7 @@
       remotePlay.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
       extraPackages = with pkgs; [
+        mangohud
         pulseaudio
       ];
       extraCompatPackages = with pkgs; [
