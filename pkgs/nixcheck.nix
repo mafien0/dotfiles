@@ -18,15 +18,32 @@ pkgs.writeShellApplication {
       targets=(".")
     fi
 
+    echo "targets: ''${targets[*]}"
+    echo "checks:  nixpkgs-lint, alejandra -c, statix check, deadnix"
+
     status=0
+    failed=()
+    passed=()
+
     run() {
       local name="$1"
       shift
+      echo
       echo "--- $name ---"
+      printf '+'
+      printf ' %q' "$@"
+      echo
       "$@"
       local code=$?
-      [ "$code" -eq 0 ] || status=$code
-      echo "end"
+      if [ "$code" -eq 0 ]; then
+        echo "ok: $name"
+        passed+=("$name")
+      else
+        echo "fail: $name (exit $code)"
+        failed+=("$name")
+        status=$code
+      fi
+      echo "--- end $name ---"
     }
 
     run "nixpkgs-lint" nixpkgs-lint "''${targets[@]}"
@@ -34,6 +51,13 @@ pkgs.writeShellApplication {
     run "statix check" statix check "''${targets[@]}"
     run "deadnix check" deadnix "''${targets[@]}"
 
-    exit "$status"
+    echo
+    echo "passed: ''${passed[*]}"
+    if [ "$status" -eq 0 ]; then
+      echo "result: all checks passed"
+    else
+      echo "failed: ''${failed[*]}"
+      exit "$status"
+    fi
   '';
 }
