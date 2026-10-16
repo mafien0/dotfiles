@@ -1,0 +1,20 @@
+name: Nix Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+
+    nixcheck:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Install Nix
+              uses: cachix/install-nix-action@v31.11.1
+
+            - name: Lint and check nix files
+              run: nix run .#nixcheck -- .
