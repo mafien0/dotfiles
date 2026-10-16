@@ -78,6 +78,7 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-compat.follows = "flake-compat";
+        flake-utils.follows = "flake-utils";
       };
     };
 
@@ -91,7 +92,7 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         nixpkgs-ci.follows = "nixpkgs";
-        nixpkgs-nixcord.follows = "nixpkgs";
+        nixpkgs-packages.follows = "nixpkgs";
         home-manager.follows = "home-manager";
         treefmt-nix.follows = "treefmt-nix";
       };
@@ -138,7 +139,10 @@
     # Damn what a cool package i wonder who made it
     mfetch = {
       url = "git+https://codeberg.org/mafien0/mfetch";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
     };
 
     nix-alien = {
@@ -170,6 +174,10 @@
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.systems.follows = "systems";
     };
 
     # shared by: stylix
