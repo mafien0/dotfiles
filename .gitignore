@@ -1,5 +1,4 @@
-.jj
-
-result*
+/result*
 /iso/
-.nix-token
+/.direnv/
+/.nix-token

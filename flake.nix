@@ -21,8 +21,6 @@
       nixformat = import ./pkgs/nixformat.nix {inherit pkgs;};
     };
   in {
-    formatter.${system} = pkgs.alejandra;
-
     inherit packages;
     nixosConfigurations = {
       ataraxia = inputs.nixpkgs.lib.nixosSystem {
@@ -38,6 +36,14 @@
           ./hosts/iso/configuration.nix
         ];
       };
+    };
+
+    formatter.${system} = import pkgs/nixformat.nix {inherit pkgs;};
+
+    devShells.${system}.default = pkgs.mkShell {
+      packages = with pkgs; [
+        just
+      ];
     };
   };
 
