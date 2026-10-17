@@ -36,8 +36,11 @@
       nixd
       lua-language-server
       bash-language-server
+      typescript-language-server
       vscode-langservers-extracted
+      yaml-language-server
       sqls
+      alejandra
     ];
 
     initLua = ''
