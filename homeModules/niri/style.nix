@@ -1,4 +1,4 @@
-{
+{config, ...}: {
   programs.niri.settings."window-rules" = [
     # Style
     {
@@ -52,8 +52,8 @@
     };
 
     cursor = {
-      theme = "Bibata-Modern-Classic";
-      size = 20;
+      theme = config.stylix.cursor.name;
+      size = config.stylix.cursor.size;
     };
 
     debug = {
