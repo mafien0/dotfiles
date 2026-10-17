@@ -21,16 +21,13 @@ in {
   };
 
   xdg.configFile = {
-    "waywall/nix.lua".source =
-      pkgs.writeText "nix.lua" # Lua
-      
-      ''
-        return {
-            ninjabrain_bot = "${pkgs.lib.getExe ninjabrain-bot}",
-            background = "#${config.lib.stylix.colors.base00}",
-            measuring_overlay = "${measuring-overlay}",
-        }
-      '';
+    "waywall/nix.lua".text = ''
+      return {
+          ninjabrain_bot = "${pkgs.lib.getExe ninjabrain-bot}",
+          background = "#${config.lib.stylix.colors.base00}",
+          measuring_overlay = "${measuring-overlay}",
+      }
+    '';
 
     "waywall/init.lua".source = ./init.lua;
   };
