@@ -1,4 +1,10 @@
-{lib, ...}: {
+{
+  config,
+  lib,
+  ...
+}: let
+  home = config.home.homeDirectory;
+in {
   programs.niri.settings = {
     environment = {
       ELECTRON_OZONE_PLATFORM_HINT = "wayland";
@@ -11,21 +17,19 @@
       XDG_DATA_DIRS = lib.concatStringsSep ":" [
         "/run/current-system/sw/share"
         "/nix/var/nix/profiles/default/share"
-        "/home/mafien0/.nix-profile/share"
-        "/home/mafien0/.local/share"
+        "${home}/.nix-profile/share"
+        "${home}/.local/share"
         "/usr/local/share"
         "/usr/share"
       ];
       XCURSOR_PATH = lib.concatStringsSep ":" [
         "/run/current-system/sw/share/icons"
         "/nix/var/nix/profiles/default/share/icons"
-        "/home/mafien0/.nix-profile/share/icons"
-        "/home/mafien0/.local/share/icons"
-        "/home/mafien0/.icons"
+        "${home}/.nix-profile/share/icons"
+        "${home}/.local/share/icons"
+        "${home}/.icons"
         "/usr/share/icons"
       ];
-      EGL_PLATFORM = "wayland";
-      XDG_SESSION_TYPE = "wayland";
     };
   };
 }
