@@ -17,6 +17,7 @@ in {
 
       pkgs.ripgrep
       pkgs.fd
+      pkgs.python3
     ];
 
     file = {
@@ -29,6 +30,8 @@ in {
           - Keep diffs minimal; no drive-by refactors.
           - Don't write useless comments. Code should be self-explanatory.
 
+
+          - You have python3 at your disposal, use it to write simple scripts, check some stuff, etc
           - You have nix at your disposal
           - You can run any software you need, but only from nixpkgs
           - Pulling packages from other flakes is forbidden

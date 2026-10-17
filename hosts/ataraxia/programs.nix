@@ -1,41 +1,34 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
-    # Basic
+    # -- Basic --
     zip
     unzip
     wget
     killall
     ncdu
     cloc
+
     gnupg
     gpa
     pinentry-gnome3
 
-    cargo
-    cargo-generate
-    cargo-mommy
-
-    chess-tui
     gcc
     ffmpeg
     fzf
-    go
     lazydocker
     ntfs3g
     python3
     ripgrep
 
-    # -- Gui
+    # -- Gui --
     bruno
     pixelorama
 
     vscodium
 
-    # -- Games
+    # -- Games --
     mangohud
-    (olympus.override {
-      celesteWrapper = "steam-run";
-    })
+    (olympus.override {celesteWrapper = "steam-run";})
     ckan
   ];
 
