@@ -1,8 +1,11 @@
 {pkgs, ...}: let
   prism = pkgs.prismlauncher.override {
-    additionalLibs = [
-      pkgs.fontconfig
-      pkgs.libxkbcommon
+    additionalLibs = with pkgs; [
+      zenity
+      fontconfig
+      sdl3.lib
+      libxkbcommon # https://github.com/NixOS/nixpkgs/pull/572251
+      libxi # https://github.com/NixOS/nixpkgs/pull/571087
     ];
     jdks = with pkgs; [
       temurin-bin-25
@@ -12,5 +15,8 @@
     ];
   };
 in {
-  home.packages = [prism];
+  home.packages = [
+    prism
+    pkgs.zenity
+  ];
 }
