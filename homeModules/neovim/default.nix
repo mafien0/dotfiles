@@ -8,7 +8,6 @@
   home.shellAliases = {
     v = "nvim";
     view = "nvim -R";
-    y = "nvim -c 'Oil'";
   };
   programs.neovim = let
     toLua = str: "${str}\n";

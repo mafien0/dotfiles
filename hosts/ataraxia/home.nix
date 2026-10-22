@@ -21,6 +21,7 @@ let
     "spicetify"
     "theme"
     "tmux"
+    "yazi"
     "zsh"
   ];
 in {
