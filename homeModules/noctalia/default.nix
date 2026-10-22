@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   lib,
   inputs,
   system,
@@ -16,7 +17,19 @@
   in {
     enable = true;
     package = inputs.noctalia-shell.packages.${system}.default;
-    settings = lib.mkForce (builtins.fromJSON (builtins.readFile ./settings.json));
+
+    settings = lib.mkForce (lib.recursiveUpdate (builtins.fromJSON (builtins.readFile ./settings.json)) {
+      general = {
+        radiusRatio = config.common.cornerRadius / 20.0;
+        iRadiusRatio = config.common.cornerRadius / 20.0;
+        screenRadiusRatio = config.common.cornerRadius / 20.0;
+      };
+      bar = {
+        marginVertical = config.common.gaps;
+        frameRadius = config.common.cornerRadius;
+      };
+    });
+
     plugins = {
       sources = [
         {

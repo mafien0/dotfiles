@@ -4,16 +4,16 @@
     {
       matches = [];
       geometry-corner-radius = {
-        top-left = 12.0;
-        top-right = 12.0;
-        bottom-right = 12.0;
-        bottom-left = 12.0;
+        top-left = config.common.cornerRadius;
+        top-right = config.common.cornerRadius;
+        bottom-right = config.common.cornerRadius;
+        bottom-left = config.common.cornerRadius;
       };
       # Opacity
-      opacity = 1.0;
+      opacity = config.common.opacity;
       background-effect = {
-        xray = false;
-        blur = false;
+        xray = config.common.xray;
+        blur = config.common.blur;
       };
 
       clip-to-geometry = true;
@@ -24,7 +24,7 @@
     prefer-no-csd = true;
 
     layout = {
-      gaps = 10;
+      gaps = config.common.gaps;
       center-focused-column = "never";
 
       default-column-width = {
@@ -37,9 +37,7 @@
         {proportion = 0.66667;}
       ];
 
-      focus-ring = {
-        width = 2;
-      };
+      focus-ring.width = config.common.focusRingWidth;
 
       shadow = {
         softness = 30;

@@ -17,7 +17,7 @@
 
     config = {
       useQuickCss = true;
-      frameless = true;
+      frameless = false;
 
       plugins = {
         permissionFreeWill.enable = true;

@@ -1,6 +1,6 @@
 # MADE BY CLANKER
 {config, ...}: let
-  c = name: "#${config.lib.stylix.colors.${name}}";
+  c = name: "#${config.common.colors.${name}}";
 
   theme = {
     name = "stylix";

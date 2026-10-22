@@ -133,13 +133,10 @@
       flake = false;
     };
 
-    # Noctalia v4. v5 freakin sux
+    # Custom fork of noctalia-shell(deprecated), i'll try to maintain it
     noctalia-shell = {
-      url = "github:noctalia-dev/noctalia-shell/v4.7.7";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        noctalia-qs.inputs.treefmt-nix.follows = "treefmt-nix";
-      };
+      url = "github:mafien0/noctalia/";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Damn what a cool package i wonder who made it

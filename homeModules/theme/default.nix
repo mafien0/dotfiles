@@ -1,5 +1,6 @@
 {
   imports = [
+    ./common.nix
     ./stylix.nix
     ./icons.nix
   ];

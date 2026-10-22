@@ -24,6 +24,7 @@
       cores = 0;
       warn-dirty = false;
       extra-substituters = [
+        "https://mafien0.cachix.org"
         "https://nix-community.cachix.org"
         "https://vic.cachix.org"
         "https://spicetify-nix.cachix.org"
@@ -33,6 +34,7 @@
         "https://cache.numtide.com"
       ];
       extra-trusted-public-keys = [
+        "mafien0.cachix.org-1:AwMLotTbNj8NxkUqXPA+kePW7bmFHOMNGqBAPbPsFYQ="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "vic.cachix.org-1:1fQNG1DxLTGd47MBAtr/IrUYIk+TTXDojOItpqFoxII="
         "spicetify-nix.cachix.org-1:jjnwULkvMdu0E5KGBbtgrISEfDdJTGSZ4ATkiFzZn5I="
