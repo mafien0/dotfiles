@@ -24,7 +24,7 @@ in {
     "waywall/nix.lua".text = ''
       return {
           ninjabrain_bot = "${pkgs.lib.getExe ninjabrain-bot}",
-          background = "#${config.common.colors.base00}",
+          background = "${config.common.colors.base00}",
           measuring_overlay = "${measuring-overlay}",
       }
     '';
