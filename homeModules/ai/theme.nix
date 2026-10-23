@@ -1,9 +1,9 @@
 # MADE BY CLANKER
 {config, ...}: let
-  c = name: "#${config.common.colors.${name}}";
+  c = name: config.common.colors.${name};
 
   theme = {
-    name = "stylix";
+    name = "generated";
 
     colors = {
       accent = c "base0D";
@@ -84,5 +84,5 @@
     };
   };
 in {
-  home.file.".omp/agent/themes/stylix.json".text = builtins.toJSON theme;
+  home.file.".omp/agent/themes/generated.json".text = builtins.toJSON theme;
 }
