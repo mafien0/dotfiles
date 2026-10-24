@@ -10,7 +10,7 @@ end
 
 hl.window_rule({
   name = "picture-in-picture",
-  match = {title = "(?i)^Picture-in-Picture$"},
+  match = {title = "(?i)^picture[ _-]in[ _-]picture$"},
   float = true,
   pin = true,
   border_size = 0,

@@ -57,6 +57,8 @@ hl.bind(mod .. " + SHIFT + minus", hl.dsp.window.resize({ x = 0, y = -40, relati
 hl.bind(mod .. " + SHIFT + equal", hl.dsp.window.resize({ x = 0, y = 40, relative = true }))
 
 -- Mouse
+hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
+hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 hl.bind(mod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(mod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(mod .. " + SHIFT + mouse_down", hl.dsp.focus({ direction = "right" }))
