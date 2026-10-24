@@ -157,8 +157,9 @@
       };
     };
 
+    # Pinning it, because i dont want to update it that often
     llm-agents = {
-      url = "github:numtide/llm-agents.nix/372f0337e8170e55ff0c017cd43ab73b02a062ad";
+      url = "github:numtide/llm-agents.nix/53a2d94ce3b88753200be9a0549d8978b031fa60";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
