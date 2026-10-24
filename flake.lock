@@ -348,57 +348,6 @@
         "url": "https://codeberg.org/mafien0/mfetch"
       }
     },
-    "niri": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1792328806,
-        "narHash": "sha256-/hKViJkHjKns3GBn7MkOisARMf1hSA4VCMPSFckgqsY=",
-        "owner": "niri-wm",
-        "repo": "niri",
-        "rev": "12de51d6a60baad8896366920278a24f17921f52",
-        "type": "github"
-      },
-      "original": {
-        "owner": "niri-wm",
-        "repo": "niri",
-        "type": "github"
-      }
-    },
-    "niri-flake": {
-      "inputs": {
-        "niri-stable": [
-          "niri"
-        ],
-        "niri-unstable": [
-          "niri"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "nixpkgs-stable": [
-          "nixpkgs"
-        ],
-        "xwayland-satellite-stable": [
-          "xwayland-satellite"
-        ],
-        "xwayland-satellite-unstable": [
-          "xwayland-satellite"
-        ]
-      },
-      "locked": {
-        "lastModified": 1792333628,
-        "narHash": "sha256-ZR88dCsieBqNQ6hAHvvMtUpzfMbMZ4G91gMrAOpq6LE=",
-        "owner": "epireyn",
-        "repo": "niri-flake",
-        "rev": "1faf94f25eccd1f7366d5eeadd1059024690b1d9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "epireyn",
-        "repo": "niri-flake",
-        "type": "github"
-      }
-    },
     "nix-alien": {
       "inputs": {
         "flake-compat": [
@@ -587,8 +536,6 @@
         "home-manager": "home-manager",
         "llm-agents": "llm-agents",
         "mfetch": "mfetch",
-        "niri": "niri",
-        "niri-flake": "niri-flake",
         "nix-alien": "nix-alien",
         "nix-index-database": "nix-index-database",
         "nixcord": "nixcord",
@@ -597,8 +544,7 @@
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",
         "systems": "systems_2",
-        "treefmt-nix": "treefmt-nix",
-        "xwayland-satellite": "xwayland-satellite"
+        "treefmt-nix": "treefmt-nix"
       }
     },
     "spicetify-nix": {
@@ -771,22 +717,6 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "type": "github"
-      }
-    },
-    "xwayland-satellite": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1792070459,
-        "narHash": "sha256-qGSyMXPHiXWp9/nE5Zs1DJN5NmZFvoxaBS5Y9i7p0Pc=",
-        "owner": "Supreeeme",
-        "repo": "xwayland-satellite",
-        "rev": "97a89cec53eb4f8788386a574450dd94c0538754",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Supreeeme",
-        "repo": "xwayland-satellite",
         "type": "github"
       }
     }

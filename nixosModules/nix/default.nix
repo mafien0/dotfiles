@@ -30,7 +30,6 @@
         "https://spicetify-nix.cachix.org"
         "https://helium-nix.cachix.org"
         "https://noctalia.cachix.org"
-        "https://niri-epireyn.cachix.org"
         "https://cache.numtide.com"
       ];
       extra-trusted-public-keys = [
@@ -40,7 +39,6 @@
         "spicetify-nix.cachix.org-1:jjnwULkvMdu0E5KGBbtgrISEfDdJTGSZ4ATkiFzZn5I="
         "helium-nix.cachix.org-1:a8YPjt9O4GPyX0u3gjg/aWpb14teU9aRiSG/MOaSFgw="
         "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
-        "niri-epireyn.cachix.org-1:tlVyFN7CtsDT+ZcLPS+ekFWeT1X6X4OqvWqbBMyIzFA="
         "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
       ];
     };

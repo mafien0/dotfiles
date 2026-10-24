@@ -80,11 +80,11 @@ sub-files imported from the module's `default.nix`.
   with a `config` written as Lua via `toLuaFile ./plugins/<name>.lua`.
   `initLua` loads `options.lua` + `autocmds.lua`. LSP servers/formatters go in
   `extraPackages`. Plugin config lives in `plugins/*.lua`.
-- **niri** — split in two. `nixosModules/niri` enables `programs.niri`
-  system-wide plus xwayland-satellite and xdg portals. `homeModules/niri`
-  holds user settings via `programs.niri.settings`, split across
-  `config/input/style/env/misc/windowrules.nix`, plus
-  `inputs.niri-flake.homeModules.stylix` for theming.
+- **hyprland** — split in two. `nixosModules/hyprland` enables
+  `programs.hyprland` system-wide plus xdg portals. `homeModules/hyprland`
+  holds user settings via `wayland.windowManager.hyprland`, split across
+  `hyprland.lua`, `input.lua`, `style.lua`, `windowrules.lua`, plus
+  `inputs.noctalia-shell` for helper functions.
 
 ## Patterns
 
@@ -94,7 +94,7 @@ sub-files imported from the module's `default.nix`.
 - **No-arg modules** — never write `_: {}`; always use plain `{}`.
 - **One module per dir** — `homeModules/<name>/default.nix` /
   `nixosModules/<name>/default.nix`. Big configs split into sub-files
-  imported from `default.nix` (e.g. `niri/*.nix`, `neovim/plugins/*.lua`,
+  imported from `default.nix` (e.g. `hyprland/*.lua`, `neovim/plugins/*.lua`,
   `theme/stylix.nix`).
 - **External flakes** — import modules via
   `imports = [ inputs.<flake>.<homeModules|nixosModules|homeManagerModules>.<name> ]`;
@@ -181,14 +181,12 @@ sub-files imported from the module's `default.nix`.
 │   │   ├──  autocmds.lua
 │   │   ├──  default.nix
 │   │   └──  options.lua
-│   ├──  niri/
-│   │   ├──  config.nix
+│   ├──  hyprland/
 │   │   ├──  default.nix
-│   │   ├──  env.nix
-│   │   ├──  input.nix
-│   │   ├──  misc.nix
-│   │   ├──  style.nix
-│   │   └──  windowrules.nix
+│   │   ├── 󰄠 hyprland.lua
+│   │   ├── 󰄠 input.lua
+│   │   ├── 󰄠 style.lua
+│   │   └── 󰄠 windowrules.lua
 │   ├──  nixcord/
 │   │   └──  default.nix
 │   ├──  nixtools/
@@ -235,7 +233,7 @@ sub-files imported from the module's `default.nix`.
 │   │   └──  default.nix
 │   ├──  nh/
 │   │   └──  default.nix
-│   ├──  niri/
+│   ├──  hyprland/
 │   │   └──  default.nix
 │   ├──  nix/
 │   │   └──  default.nix

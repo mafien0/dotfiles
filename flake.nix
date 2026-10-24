@@ -3,12 +3,8 @@
     system = "x86_64-linux";
     flakePath = "/home/mafien0/nix";
 
-    overlays = [
-      inputs.niri-flake.overlays.niri
-    ];
-
     pkgs = import inputs.nixpkgs {
-      inherit system overlays;
+      inherit system;
       config.allowUnfree = true;
     };
 
@@ -26,7 +22,6 @@
       ataraxia = inputs.nixpkgs.lib.nixosSystem {
         inherit system specialArgs;
         modules = [
-          {nixpkgs.overlays = overlays;}
           ./hosts/ataraxia/configuration.nix
         ];
       };
@@ -104,33 +99,9 @@
       };
     };
 
-    niri-flake = {
-      url = "github:epireyn/niri-flake";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        nixpkgs-stable.follows = "nixpkgs";
-        niri-stable.follows = "niri";
-        niri-unstable.follows = "niri";
-        xwayland-satellite-stable.follows = "xwayland-satellite";
-        xwayland-satellite-unstable.follows = "xwayland-satellite";
-      };
-    };
-
     flint = {
       url = "github:NotAShelf/flint";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # shared by: niri-flake (stable + unstable variants)
-    niri = {
-      url = "github:niri-wm/niri";
-      flake = false;
-    };
-
-    # shared by: niri-flake (stable + unstable variants)
-    xwayland-satellite = {
-      url = "github:Supreeeme/xwayland-satellite";
-      flake = false;
     };
 
     # Custom fork of noctalia-shell(deprecated), i'll try to maintain it

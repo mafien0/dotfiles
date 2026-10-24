@@ -18,10 +18,6 @@ hl.config({
   },
 })
 
-for i = 1, 10 do
-  hl.workspace_rule({ workspace = tostring(i), persistent = true })
-end
-
 hl.on("hyprland.start", function()
   hl.exec_cmd(nix.noctalia)
 
