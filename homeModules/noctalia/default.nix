@@ -47,6 +47,14 @@
           enabled = true;
           sourceUrl = pluginURL;
         };
+        screen-toolkit = {
+          enabled = true;
+          sourceUrl = pluginURL;
+        };
+        screenshot = {
+          enabled = true;
+          sourceUrl = pluginURL;
+        };
       };
       version = 2;
     };
@@ -54,7 +62,11 @@
 
   home.packages = with pkgs; [
     cliphist
+    grim
+    hyprshot
+    imagemagick
     pwvucontrol
+    slurp
     wl-clipboard
     kdePackages.qtwebsockets
   ];

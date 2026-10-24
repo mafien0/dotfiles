@@ -14,7 +14,7 @@
     "localsend"
     "ly"
     "nh"
-    "niri"
+    "hyprland"
     "nix-index"
     "nix-ld"
     "nvidia"

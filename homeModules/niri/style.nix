@@ -37,7 +37,7 @@
         {proportion = 0.66667;}
       ];
 
-      focus-ring.width = config.common.focusRingWidth;
+      focus-ring.width = config.common.borderSize;
 
       shadow = {
         softness = 30;

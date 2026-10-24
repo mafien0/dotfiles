@@ -11,7 +11,7 @@ let
     "helium"
     "mcsr"
     "mfetch"
-    "niri"
+    "hyprland"
     "nixcord"
     "nixtools"
     "noctalia"

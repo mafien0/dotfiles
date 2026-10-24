@@ -12,7 +12,7 @@
 
   config.common = {
     cornerRadius = 0.0;
-    focusRingWidth = 1;
+    borderSize = 1;
     gaps = 10;
 
     opacity = 1.0;

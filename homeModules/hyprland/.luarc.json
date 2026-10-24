@@ -1,0 +1,12 @@
+{
+  "diagnostics": {
+    "globals": ["hl"]
+  },
+  "workspace": {
+    "library": [
+      "/tmp/hypr/share/hypr/stubs",
+      "/run/current-system/sw/share/hypr/stubs"
+    ],
+    "checkThirdParty": false
+  }
+}
