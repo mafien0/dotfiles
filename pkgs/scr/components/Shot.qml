@@ -2,7 +2,8 @@ import QtQuick
 import Quickshell
 import Quickshell.Io
 
-// Runs grim. One capture at a time; screenshots are named by timestamp.
+// Runs grim, then copies the file it wrote to the clipboard. One capture at a
+// time; screenshots are named by timestamp.
 QtObject {
     id: shot
 
@@ -12,32 +13,41 @@ QtObject {
     signal captured(string path)
     signal failed(string message)
 
+    property string pendingPath: ""
+
     readonly property Process grim: Process {
         stderr: StdioCollector {
             id: grimError
         }
 
         onExited: (code, status) => {
-            shot.watchdog.stop();
-            shot.busy = false;
-            if (code === 0) {
-                shot.captured(shot.pendingPath);
-            } else {
+            if (code !== 0) {
                 const message = grimError.text.trim();
-                shot.failed(message !== "" ? message : "grim exited with " + code);
+                shot.fail(message !== "" ? message : "grim exited with " + code);
+                return;
+            }
+            shot.clipboard.exec(["bash", "-c", "exec wl-copy --type image/png < \"$1\"", "bash", shot.pendingPath]);
+        }
+    }
+
+    readonly property Process clipboard: Process {
+        stderr: StdioCollector {
+            id: clipboardError
+        }
+
+        onExited: (code, status) => {
+            shot.finish();
+            if (code !== 0) {
+                const message = clipboardError.text.trim();
+                shot.failed(message !== "" ? "clipboard copy failed: " + message : "clipboard copy failed: wl-copy exited with " + code);
             }
         }
     }
 
     readonly property Timer watchdog: Timer {
         interval: 10000
-        onTriggered: {
-            shot.busy = false;
-            shot.failed("grim did not finish");
-        }
+        onTriggered: shot.fail("capture did not finish")
     }
-
-    property string pendingPath: ""
 
     function captureFullscreen(screenName: string): void {
         shot.run(["-o", screenName]);
@@ -55,6 +65,18 @@ QtObject {
         shot.pendingPath = shot.targetPath();
         shot.watchdog.restart();
         shot.grim.exec(["grim"].concat(args).concat([shot.pendingPath]));
+    }
+
+    function finish(): void {
+        shot.watchdog.stop();
+        shot.busy = false;
+        shot.captured(shot.pendingPath);
+    }
+
+    function fail(message: string): void {
+        shot.watchdog.stop();
+        shot.busy = false;
+        shot.failed(message);
     }
 
     function targetPath(): string {

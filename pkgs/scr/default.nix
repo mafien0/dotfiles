@@ -8,6 +8,8 @@ in
     runtimeInputs = with pkgs; [
       quickshell
       grim
+      wl-clipboard
+      bash
     ];
 
     text = ''exec ${src}/screenshot "$@"'';
