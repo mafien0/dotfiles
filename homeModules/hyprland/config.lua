@@ -21,6 +21,9 @@ hl.config({
 hl.on("hyprland.start", function()
   hl.exec_cmd(nix.noctalia)
 
+  -- Keep the screenshot picker warm so a keybind press is instant.
+  hl.exec_cmd(nix.screenshot .. " start")
+
   hl.exec_cmd(nix.wlClipPersist .. " --clipboard regular")
   hl.exec_cmd(nix.wlPaste .. " --type text --watch " .. nix.cliphist .. " store")
   hl.exec_cmd(nix.wlPaste .. " --type image --watch " .. nix.cliphist .. " store")

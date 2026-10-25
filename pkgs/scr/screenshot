@@ -29,11 +29,12 @@ daemon_running() {
 start_daemon() {
     daemon_running && return 0
 
-    qs -p "$shell_file" --daemonize
+    # --no-duplicate keeps a race from spawning a second picker.
+    qs -p "$shell_file" --no-duplicate --daemonize
 
-    for _ in $(seq 1 100); do
+    for _ in $(seq 1 200); do
         daemon_running && return 0
-        sleep 0.1
+        sleep 0.05
     done
 
     echo "screenshot: the background instance did not come up" >&2
@@ -44,16 +45,21 @@ ipc() {
     qs -p "$shell_file" ipc call screenshot "$@"
 }
 
-start_daemon
-
 case "$mode" in
 start)
+    start_daemon
     echo "screenshot: running in background"
     ;;
 quit)
-    ipc quit
+    ipc quit 2>/dev/null || true
     ;;
 *)
-    ipc "$mode"
+    # The daemon is normally already up (started at login, see the hyprland
+    # module). Only pay for the probe and a cold start when the call finds
+    # nothing to talk to.
+    if ! ipc "$mode" 2>/dev/null; then
+        start_daemon
+        ipc "$mode"
+    fi
     ;;
 esac

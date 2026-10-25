@@ -128,7 +128,10 @@ QtObject {
         shot.busy = true;
         shot.pendingFreeze = shot.runtimeDir + "/scr-freeze-" + Date.now() + ".png";
         shot.watchdog.restart();
-        shot.freezeProcess.exec(["grim", "-o", screenName, shot.pendingFreeze]);
+        // The frame is throwaway and gets cropped into the real file, so encode
+        // speed matters, file size does not: PNG level 0 is ~8x faster than the
+        // default level 6 on a 4K screen. Still lossless.
+        shot.freezeProcess.exec(["grim", "-l", "0", "-o", screenName, shot.pendingFreeze]);
     }
 
     // x/y/width/height are in the frozen frame's pixels.
