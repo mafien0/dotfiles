@@ -3,7 +3,7 @@
   inputs,
   ...
 }: let
-  wallpaperPath = ../../assets/wallpapers/gruvbox_city.png;
+  wallpaperPath = ../../assets/wallpapers/gruv-abstract-maze.png;
 in {
   imports = [
     inputs.stylix.homeModules.stylix

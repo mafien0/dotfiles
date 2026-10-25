@@ -11,13 +11,12 @@
   };
 
   config.common = {
-    cornerRadius = 0.0;
-    borderSize = 1;
+    cornerRadius = 12.0;
+    borderSize = 2;
     gaps = 10;
 
     opacity = 1.0;
     blur = false;
-    xray = false;
 
     colors = {
       base00 = "#1d2021";

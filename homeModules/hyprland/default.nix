@@ -31,6 +31,7 @@
             polkitAgent = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1",
 
             borderSize = ${toString config.common.borderSize},
+            cornerRadius = ${toString (builtins.floor config.common.cornerRadius)},
             gaps = ${toString config.common.gaps},
             opacity = ${toString config.common.opacity},
             cursorTheme = "${config.common.cursor.name}",

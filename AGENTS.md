@@ -82,9 +82,12 @@ sub-files imported from the module's `default.nix`.
   `extraPackages`. Plugin config lives in `plugins/*.lua`.
 - **hyprland** — split in two. `nixosModules/hyprland` enables
   `programs.hyprland` system-wide plus xdg portals. `homeModules/hyprland`
-  holds user settings via `wayland.windowManager.hyprland`, split across
-  `hyprland.lua`, `input.lua`, `style.lua`, `windowrules.lua`, plus
-  `inputs.noctalia-shell` for helper functions.
+  holds user settings via `wayland.windowManager.hyprland` with
+  `configType = "lua"`, split across `config.lua`, `input.lua`, `style.lua`,
+  `windowrules.lua`. `extraLuaFiles` generates `nix.lua` (exec paths for
+  `inputs.noctalia-shell` and friends) plus `common.*` style values from
+  `theme/common.nix`; the Hyprland lua API is the global `hl`.
+  Check changes with `Hyprland --verify-config -c <generated>/hyprland.lua`.
 
 ## Patterns
 
@@ -182,8 +185,9 @@ sub-files imported from the module's `default.nix`.
 │   │   ├──  default.nix
 │   │   └──  options.lua
 │   ├──  hyprland/
+│   │   ├──  .luarc.json
 │   │   ├──  default.nix
-│   │   ├── 󰄠 hyprland.lua
+│   │   ├── 󰄠 config.lua
 │   │   ├── 󰄠 input.lua
 │   │   ├── 󰄠 style.lua
 │   │   └── 󰄠 windowrules.lua
