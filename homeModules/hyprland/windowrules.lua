@@ -8,11 +8,34 @@ local function rules(matches, effects)
   end
 end
 
+local function lrules(matches, effects)
+  for _, match in ipairs(matches) do
+    local rule = {match = match}
+    for key, value in pairs(effects) do
+      rule[key] = value
+    end
+    hl.layer_rule(rule)
+  end
+end
+
 -- Window rules --
 
 hl.window_rule({
   name = "picture-in-picture",
   match = {title = "(?i)^picture[ _-]in[ _-]picture$"},
+  float = true,
+  pin = true,
+  border_size = 0,
+  no_shadow = true,
+  rounding = 0,
+  keep_aspect_ratio = true,
+})
+
+hl.window_rule({
+  name = "discord-popout-pin",
+  match = {
+    initial_title = "(?i)Discord Popout",
+  },
   float = true,
   pin = true,
   border_size = 0,
@@ -103,23 +126,18 @@ hl.window_rule({
     opacity = 0.0
 })
 
-local noctalia_panels = {
+lrules({
   "noctalia-launcher-overlay", -- verified: 1920x1080 overlay layer
   "noctalia-popupmenu", -- tray + context menus, full-screen top layer
   "noctalia-notifications", -- notification/toast host
-}
-for _, ns in ipairs(noctalia_panels) do
-  hl.layer_rule({
-    match = {namespace = ns .. ".*"},
-    no_anim = true,
-    blur = true,
-    ignore_alpha = 0.5,
-  })
-end
-hl.layer_rule({match = {namespace = "noctalia-overview.*"}, no_anim = true})
-hl.layer_rule({match = {namespace = "noctalia-fade-overlay.*"}, no_anim = true})
+}, {
+  no_anim = true,
+  blur = true,
+  ignore_alpha = 0.5,
+})
 
--- Region picker (pkgs/scr): full-screen surface that must land and leave instantly,
--- otherwise layersIn/layersOut (popin 93/94%) animate the whole screen.
-hl.layer_rule({match = {namespace = "scr-select.*"}, no_anim = true})
+lrules({{namespace = ".*"}}, {
+  no_anim = true;
+})
+
 
