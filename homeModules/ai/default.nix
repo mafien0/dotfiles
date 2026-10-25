@@ -32,7 +32,7 @@ in {
 
 
           - You have python3 at your disposal, use it to write simple scripts, check some stuff, etc
-          - You have nix at your disposal
+          - You have THE POWER OF NIX at your disposal
           - You can run any software you need, but only from nixpkgs
           - Pulling packages from other flakes is forbidden
           - Ask for permission before running huge packages

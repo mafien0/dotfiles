@@ -2,10 +2,11 @@ import QtQuick
 import Quickshell
 import Quickshell.Wayland
 
-// Region picker: layer-shell surface over the live screen. Everything outside
-// the selection is dimmed, the selection keeps a border and a size readout.
-// Press, drag, release selects; click or Escape cancels (like slurp).
-// Colors come from the config, see components/Config.qml.
+// Region picker: layer-shell surface showing the frozen frame taken before the
+// picker appeared, so the selection cannot drift from what gets captured.
+// Everything outside the selection is dimmed, the selection keeps a border and
+// a size readout. Press, drag, release selects; right-click or Escape cancels
+// (like slurp). Colors come from the config, see components/Config.qml.
 PanelWindow {
     id: selector
 
@@ -19,9 +20,20 @@ PanelWindow {
     property color readoutColor: "#eaeaf0"
     property color readoutBackground: "#cc17171c"
 
+    // URL of the frozen frame this picker draws over the screen.
+    property string frozenSource: ""
+
     readonly property int minimumSelection: 4
 
+    // Pixel size of the frozen frame; the caller uses it to map the selection
+    // back onto the captured image.
+    readonly property real frozenWidth: frozenFrame.sourceSize.width
+    readonly property real frozenHeight: frozenFrame.sourceSize.height
+    readonly property bool frozenReady: frozenFrame.status === Image.Ready
+
     property rect selection: Qt.rect(0, 0, 0, 0)
+
+    onFrozenSourceChanged: selector.selection = Qt.rect(0, 0, 0, 0)
 
     readonly property rect selectionArea: Qt.rect(
         Math.round(selector.selection.x),
@@ -51,6 +63,25 @@ PanelWindow {
         focus: true
 
         Keys.onEscapePressed: selector.cancelled()
+
+        // The freeze: the picker draws the captured frame instead of the live
+        // screen. Stretched to the surface, so selection coordinates map onto
+        // the frame with a plain scale factor.
+        Image {
+            id: frozenFrame
+
+            anchors.fill: parent
+            source: selector.frozenSource
+            fillMode: Image.Stretch
+            cache: false
+
+            onStatusChanged: {
+                if (frozenFrame.status === Image.Error && selector.visible) {
+                    console.error("screenshot: cannot display the frozen frame");
+                    selector.cancelled();
+                }
+            }
+        }
 
         Rectangle {
             x: 0
@@ -125,6 +156,7 @@ PanelWindow {
             id: mouse
 
             anchors.fill: parent
+            enabled: selector.frozenReady
             cursorShape: Qt.CrossCursor
             acceptedButtons: Qt.LeftButton | Qt.RightButton
 

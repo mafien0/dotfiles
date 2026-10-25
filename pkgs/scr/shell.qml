@@ -9,16 +9,13 @@ import "components"
 
 // Background instance: `./screenshot start` brings it up, the modes are
 // triggered over IPC (`./screenshot fullscreen`, `./screenshot region`).
+// Region mode freezes the screen into a frame first, the picker draws that
+// frame, and the saved screenshot is a crop of it.
 ShellRoot {
     id: root
 
-    // Let the compositor unmap the picker before grim reads the screen back.
-    readonly property int unmapDelay: 160
-
     property ShellScreen targetScreen: null
     property bool selecting: false
-    property bool pendingRegion: false
-    property var pendingRegionRect: null
     property string queuedMode: ""
 
     function focusedScreen(): ShellScreen {
@@ -41,6 +38,9 @@ ShellRoot {
     }
 
     function trigger(mode: string): void {
+        if (root.selecting || shot.busy || shot.frozen)
+            return;
+
         const screen = root.focusedScreen();
         if (!screen) {
             console.error("screenshot: no screen to capture");
@@ -52,28 +52,41 @@ ShellRoot {
         if (mode === "fullscreen")
             shot.captureFullscreen(screen.name);
         else
-            root.selecting = true;
+            shot.freeze(screen.name);
     }
 
+    // The selection is screen-local and logical, the frozen frame is in
+    // physical pixels: scale before cropping.
     function commitRegion(x: real, y: real, width: real, height: real): void {
         const screen = root.targetScreen;
+        const imageWidth = selector.frozenWidth;
+        const imageHeight = selector.frozenHeight;
         root.selecting = false;
 
-        const region = [
-            Math.round(screen.x + x),
-            Math.round(screen.y + y),
-            Math.round(width),
-            Math.round(height)
-        ];
-        if (region[2] < 1 || region[3] < 1)
+        if (!screen || imageWidth <= 0 || imageHeight <= 0) {
+            console.error("screenshot: frozen frame is not ready");
+            shot.discardFreeze();
             return;
+        }
 
-        root.pendingRegionRect = region;
-        unmapTimer.restart();
+        const scaleX = imageWidth / screen.width;
+        const scaleY = imageHeight / screen.height;
+        const cropX = Math.min(Math.max(0, Math.round(x * scaleX)), imageWidth - 1);
+        const cropY = Math.min(Math.max(0, Math.round(y * scaleY)), imageHeight - 1);
+        const cropWidth = Math.min(Math.round(width * scaleX), imageWidth - cropX);
+        const cropHeight = Math.min(Math.round(height * scaleY), imageHeight - cropY);
+
+        if (cropWidth < 1 || cropHeight < 1) {
+            shot.discardFreeze();
+            return;
+        }
+
+        shot.cropRegion(cropX, cropY, cropWidth, cropHeight);
     }
 
     function cancelRegion(): void {
         root.selecting = false;
+        shot.discardFreeze();
         console.info("screenshot: selection cancelled");
     }
 
@@ -101,6 +114,10 @@ ShellRoot {
     Connections {
         target: shot
 
+        function onFrozenReady(path) {
+            root.selecting = true;
+        }
+
         function onCaptured(path) {
             console.info("screenshot: " + path);
         }
@@ -110,22 +127,12 @@ ShellRoot {
         }
     }
 
-    Timer {
-        id: unmapTimer
-        interval: root.unmapDelay
-        onTriggered: {
-            const region = root.pendingRegionRect;
-            root.pendingRegionRect = null;
-            if (region)
-                shot.captureRegion(region[0], region[1], region[2], region[3]);
-        }
-    }
-
     Selector {
         id: selector
 
         screen: root.targetScreen
         visible: root.selecting && root.targetScreen !== null
+        frozenSource: shot.frozenPath === "" ? "" : "file://" + shot.frozenPath
 
         borderColor: config.borderColor
         borderWidth: config.borderWidth
