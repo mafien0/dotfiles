@@ -18,6 +18,7 @@ let
     "neovim"
     "prismlauncher"
     "qbittorrent"
+    "scr"
     "spicetify"
     "theme"
     "tmux"

@@ -1,0 +1,23 @@
+# screenshot configuration
+#
+# Copied to ~/.config/scr/config.toml on first run (existing files are kept).
+# Flat key = value pairs, read from the top level only. "#" starts a comment.
+# Every key is optional; the values below are the defaults.
+
+# Directory screenshots are written to.
+# "~" expands to your home directory. Created if missing.
+save_dir = "~/Pictures/Screenshots"
+
+# Region picker: color and thickness of the selection border.
+border_color = "#7aa2f7"
+border_width = 2
+
+# Region picker: color and opacity of the layer drawn over everything
+# outside the selection. opacity 0 disables the dimming.
+dim_color = "#000000"
+dim_opacity = 0.45
+
+# Region picker: text color and background of the WIDTHxHEIGHT readout
+# shown while dragging. The background accepts alpha as #AARRGGBB.
+readout_color = "#eaeaf0"
+readout_background = "#cc17171c"

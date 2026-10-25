@@ -12,22 +12,23 @@ hl.config({
 -- BINDS --
 local mod = "SUPER"
 
-
 -- Launchers
 hl.bind(mod .. " + Return", hl.dsp.exec_cmd(nix.terminal))
 hl.bind(mod .. " + SHIFT + Return", hl.dsp.exec_cmd(nix.terminal .. " --title=terminal-popup"))
 hl.bind(mod .. " + E", hl.dsp.exec_cmd(nix.fileManager))
 hl.bind(mod .. " + ALT + L", hl.dsp.exec_cmd(nix.ipc .. " lockScreen lock"))
 
+-- Screenshots (quickshell picker, see pkgs/scr)
+hl.bind(mod .. " + S", hl.dsp.exec_cmd(nix.screenshot .. " region"))
+hl.bind(mod .. " + SHIFT + S", hl.dsp.exec_cmd(nix.screenshot .. " fullscreen"))
+
 -- Noctalia
 hl.bind(mod .. " + A", hl.dsp.exec_cmd(nix.ipc .. " launcher toggle"))
 hl.bind(mod .. " + SHIFT + C", hl.dsp.exec_cmd(nix.ipc .. " launcher clipboard"))
 hl.bind(mod .. " + SHIFT + E", hl.dsp.exec_cmd(nix.ipc .. " launcher emoji"))
 hl.bind(mod .. " + SHIFT + M", hl.dsp.exec_cmd(nix.ipc .. " sessionMenu toggle"))
-hl.bind(mod .. " + S", hl.dsp.exec_cmd(nix.ipc .. " plugin:screenshot takeScreenshot region"))
-hl.bind(mod .. " + SHIFT + S", hl.dsp.exec_cmd(nix.ipc .. " plugin:screenshot takeScreenshot active-screen"))
-hl.bind(mod .. " + ALT + S", hl.dsp.exec_cmd(nix.ipc .. " plugin:screen-toolkit annotate"))
 hl.bind(mod .. " + T", hl.dsp.exec_cmd(nix.ipc .. " plugin:obs-control saveReplay"))
+
 
 -- Windows
 hl.bind(mod .. " + SHIFT + Q", hl.dsp.window.close())

@@ -8,6 +8,8 @@ local function rules(matches, effects)
   end
 end
 
+-- Window rules --
+
 hl.window_rule({
   name = "picture-in-picture",
   match = {title = "(?i)^picture[ _-]in[ _-]picture$"},
@@ -16,6 +18,7 @@ hl.window_rule({
   border_size = 0,
   no_shadow = true,
   rounding = 0,
+  keep_aspect_ratio = true,
 })
 
 hl.window_rule({
@@ -83,9 +86,23 @@ rules({
   no_screen_share = true,
 })
 
--- Noctalia full-screen overlays carry a translucent panel plus a whole-screen dimmer.
--- With no layer rules they inherit layersOut (popin 94%), so closing one pops the
--- entire screen, and nothing ever gets compositor blur behind the panel.
+-- Layer Rules --
+
+-- https://wiki.hypr.land/useful-utilities/screen-sharing/
+hl.window_rule({
+    name = "xwayland-video-bridge-fixes",
+    match = {
+        class = "xwaylandvideobridge"
+    },
+
+    no_initial_focus = true,
+    no_focus = true,
+    no_anim = true,
+    no_blur = true,
+    max_size = {1,1},
+    opacity = 0.0
+})
+
 local noctalia_panels = {
   "noctalia-launcher-overlay", -- verified: 1920x1080 overlay layer
   "noctalia-popupmenu", -- tray + context menus, full-screen top layer
@@ -99,10 +116,10 @@ for _, ns in ipairs(noctalia_panels) do
     ignore_alpha = 0.5,
   })
 end
-
--- Full-screen too, but nothing worth blurring behind them.
 hl.layer_rule({match = {namespace = "noctalia-overview.*"}, no_anim = true})
 hl.layer_rule({match = {namespace = "noctalia-fade-overlay.*"}, no_anim = true})
 
--- slurp region selector (screenshot/record region pick); popin on open is pointless.
-hl.layer_rule({match = {namespace = "selection"}, no_anim = true})
+-- Region picker (pkgs/scr): full-screen surface that must land and leave instantly,
+-- otherwise layersIn/layersOut (popin 93/94%) animate the whole screen.
+hl.layer_rule({match = {namespace = "scr-select.*"}, no_anim = true})
+

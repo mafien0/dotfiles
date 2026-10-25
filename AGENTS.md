@@ -198,6 +198,15 @@ sub-files imported from the module's `default.nix`.
 │   │   └──  default.nix
 │   ├──  qbittorrent/
 │   │   └──  default.nix
+│   ├──  scr/
+│   │   ├──  default.nix
+│   │   ├──  config.example.toml
+│   │   ├──  screenshot
+│   │   ├──  shell.qml
+│   │   └──  components/
+│   │       ├──  Config.qml
+│   │       ├──  Selector.qml
+│   │       └──  Shot.qml
 │   ├──  spicetify/
 │   │   └──  default.nix
 │   ├──  theme/
@@ -257,7 +266,16 @@ sub-files imported from the module's `default.nix`.
 │       └──  default.nix
 ├──  pkgs/
 │   ├──  nixcheck.nix
-│   └──  nixformat.nix
+│   ├──  nixformat.nix
+│   └──  scr/
+│       ├──  default.nix
+│       ├──  config.example.toml
+│       ├──  screenshot
+│       ├──  shell.qml
+│       └──  components/
+│           ├──  Config.qml
+│           ├──  Selector.qml
+│           └──  Shot.qml
 ├──  .gitignore
 ├──  AGENTS.md
 ├──  flake.lock

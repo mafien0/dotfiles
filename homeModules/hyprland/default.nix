@@ -19,6 +19,7 @@
             ipc = "${lib.getExe inputs.noctalia-shell.packages.${system}.default} ipc --any-display call",
             noctalia = "${lib.getExe inputs.noctalia-shell.packages.${system}.default}",
             terminal = "${lib.getExe pkgs.foot}",
+            screenshot = "${lib.getExe (import ../../pkgs/scr {inherit pkgs;})}",
             fileManager = "${lib.getExe pkgs.thunar}",
             hyprpicker = "${lib.getExe pkgs.hyprpicker}",
             wlClipPersist = "${lib.getExe pkgs.wl-clip-persist}",
@@ -29,16 +30,16 @@
             brightnessctl = "${lib.getExe pkgs.brightnessctl}",
             polkitAgent = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1",
 
-            borderSize = ${toString config.common.borderSize};
-            gaps = ${toString config.common.gaps};
-            opacity = ${toString config.common.opacity};
-            cursorTheme = "${config.stylix.cursor.name}";
-            cursorSize = "${toString config.stylix.cursor.size}";
+            borderSize = ${toString config.common.borderSize},
+            gaps = ${toString config.common.gaps},
+            opacity = ${toString config.common.opacity},
+            cursorTheme = "${config.common.cursor.name}",
+            cursorSize = "${toString config.common.cursor.size}",
           }
         '';
       };
 
-      "00-config" = ./hyprland.lua;
+      "00-config" = ./config.lua;
       "10-input" = ./input.lua;
       "20-style" = ./style.lua;
       "30-windowrules" = ./windowrules.lua;

@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+    echo "usage: screenshot <start|fullscreen|region|quit>" >&2
+    exit 2
+}
+
+case "${1:-start}" in
+start | fullscreen | region | quit) mode="${1:-start}" ;;
+*) usage ;;
+esac
+
+shell_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+shell_file="$shell_dir/shell.qml"
+
+config_dir="${XDG_CONFIG_HOME:-$HOME/.config}/scr"
+config_file="$config_dir/config.toml"
+
+if [ ! -f "$config_file" ]; then
+    mkdir -p "$config_dir"
+    cp "$shell_dir/config.example.toml" "$config_file"
+fi
+
+daemon_running() {
+    qs -p "$shell_file" ipc show >/dev/null 2>&1
+}
+
+start_daemon() {
+    daemon_running && return 0
+
+    qs -p "$shell_file" --daemonize
+
+    for _ in $(seq 1 100); do
+        daemon_running && return 0
+        sleep 0.1
+    done
+
+    echo "screenshot: the background instance did not come up" >&2
+    return 1
+}
+
+ipc() {
+    qs -p "$shell_file" ipc call screenshot "$@"
+}
+
+start_daemon
+
+case "$mode" in
+start)
+    echo "screenshot: running in background"
+    ;;
+quit)
+    ipc quit
+    ;;
+*)
+    ipc "$mode"
+    ;;
+esac
