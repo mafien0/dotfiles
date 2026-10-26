@@ -24,11 +24,11 @@
 
 ```
 flake.nix
-assets              # varios images
-pkgs/               # exposed packages
-hosts/*/            # per-system configuration
-homeModules/        # shared modules(home-manager)
-nixosModules/       # shared modules(nixos)
+assets/       # varios images
+pkgs/         # exposed packages
+hosts/        # per-system configuration
+homeModules/  # shared modules(home-manager)
+nixosModules/ # shared modules(nixos)
 ```
 i try to put everything in home-manager first  
 then if cannot i put it into nixos modules
