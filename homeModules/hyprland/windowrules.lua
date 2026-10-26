@@ -41,7 +41,6 @@ hl.window_rule({
   border_size = 0,
   no_shadow = true,
   rounding = 0,
-  keep_aspect_ratio = true,
 })
 
 hl.window_rule({
