@@ -34,7 +34,8 @@ hl.bind(mod .. " + T", hl.dsp.exec_cmd(nix.ipc .. " plugin:obs-control saveRepla
 hl.bind(mod .. " + SHIFT + Q", hl.dsp.window.close())
 hl.bind(mod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
 hl.bind(mod .. " + SHIFT + F", hl.dsp.window.fullscreen())
-hl.bind(mod .. " + SHIFT + V", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mod .. " + V", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mod .. " + SHIFT + V", hl.dsp.window.pin({ action = "toggle" }))
 
 -- Utilities
 hl.bind(mod .. " + X", hl.dsp.exec_cmd(nix.hyprpicker .. " -a -l"))
