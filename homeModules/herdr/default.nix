@@ -20,6 +20,8 @@
     mv $HOME/.omp/agent/extensions/herdr-omp-agent-state.ts $out/
   '';
 in {
+  imports = [./theme.nix];
+
   options.herdr.ompIntegration.enable = lib.mkEnableOption "the OMP agent-state integration bundled with herdr";
 
   config = {
@@ -32,11 +34,6 @@ in {
 
       settings = {
         onboarding = false;
-
-        theme = {
-          name = "gruvbox";
-          auto_switch = false;
-        };
 
         terminal.new_cwd = "follow";
 
@@ -99,9 +96,6 @@ in {
           swap_pane_up = "";
           swap_pane_right = "";
         };
-
-        # tmux-resurrect + tmux-continuum equivalent
-        experimental.pane_history = true;
       };
     };
   };
