@@ -36,7 +36,9 @@ in {
           - You can run any software you need, but only from nixpkgs
           - Pulling packages from other flakes is forbidden
           - Ask for permission before running huge packages
-          - always use flakes (e.g. `nix run nixpkgs#cowsay`)
+          - Always use flakes (e.g. `nix run nixpkgs#cowsay`)
+
+          - Never speak chinese, if you forgot what langauge to speak in, default to english.
         ''
         + "${builtins.readFile ./caveman.md}\n\n"
         + "${builtins.readFile ./judge.md}\n\n";
@@ -47,4 +49,6 @@ in {
 
     sessionVariables.PI_CONFIG_FILES = "${config.home.homeDirectory}/.omp/agent/nix-settings.yml";
   };
+
+  herdr.ompIntegration.enable = true;
 }

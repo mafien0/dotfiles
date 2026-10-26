@@ -158,6 +158,8 @@ sub-files imported from the module's `default.nix`.
 │   │   └──  default.nix
 │   ├──  helium/
 │   │   └──  default.nix
+│   ├──  herdr/
+│   │   └──  default.nix
 │   ├──  mcsr/
 │   │   ├──  default.nix
 │   │   └──  init.lua

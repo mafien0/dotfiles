@@ -9,6 +9,7 @@ let
     "foot"
     "git"
     "helium"
+    "herdr"
     "mcsr"
     "mfetch"
     "hyprland"
