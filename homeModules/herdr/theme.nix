@@ -16,7 +16,7 @@ in {
       surface0 = c "base02";
       surface1 = c "base03";
       surface_dim = c "base01";
-      overlay0 = c "base03";
+      overlay0 = c "base04";
       overlay1 = c "base04";
       text = c "base06";
       subtext0 = c "base05";
