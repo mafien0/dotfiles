@@ -68,6 +68,8 @@ in {
           reload_config = "prefix+shift+r";
           # herdr-only action, moved off prefix+shift+n
           new_workspace = "prefix+shift+c";
+          previous_workspace = "prefix+[";
+          next_workspace = "prefix+]";
 
           # tmux: bind h/j/k/l select-pane, bind -n M-h/j/k/l select-pane
           focus_pane_left = ["prefix+h" "alt+h"];
