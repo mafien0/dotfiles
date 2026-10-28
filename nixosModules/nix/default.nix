@@ -31,6 +31,7 @@
         "https://helium-nix.cachix.org"
         "https://noctalia.cachix.org"
         "https://cache.numtide.com"
+        "https://hyprland.cachix.org"
       ];
       extra-trusted-public-keys = [
         "mafien0.cachix.org-1:AwMLotTbNj8NxkUqXPA+kePW7bmFHOMNGqBAPbPsFYQ="
@@ -40,6 +41,7 @@
         "helium-nix.cachix.org-1:a8YPjt9O4GPyX0u3gjg/aWpb14teU9aRiSG/MOaSFgw="
         "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
         "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       ];
     };
     nix.extraOptions = lib.mkIf config.nixSettings.extraOptions ''!include /home/mafien0/.config/nix/access-tokens.conf '';
