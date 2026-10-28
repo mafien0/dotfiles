@@ -13,7 +13,7 @@
   stylix.targets.noctalia-shell.enable = true;
 
   programs.noctalia-shell = let
-    pluginURL = "https://github.com/noctalia-dev/noctalia-plugins";
+    pluginURL = "https://github.com/mafien0/noctalia-plugins";
   in {
     enable = true;
     package = inputs.noctalia-shell.packages.${system}.default;
