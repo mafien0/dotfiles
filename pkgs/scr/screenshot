@@ -2,12 +2,12 @@
 set -euo pipefail
 
 usage() {
-    echo "usage: screenshot <start|fullscreen|region|quit>" >&2
+    echo "usage: screenshot <start|watch|fullscreen|region|quit>" >&2
     exit 2
 }
 
 case "${1:-start}" in
-start | fullscreen | region | quit) mode="${1:-start}" ;;
+start | watch | fullscreen | region | quit) mode="${1:-start}" ;;
 *) usage ;;
 esac
 
@@ -49,6 +49,25 @@ case "$mode" in
 start)
     start_daemon
     echo "screenshot: running in background"
+    ;;
+watch)
+    # Supervise the picker for the whole session: keep it warm and bring it back
+    # if it dies or stops answering, so a keybind press never hits a cold start.
+    start_daemon || true
+    fails=0
+    while sleep 15; do
+        if daemon_running; then
+            fails=0
+            continue
+        fi
+        fails=$((fails + 1))
+        if [ "$fails" -lt 2 ]; then
+            continue
+        fi
+        fails=0
+        qs -p "$shell_file" kill >/dev/null 2>&1 || true
+        start_daemon || true
+    done
     ;;
 quit)
     ipc quit 2>/dev/null || true

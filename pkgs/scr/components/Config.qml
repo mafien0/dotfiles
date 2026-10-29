@@ -34,7 +34,6 @@ QtObject {
     readonly property FileView file: FileView {
         path: config.configPath
         preload: true
-        blockLoading: true
         watchChanges: true
         printErrors: false
 
