@@ -8,6 +8,7 @@
 }: {
   imports = [
     inputs.noctalia-shell.homeModules.default
+    ./watchdog.nix
   ];
 
   stylix.targets.noctalia-shell.enable = true;

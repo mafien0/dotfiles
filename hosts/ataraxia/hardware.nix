@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   modulesPath,
   ...
 }: {
@@ -25,6 +26,10 @@
     kernelParams = [
       "nowatchdog"
       "udev.log_priority=3"
+      # NVIDIA 580 on Pascal drops the GPU mappings of GL/EGL clients across an
+      # S3 cycle (Xid 31 MMU fault on resume), killing the shell. s2idle avoids
+      # that power transition, at the cost of a higher idle draw while asleep.
+      "mem_sleep_default=s2idle"
     ];
 
     kernel.sysctl = {
@@ -38,6 +43,10 @@
   };
 
   powerManagement.cpuFreqGovernor = "schedutil";
+
+  # Read by noctalia-watchdog: a marker younger than a few minutes means the
+  # session was locked when the shell broke, so a restarted shell re-locks.
+  powerManagement.resumeCommands = "${pkgs.coreutils}/bin/touch /run/noctalia-resume-guard";
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
