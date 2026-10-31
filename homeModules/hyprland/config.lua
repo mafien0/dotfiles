@@ -13,6 +13,9 @@ hl.config({
     disable_hyprland_logo = true,
     middle_click_paste = false,
   },
+  cursor = {
+    warp_on_monitor_change = true,
+  },
   xwayland = {
     force_zero_scaling = true,
   },

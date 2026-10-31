@@ -20,7 +20,7 @@
         "nix-command"
         "flakes"
       ];
-      auto-optimise-store = true;
+      auto-optimise-store = false;
       cores = 0;
       warn-dirty = false;
       extra-substituters = [
