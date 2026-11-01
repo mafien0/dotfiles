@@ -28,6 +28,7 @@ hl.window_rule({
   border_size = 0,
   no_shadow = true,
   rounding = 0,
+  size = {"50%", "50%"},
   keep_aspect_ratio = true,
   move = {"monitor_w-window_w", "monitor_h-window_h"}, -- bottom-right
 })

@@ -17,18 +17,13 @@
         "usbhid"
         "sd_mod"
       ];
-      kernelModules = [];
     };
     kernelModules = ["tcp_bbr" "sch_cake"];
-    extraModulePackages = [];
 
     kernelParams = [
       "nowatchdog"
       "udev.log_priority=3"
-      # NVIDIA 580 on Pascal drops the GPU mappings of GL/EGL clients across an
-      # S3 cycle (Xid 31 MMU fault on resume), killing the shell. s2idle avoids
-      # that power transition, at the cost of a higher idle draw while asleep.
-      "mem_sleep_default=s2idle"
+      "resume=/swapfile"
     ];
 
     kernel.sysctl = {
