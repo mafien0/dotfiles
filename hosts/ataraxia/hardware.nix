@@ -23,7 +23,6 @@
     kernelParams = [
       "nowatchdog"
       "udev.log_priority=3"
-      "resume=/swapfile"
     ];
 
     kernel.sysctl = {

@@ -25,6 +25,7 @@ hl.window_rule({
   match = {title = "(?i)^picture[ _-]in[ _-]picture$"},
   float = true,
   pin = true,
+  no_initial_focus = true,
   border_size = 0,
   no_shadow = true,
   rounding = 0,
@@ -32,7 +33,6 @@ hl.window_rule({
   keep_aspect_ratio = true,
   move = {"monitor_w-window_w", "monitor_h-window_h"}, -- bottom-right
 })
-
 hl.window_rule({
   name = "discord-popout-pin",
   match = {
