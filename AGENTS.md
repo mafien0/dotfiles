@@ -194,6 +194,8 @@ sub-files imported from the module's `default.nix`.
 │   ├──  herdr/
 │   │   ├──  default.nix
 │   │   └──  theme.nix
+│   ├──  hypridle/
+│   │   └──  default.nix
 │   ├──  hyprland/
 │   │   ├──  .luarc.json
 │   │   ├── 󰄠 config.lua
@@ -238,8 +240,6 @@ sub-files imported from the module's `default.nix`.
 │   ├──  qbittorrent/
 │   │   └──  default.nix
 │   ├──  spicetify/
-│   │   └──  default.nix
-│   ├──  stasis/
 │   │   └──  default.nix
 │   ├──  theme/
 │   │   ├──  common.nix

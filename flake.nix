@@ -109,14 +109,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stasis = {
-      url = "github:saltnpepper97/stasis";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-      };
-    };
-
     dux-greeter = {
       url = "github:duxlabs-dev/dux-greeter";
       inputs = {
