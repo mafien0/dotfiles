@@ -16,10 +16,9 @@
         autoLoad = false;
         content = ''
           return {
-            ipc = "${lib.getExe inputs.noctalia-shell.packages.${system}.default} ipc --any-display call",
-            noctalia = "${lib.getExe inputs.noctalia-shell.packages.${system}.default}",
+            ipc = "${lib.getExe inputs.dms.packages.${system}.dms-shell} ipc call",
+            dms = "${lib.getExe inputs.dms.packages.${system}.dms-shell} run",
             terminal = "${lib.getExe pkgs.foot}",
-            screenshot = "${lib.getExe (import ../../pkgs/scr {inherit pkgs;})}",
             fileManager = "${lib.getExe pkgs.thunar}",
             hyprpicker = "${lib.getExe pkgs.hyprpicker}",
             wlClipPersist = "${lib.getExe pkgs.wl-clip-persist}",
@@ -33,7 +32,8 @@
             borderSize = ${toString config.common.borderSize},
             cornerRadius = ${toString (builtins.floor config.common.cornerRadius)},
             gaps = ${toString config.common.gaps},
-            opacity = ${toString config.common.opacity},
+            activeOpacity = ${toString config.common.activeOpacity},
+            inactiveOpacity = ${toString config.common.inactiveOpacity},
             cursorTheme = "${config.common.cursor.name}",
             cursorSize = "${toString config.common.cursor.size}",
           }

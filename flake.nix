@@ -15,7 +15,6 @@
     packages.${system} = {
       nixcheck = import ./pkgs/nixcheck.nix {inherit pkgs;};
       nixformat = import ./pkgs/nixformat.nix {inherit pkgs;};
-      scr = import ./pkgs/scr {inherit pkgs;};
     };
   in {
     inherit packages;
@@ -105,9 +104,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Custom fork of noctalia-shell(deprecated), i'll try to maintain it
-    noctalia-shell = {
-      url = "github:mafien0/noctalia/";
+    dms = {
+      url = "github:duxlabs-dev/dux-shell/stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    dux-greeter = {
+      url = "github:duxlabs-dev/dux-greeter";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -146,7 +149,7 @@
       flake = false;
     };
 
-    # shared by: nixcord, noctalia-shell
+    # shared by: nixcord
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";

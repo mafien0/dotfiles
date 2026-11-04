@@ -127,9 +127,18 @@ hl.window_rule({
 })
 
 lrules({
-  "noctalia-launcher-overlay", -- verified: 1920x1080 overlay layer
-  "noctalia-popupmenu", -- tray + context menus, full-screen top layer
-  "noctalia-notifications", -- notification/toast host
+  -- DMS shell surfaces: launcher overlay, popouts, tray/context menus,
+  -- notifications and toasts. Every DMS layer is namespaced `dms:*`.
+  "^dms:spotlight(:.*)?$", -- launcher overlay + its full-screen clickcatcher
+  "^dms:.*menu$", -- tray, dock, desktop, notification, bar-widget context menus
+  "^dms:context-menu$", -- generic context menu host
+  "^dms:.*popout$", -- bar popouts (process list, notification center, ...)
+  "^dms:.*modal$", -- confirm/input/switch-user/notification-center dialogs
+  "^dms:plugins:.*$", -- plugin popouts
+  "^dms:(dash|control-center|app-launcher|power-menu|power-profiles|system-update|color-picker|keybinds|clipboard|filebrowser|qr-generator|mux|vpn|battery|layout|duration|icc-profile-info|bar-overflow|tray-overflow)$",
+  "^dms:(settings|tooltip|osd|slideout|bluetooth-pairing|wifi-password|wifi-qrcode|control-center-widget-options|polkit-auth-surface)$",
+  "^dms:(notification-popup|notification-center-popout|notification-center-modal|toast)$",
+  "^dms:(dankisland|dankisland-dismiss|dankisland:dismiss)$", -- island/popout host
 }, {
   no_anim = true,
   blur = true,

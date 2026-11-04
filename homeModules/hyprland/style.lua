@@ -12,7 +12,8 @@ hl.config({
   },
 
   ["decoration"] = {
-    active_opacity = nix.opacity,
+    active_opacity = nix.activeOpacity,
+    inactive_opacity = nix.inactiveOpacity,
     rounding = nix.cornerRadius,
   },
 

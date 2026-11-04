@@ -202,18 +202,9 @@ sub-files imported from the module's `default.nix`.
 │   │   └──  settings.json
 │   ├──  prismlauncher/
 │   │   └──  default.nix
-│   ├──  qbittorrent/
+│   ├── 񗿰 qbittorrent/
 │   │   └──  default.nix
-│   ├──  scr/
-│   │   ├──  default.nix
-│   │   ├──  config.example.toml
-│   │   ├──  screenshot
-│   │   ├──  shell.qml
-│   │   └──  components/
-│   │       ├──  Config.qml
-│   │       ├──  Selector.qml
-│   │       └──  Shot.qml
-│   ├──  spicetify/
+│   ├── 񗿰 spicetify/
 │   │   └──  default.nix
 │   ├──  theme/
 │   │   ├──  default.nix
@@ -244,7 +235,7 @@ sub-files imported from the module's `default.nix`.
 │   │   └──  default.nix
 │   ├──  localsend/
 │   │   └──  default.nix
-│   ├──  ly/
+│   ├──  dms-greeter/
 │   │   └──  default.nix
 │   ├──  nh/
 │   │   └──  default.nix
@@ -272,16 +263,7 @@ sub-files imported from the module's `default.nix`.
 │       └──  default.nix
 ├──  pkgs/
 │   ├──  nixcheck.nix
-│   ├──  nixformat.nix
-│   └──  scr/
-│       ├──  default.nix
-│       ├──  config.example.toml
-│       ├──  screenshot
-│       ├──  shell.qml
-│       └──  components/
-│           ├──  Config.qml
-│           ├──  Selector.qml
-│           └──  Shot.qml
+│   └──  nixformat.nix
 ├──  .gitignore
 ├──  AGENTS.md
 ├──  flake.lock

@@ -12,7 +12,7 @@
     "docker"
     "gvfs"
     "localsend"
-    "ly"
+    "dms-greeter"
     "nh"
     "hyprland"
     "nix-index"
@@ -31,7 +31,6 @@ in {
       ./hardware.nix
       ./programs.nix
       ./disko.nix
-      inputs.noctalia-shell.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
     ]
     ++ (map (m: ../../nixosModules/${m}) nixosModules);

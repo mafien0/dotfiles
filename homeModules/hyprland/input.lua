@@ -16,18 +16,16 @@ local mod = "SUPER"
 hl.bind(mod .. " + Return", hl.dsp.exec_cmd(nix.terminal))
 hl.bind(mod .. " + SHIFT + Return", hl.dsp.exec_cmd(nix.terminal .. " --title=terminal-popup"))
 hl.bind(mod .. " + E", hl.dsp.exec_cmd(nix.fileManager))
-hl.bind(mod .. " + ALT + L", hl.dsp.exec_cmd(nix.ipc .. " lockScreen lock"))
+hl.bind(mod .. " + ALT + L", hl.dsp.exec_cmd(nix.ipc .. " lock lock"))
 
--- Screenshots (quickshell picker, see pkgs/scr)
-hl.bind(mod .. " + S", hl.dsp.exec_cmd(nix.screenshot .. " region"))
-hl.bind(mod .. " + SHIFT + S", hl.dsp.exec_cmd(nix.screenshot .. " fullscreen"))
+-- Screenshots (DMS picker)
+hl.bind(mod .. " + S", hl.dsp.exec_cmd(nix.dms .. " screenshot region"))
+hl.bind(mod .. " + SHIFT + S", hl.dsp.exec_cmd(nix.dms .. " screenshot full"))
 
--- Noctalia
+-- DMS
 hl.bind(mod .. " + A", hl.dsp.exec_cmd(nix.ipc .. " launcher toggle"))
-hl.bind(mod .. " + SHIFT + C", hl.dsp.exec_cmd(nix.ipc .. " launcher clipboard"))
-hl.bind(mod .. " + SHIFT + E", hl.dsp.exec_cmd(nix.ipc .. " launcher emoji"))
-hl.bind(mod .. " + SHIFT + M", hl.dsp.exec_cmd(nix.ipc .. " sessionMenu toggle"))
-hl.bind(mod .. " + T", hl.dsp.exec_cmd(nix.ipc .. " plugin:obs-control saveReplay"))
+hl.bind(mod .. " + SHIFT + C", hl.dsp.exec_cmd(nix.ipc .. " clipboard toggle"))
+hl.bind(mod .. " + SHIFT + M", hl.dsp.exec_cmd(nix.ipc .. " powermenu toggle"))
 
 
 -- Windows
