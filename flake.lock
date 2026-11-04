@@ -118,22 +118,6 @@
         "type": "github"
       }
     },
-    "dank-qml-common_2": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1793720721,
-        "narHash": "sha256-A266EMSFs169/cqH+9elzMX/6N+ycuEBXFw4qXdTD7k=",
-        "owner": "duxlabs-dev",
-        "repo": "dux-qml-common",
-        "rev": "be3e16ca62866a749b34cfefe1aaed81cfe21e94",
-        "type": "github"
-      },
-      "original": {
-        "owner": "duxlabs-dev",
-        "repo": "dux-qml-common",
-        "type": "github"
-      }
-    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -179,7 +163,10 @@
     },
     "dux-greeter": {
       "inputs": {
-        "dank-qml-common": "dank-qml-common_2",
+        "dank-qml-common": [
+          "dms",
+          "dank-qml-common"
+        ],
         "nixpkgs": [
           "nixpkgs"
         ]

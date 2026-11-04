@@ -111,7 +111,10 @@
 
     dux-greeter = {
       url = "github:duxlabs-dev/dux-greeter";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        dank-qml-common.follows = "dms/dank-qml-common";
+      };
     };
 
     # Damn what a cool package i wonder who made it

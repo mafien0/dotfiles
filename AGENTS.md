@@ -12,11 +12,15 @@ typo fixes, config tweaks, and other minor edits get no comment.
 
 ## Tools
 
-- Check code with `nixcheck <dir>`.
-- Format with `nixformat <dir>`.
-- Check flake with `flint` inside a flake dir.
+- Check code with `nixcheck <dir>` (default `.`): runs `nixpkgs-lint`,
+  `alejandra -c`, `statix check`, `deadnix`.
+- Format with `nixformat <dir>`: runs `statix fix`, `deadnix -e`, `alejandra`.
+- Check flake with `flint` inside a flake dir (CI uses
+  `--fail-if-multiple-versions`).
 
-All of these are available in your PATH.
+All of these are available in your PATH. The `justfile` wraps the common flows:
+`just format`, `just test` (nixcheck + `nix flake check`), `just flint`,
+`just generate-iso`. A `devShell` provides `just`.
 
 ## Edits
 
@@ -30,7 +34,7 @@ All of these are available in your PATH.
 NixOS + home-manager dotfiles, flake-based.
 
 - Two hosts: `ataraxia` (main machine) and `iso` (installer image).
-- Single arch: `x86_64-linux`, nixpkgs on `nixos-unstable`.
+- Single arch: `x86_64-linux`, nixpkgs on `nixos-unstable`, `stateVersion = "26.11"`.
 - Styling via `stylix`, formatter `alejandra`.
 - `specialArgs` (`inputs`, `system`, `flakePath`) are reachable in every module.
 
@@ -64,18 +68,24 @@ home-manager runs as a NixOS module, not standalone. In
   - `extraSpecialArgs = { inherit inputs system flakePath; }` — extra args
     passed to home-manager modules.
 
-The `iso` host does not use home-manager.
+The `iso` host does not use home-manager; it imports
+`nixosModules/nix` directly with `nixSettings.extraOptions = false`.
 
 ## How things work
 
 Config lives in home-manager module options; big configs are split into
 sub-files imported from the module's `default.nix`.
 
-- **stylix** — themes everything from one base16 scheme. `theme/stylix.nix`
-  imports `inputs.stylix.homeModules.stylix` and sets `stylix.base16Scheme`,
-  `image`, `cursor`, `fonts`. `autoEnable = false`, so targets opt in
-  explicitly via `stylix.targets.*` (gtk/qt enabled in `theme/default.nix`).
-  Icons handled separately in `theme/icons.nix`.
+- **theme** — `theme/common.nix` declares the shared `common` option
+  (`cornerRadius`, `borderSize`, `gaps`, opacities, `blur`, `colors` base16
+  palette, `cursor`, `fonts`) that other modules read via `config.common`.
+  `theme/default.nix` imports `common.nix` + `stylix.nix` + `icons.nix`, enables
+  the pointer cursor, and opts gtk/qt into stylix. Icons (Papirus) live in
+  `theme/icons.nix`.
+- **stylix** — `theme/stylix.nix` imports `inputs.stylix.homeModules.stylix`
+  and sets `base16Scheme = config.common.colors`, `image` (a
+  `assets/wallpapers/*`), `cursor`/`fonts` from `config.common`.
+  `autoEnable = false`, so targets opt in explicitly via `stylix.targets.*`.
 - **neovim** — `programs.neovim`. Plugins come from nixpkgs `vimPlugins`, each
   with a `config` written as Lua via `toLuaFile ./plugins/<name>.lua`.
   `initLua` loads `options.lua` + `autocmds.lua`. LSP servers/formatters go in
@@ -83,11 +93,23 @@ sub-files imported from the module's `default.nix`.
 - **hyprland** — split in two. `nixosModules/hyprland` enables
   `programs.hyprland` system-wide plus xdg portals. `homeModules/hyprland`
   holds user settings via `wayland.windowManager.hyprland` with
-  `configType = "lua"`, split across `config.lua`, `input.lua`, `style.lua`,
-  `windowrules.lua`. `extraLuaFiles` generates `nix.lua` (exec paths for
-  `inputs.noctalia-shell` and friends) plus `common.*` style values from
-  `theme/common.nix`; the Hyprland lua API is the global `hl`.
+  `configType = "lua"` and `package`/`portalPackage = null` (system provides
+  them). `extraLuaFiles` generates `nix.lua` (exec paths for `inputs.dms` and
+  friends) plus `common.*` style values from `config.common`, and `40-env`
+  (`hl.env` vars); the Hyprland lua API is the global `hl`. Config files load
+  in `00-config`, `10-input`, `20-style`, `30-windowrules` order.
   Check changes with `Hyprland --verify-config -c <generated>/hyprland.lua`.
+- **ai** — installs `llm-agents.omp` + `mcp-nixos` (plus `rg`/`fd`/`python3`),
+  writes `~/.omp/agent/AGENTS.md` from the inline rules + `caveman.md` +
+  `judge.md`, links `nix-settings.yml` (via `sessionVariables.PI_CONFIG_FILES`),
+  and `theme.nix` generates an omp theme JSON from `config.common.colors`.
+- **dms** — `programs.dank-material-shell` from `inputs.dms`, with settings
+  split into `dms/config.nix`; theming via
+  `stylix.targets.dank-material-shell`. `nixosModules/dms-greeter` wires the
+  `dux-greeter` login manager (hyprland compositor).
+- **herdr** — `programs.herdr` with tmux-like keys; `herdr/theme.nix` themes it
+  from `config.common.colors`. The `herdr.ompIntegration.enable` option extracts
+  herdr's bundled omp agent-state extension at build time.
 
 ## Patterns
 
@@ -101,7 +123,7 @@ sub-files imported from the module's `default.nix`.
   `theme/stylix.nix`).
 - **External flakes** — import modules via
   `imports = [ inputs.<flake>.<homeModules|nixosModules|homeManagerModules>.<name> ]`;
-  packages via `inputs.<flake>.packages.${system}.default`.
+  packages via `inputs.<flake>.packages.${system}.<pkg>`.
 - **stylix target** — theme a program with
   `stylix.targets.<program>.enable = true;`.
 - **Program config** — native options first (`programs.<name>.settings`);
@@ -111,14 +133,16 @@ sub-files imported from the module's `default.nix`.
 - **Aliases** — `home.shellAliases` or `programs.zsh.shellAliases`.
 - **Ad-hoc scripts/config** — `pkgs.writeShellScriptBin` /
   `pkgs.writeText`, placed via `home.packages` / `xdg.configFile`.
-- **Custom options** — NixOS options via
-  `options.<ns>.<name> = lib.mkOption {...}` (see `nixosModules/nix`),
-  consumed across hosts.
+- **Custom options** — home-manager options via
+  `options.<ns>.<name> = lib.mkOption {...}` (see `theme/common.nix`,
+  `herdr`'s `herdr.ompIntegration`); NixOS options via `options.<ns>.<name>`
+  (see `nixosModules/nix`), consumed across hosts.
 - **Host wiring** — host file lists module names, then
   `map (m: ../../<kind>Modules/${m})`; `configuration.nix` imports
   `hardware.nix` / `programs.nix` / `disko.nix`.
 - **Flake inputs** — pin with `follows` to dedupe nixpkgs; shared inputs
-  carry a `# shared by:` comment.
+  carry a `# shared by:` comment. `flint --fail-if-multiple-versions` enforces
+  no duplicate versions (e.g. `dux-greeter` follows `dms/dank-qml-common`).
 
 ## Structure
 
@@ -126,7 +150,8 @@ sub-files imported from the module's `default.nix`.
 ./
 ├──  .github/
 │   └──  workflows/
-│       └──  flake.yml
+│       ├──  flake.yml
+│       └──  nixcheck.yml
 ├──  assets/
 │   ├──  mcsr/
 │   │   └──  measuring_overlay.png
@@ -136,17 +161,25 @@ sub-files imported from the module's `default.nix`.
 │   │   ├──  03.png
 │   │   └──  04.png
 │   └──  wallpapers/
+│       ├──  gruv-abstract-maze.png
 │       ├──  gruvbox_city.png
+│       ├──  gruvbox_image46.png
 │       └──  v1.png
 ├──  homeModules/
 │   ├──  ai/
 │   │   ├── 󰂺 caveman.md
-│   │   └──  default.nix
+│   │   ├──  default.nix
+│   │   ├── 󰂺 judge.md
+│   │   ├──  nix-settings.yml
+│   │   └──  theme.nix
 │   ├──  apps/
 │   │   └──  default.nix
 │   ├──  btop/
 │   │   └──  default.nix
 │   ├──  direnv/
+│   │   └──  default.nix
+│   ├──  dms/
+│   │   ├──  config.nix
 │   │   └──  default.nix
 │   ├──  eza/
 │   │   └──  default.nix
@@ -159,6 +192,16 @@ sub-files imported from the module's `default.nix`.
 │   ├──  helium/
 │   │   └──  default.nix
 │   ├──  herdr/
+│   │   ├──  default.nix
+│   │   └──  theme.nix
+│   ├──  hyprland/
+│   │   ├──  .luarc.json
+│   │   ├── 󰄠 config.lua
+│   │   ├──  default.nix
+│   │   ├── 󰄠 input.lua
+│   │   ├── 󰄠 style.lua
+│   │   └── 󰄠 windowrules.lua
+│   ├──  hyprtoolkit/
 │   │   └──  default.nix
 │   ├──  mcsr/
 │   │   ├──  default.nix
@@ -186,35 +229,29 @@ sub-files imported from the module's `default.nix`.
 │   │   ├──  autocmds.lua
 │   │   ├──  default.nix
 │   │   └──  options.lua
-│   ├──  hyprland/
-│   │   ├──  .luarc.json
-│   │   ├──  default.nix
-│   │   ├── 󰄠 config.lua
-│   │   ├── 󰄠 input.lua
-│   │   ├── 󰄠 style.lua
-│   │   └── 󰄠 windowrules.lua
 │   ├──  nixcord/
 │   │   └──  default.nix
 │   ├──  nixtools/
 │   │   └──  default.nix
-│   ├──  noctalia/
-│   │   ├──  default.nix
-│   │   └──  settings.json
 │   ├──  prismlauncher/
 │   │   └──  default.nix
-│   ├── 񗿰 qbittorrent/
+│   ├──  qbittorrent/
 │   │   └──  default.nix
-│   ├── 񗿰 spicetify/
+│   ├──  spicetify/
 │   │   └──  default.nix
 │   ├──  theme/
+│   │   ├──  common.nix
 │   │   ├──  default.nix
 │   │   ├──  icons.nix
 │   │   └──  stylix.nix
 │   ├──  tmux/
 │   │   └──  default.nix
+│   ├──  yazi/
+│   │   └──  default.nix
 │   └──  zsh/
 │       ├──  default.nix
-│       ├──  starship.toml
+│       ├──  starship.nix
+│       └──  starship.toml
 ├──  hosts/
 │   ├──  ataraxia/
 │   │   ├──  configuration.nix
@@ -229,17 +266,17 @@ sub-files imported from the module's `default.nix`.
 │   │   └──  default.nix
 │   ├──  ddc/
 │   │   └──  default.nix
+│   ├──  dms-greeter/
+│   │   └──  default.nix
 │   ├──  docker/
 │   │   └──  default.nix
 │   ├──  gvfs/
 │   │   └──  default.nix
+│   ├──  hyprland/
+│   │   └──  default.nix
 │   ├──  localsend/
 │   │   └──  default.nix
-│   ├──  dms-greeter/
-│   │   └──  default.nix
 │   ├──  nh/
-│   │   └──  default.nix
-│   ├──  hyprland/
 │   │   └──  default.nix
 │   ├──  nix/
 │   │   └──  default.nix
@@ -264,9 +301,12 @@ sub-files imported from the module's `default.nix`.
 ├──  pkgs/
 │   ├──  nixcheck.nix
 │   └──  nixformat.nix
+├──  .envrc
 ├──  .gitignore
-├──  AGENTS.md
+├── 󰂺 AGENTS.md
 ├──  flake.lock
 ├──  flake.nix
+├── 󰂺 justfile
+├── 󰂺 LICENSE
 └── 󰂺 README.md
 ```
