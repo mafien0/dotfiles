@@ -18,6 +18,7 @@
           return {
             ipc = "${lib.getExe inputs.dms.packages.${system}.dms-shell} ipc call",
             dms = "${lib.getExe inputs.dms.packages.${system}.dms-shell} run",
+            stasis = "${lib.getExe inputs.stasis.packages.${system}.stasis}",
             terminal = "${lib.getExe pkgs.foot}",
             fileManager = "${lib.getExe pkgs.thunar}",
             hyprpicker = "${lib.getExe pkgs.hyprpicker}",

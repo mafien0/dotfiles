@@ -602,6 +602,7 @@
         "nixcord": "nixcord",
         "nixpkgs": "nixpkgs",
         "spicetify-nix": "spicetify-nix",
+        "stasis": "stasis",
         "stylix": "stylix",
         "systems": "systems_2",
         "treefmt-nix": "treefmt-nix"
@@ -625,6 +626,29 @@
       "original": {
         "owner": "Gerg-L",
         "repo": "spicetify-nix",
+        "type": "github"
+      }
+    },
+    "stasis": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793723758,
+        "narHash": "sha256-R0jZxT6BAwQSo5EgW+nJoOs4m1H06jaKG9HJNQ0VuIA=",
+        "owner": "saltnpepper97",
+        "repo": "stasis",
+        "rev": "6856c95669af95d61268c18d8556c14bbec6a369",
+        "type": "github"
+      },
+      "original": {
+        "owner": "saltnpepper97",
+        "repo": "stasis",
         "type": "github"
       }
     },

@@ -239,6 +239,8 @@ sub-files imported from the module's `default.nix`.
 │   │   └──  default.nix
 │   ├──  spicetify/
 │   │   └──  default.nix
+│   ├──  stasis/
+│   │   └──  default.nix
 │   ├──  theme/
 │   │   ├──  common.nix
 │   │   ├──  default.nix

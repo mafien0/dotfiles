@@ -17,6 +17,7 @@ let
     "nixcord"
     "nixtools"
     "dms"
+    "stasis"
     "neovim"
     "prismlauncher"
     "qbittorrent"
