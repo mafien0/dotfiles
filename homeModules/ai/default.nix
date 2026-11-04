@@ -49,6 +49,4 @@ in {
 
     sessionVariables.PI_CONFIG_FILES = "${config.home.homeDirectory}/.omp/agent/nix-settings.yml";
   };
-
-  herdr.ompIntegration.enable = true;
 }

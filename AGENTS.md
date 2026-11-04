@@ -107,9 +107,6 @@ sub-files imported from the module's `default.nix`.
   split into `dms/config.nix`; theming via
   `stylix.targets.dank-material-shell`. `nixosModules/dms-greeter` wires the
   `dux-greeter` login manager (hyprland compositor).
-- **herdr** — `programs.herdr` with tmux-like keys; `herdr/theme.nix` themes it
-  from `config.common.colors`. The `herdr.ompIntegration.enable` option extracts
-  herdr's bundled omp agent-state extension at build time.
 
 ## Patterns
 
@@ -134,8 +131,8 @@ sub-files imported from the module's `default.nix`.
 - **Ad-hoc scripts/config** — `pkgs.writeShellScriptBin` /
   `pkgs.writeText`, placed via `home.packages` / `xdg.configFile`.
 - **Custom options** — home-manager options via
-  `options.<ns>.<name> = lib.mkOption {...}` (see `theme/common.nix`,
-  `herdr`'s `herdr.ompIntegration`); NixOS options via `options.<ns>.<name>`
+  `options.<ns>.<name> = lib.mkOption {...}` (see `theme/common.nix`);
+  NixOS options via `options.<ns>.<name>`
   (see `nixosModules/nix`), consumed across hosts.
 - **Host wiring** — host file lists module names, then
   `map (m: ../../<kind>Modules/${m})`; `configuration.nix` imports
@@ -191,9 +188,6 @@ sub-files imported from the module's `default.nix`.
 │   │   └──  default.nix
 │   ├──  helium/
 │   │   └──  default.nix
-│   ├──  herdr/
-│   │   ├──  default.nix
-│   │   └──  theme.nix
 │   ├──  hypridle/
 │   │   └──  default.nix
 │   ├──  hyprland/

@@ -9,7 +9,6 @@ let
     "foot"
     "git"
     "helium"
-    "herdr"
     "hypridle"
     "hyprland"
     "hyprtoolkit"
