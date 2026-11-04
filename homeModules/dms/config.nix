@@ -160,6 +160,8 @@
 
     currentThemeName = "custom";
     wallpaperBackgroundColorMode = "black";
+    fontWeight = 600;
+    fontScale = 1;
     lockScreenShowPowerActions = true;
 
     dockConfigs = [
@@ -237,6 +239,8 @@
     widgetBackgroundColor = "default";
     hyprlandWindowOpacity = 100;
     hyprlandTilingLayout = "";
+    reduceMotion = false;
+    springBounce = 0;
     barElevationEnabled = false;
     launcherStyle = "spotlight";
 
