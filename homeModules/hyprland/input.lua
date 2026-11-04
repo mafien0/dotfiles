@@ -67,10 +67,10 @@ hl.bind(mod .. " + SHIFT + mouse_up", hl.dsp.focus({ direction = "left" }))
 -- Workspaces
 for i = 1, 9 do
   hl.bind(mod .. " + " .. i, hl.dsp.focus({ workspace = i }))
-  hl.bind(mod .. " + SHIFT + " .. i, hl.dsp.window.move({ workspace = i }))
+  hl.bind(mod .. " + SHIFT + " .. i, hl.dsp.window.move({ workspace = i, follow = false }))
 end
 hl.bind(mod .. " + " .. 0, hl.dsp.focus({ workspace = 10 }))
-hl.bind(mod .. " + SHIFT + " .. 0, hl.dsp.window.move({ workspace = 10 }))
+hl.bind(mod .. " + SHIFT + " .. 0, hl.dsp.window.move({ workspace = 10, follow = false }))
 
 -- Audio
 hl.bind(mod .. " + C", hl.dsp.exec_cmd(nix.wpctl .. " set-mute @DEFAULT_AUDIO_SOURCE@ toggle"))
