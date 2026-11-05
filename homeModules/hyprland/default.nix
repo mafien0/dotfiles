@@ -17,8 +17,7 @@
         content = ''
           return {
             ipc = "${lib.getExe inputs.dms.packages.${system}.dms-shell} ipc call",
-            dms = "${lib.getExe inputs.dms.packages.${system}.dms-shell} run",
-            hypridle = "${lib.getExe pkgs.hypridle}",
+            dms = "${lib.getExe inputs.dms.packages.${system}.dms-shell}",
             terminal = "${lib.getExe pkgs.foot}",
             fileManager = "${lib.getExe pkgs.thunar}",
             hyprpicker = "${lib.getExe pkgs.hyprpicker}",

@@ -104,7 +104,7 @@ sub-files imported from the module's `default.nix`.
   `judge.md`, links `nix-settings.yml` (via `sessionVariables.PI_CONFIG_FILES`),
   and `theme.nix` generates an omp theme JSON from `config.common.colors`.
 - **dms** — `programs.dank-material-shell` from `inputs.dms`, with settings
-  split into `dms/config.nix`; theming via
+  split into `dms/config.nix` + `dms/idle.nix`; theming via
   `stylix.targets.dank-material-shell`. `nixosModules/dms-greeter` wires the
   `dux-greeter` login manager (hyprland compositor).
 
@@ -177,6 +177,7 @@ sub-files imported from the module's `default.nix`.
 │   │   └──  default.nix
 │   ├──  dms/
 │   │   ├──  config.nix
+│   │   ├──  idle.nix
 │   │   └──  default.nix
 │   ├──  eza/
 │   │   └──  default.nix
@@ -187,8 +188,6 @@ sub-files imported from the module's `default.nix`.
 │   ├──  git/
 │   │   └──  default.nix
 │   ├──  helium/
-│   │   └──  default.nix
-│   ├──  hypridle/
 │   │   └──  default.nix
 │   ├──  hyprland/
 │   │   ├──  .luarc.json

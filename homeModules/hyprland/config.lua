@@ -22,8 +22,7 @@ hl.config({
 })
 
 hl.on("hyprland.start", function()
-  hl.exec_cmd(nix.dms)
-  hl.exec_cmd(nix.hypridle)
+  hl.exec_cmd(nix.dms .. " run")
 
   hl.exec_cmd(nix.wlClipPersist .. " --clipboard regular")
   hl.exec_cmd(nix.wlPaste .. " --type text --watch " .. nix.cliphist .. " store")

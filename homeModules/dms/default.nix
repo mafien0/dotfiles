@@ -1,11 +1,12 @@
 {
   config,
   inputs,
-  # lib,
+  lib,
   ...
 }: {
   imports = [
     ./config.nix
+    ./idle.nix
     inputs.dms.homeModules.dank-material-shell
   ];
 
@@ -13,7 +14,7 @@
 
   programs.dank-material-shell = {
     enable = true;
-    # systemd.enable = lib.mkForce false;
+    systemd.enable = lib.mkForce false;
 
     enableSystemMonitoring = true;
     enableVPN = true;
