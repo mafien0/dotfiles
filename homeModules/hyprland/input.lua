@@ -36,7 +36,7 @@ hl.bind(mod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mod .. " + SHIFT + V", hl.dsp.window.pin({ action = "toggle" }))
 
 -- Utilities
-hl.bind(mod .. " + X", hl.dsp.exec_cmd(nix.hyprpicker .. " -a -l"))
+hl.bind(mod .. " + X", hl.dsp.exec_cmd(nix.dms .. " color pick -a"))
 
 -- Focus
 hl.bind(mod .. " + H", hl.dsp.focus({ direction = "left" }))

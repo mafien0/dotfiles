@@ -20,7 +20,6 @@
             dms = "${lib.getExe inputs.dms.packages.${system}.dms-shell}",
             terminal = "${lib.getExe pkgs.foot}",
             fileManager = "${lib.getExe pkgs.thunar}",
-            hyprpicker = "${lib.getExe pkgs.hyprpicker}",
             wlClipPersist = "${lib.getExe pkgs.wl-clip-persist}",
             wlPaste = "${lib.getExe' pkgs.wl-clipboard "wl-paste"}",
             cliphist = "${lib.getExe pkgs.cliphist}",
