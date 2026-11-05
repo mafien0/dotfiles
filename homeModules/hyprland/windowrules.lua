@@ -101,14 +101,6 @@ rules({
   float = true,
 })
 
-rules({
-  {class = "(?i)org.telegram.desktop"},
-  {class = "(?i)com.rtosta.zapzap"},
-  {class = "(?i).*spotify"},
-}, {
-  no_screen_share = true,
-})
-
 -- Layer Rules --
 
 -- https://wiki.hypr.land/useful-utilities/screen-sharing/
