@@ -137,7 +137,7 @@
 
     # Pinning it, because i dont want to update it that often
     llm-agents = {
-      url = "github:numtide/llm-agents.nix/53a2d94ce3b88753200be9a0549d8978b031fa60";
+      url = "github:numtide/llm-agents.nix/499fb79f92064e92cdb968d12ffeb92d36243b50";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";

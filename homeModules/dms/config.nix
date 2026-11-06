@@ -163,6 +163,7 @@
     fontWeight = 600;
     fontScale = 1;
     lockScreenShowPowerActions = true;
+    osdKeyboardLayoutEnabled = true;
 
     dockConfigs = [
       {
