@@ -26,7 +26,7 @@ hl.bind(mod .. " + SHIFT + S", hl.dsp.exec_cmd(nix.dms .. " screenshot full"))
 hl.bind(mod .. " + A", hl.dsp.exec_cmd(nix.ipc .. " launcher toggle"))
 hl.bind(mod .. " + SHIFT + C", hl.dsp.exec_cmd(nix.ipc .. " clipboard toggle"))
 hl.bind(mod .. " + SHIFT + M", hl.dsp.exec_cmd(nix.ipc .. " powermenu toggle"))
-
+hl.bind(mod .. " + SHIFT + E", hl.dsp.exec_cmd(nix.ipc .. " launcher openQuery ':e '"))
 
 -- Windows
 hl.bind(mod .. " + SHIFT + Q", hl.dsp.window.close())

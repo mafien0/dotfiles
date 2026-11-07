@@ -109,6 +109,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    dms-plugin-registry = {
+      url = "github:duxlabs-dev/dux-plugin-registry";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     dux-greeter = {
       url = "github:duxlabs-dev/dux-greeter";
       inputs = {
