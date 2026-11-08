@@ -1,3 +1,9 @@
+--  » python3 calcsens.py 0.3211267709732056 1
+-- New Minecraft mouseSensitivity: 0.02291165
+-- New normal sensitivity coefficient (waywall): 6.200165180288892
+-- New tall sensitivity coefficient (waywall): 0.4182594342422464
+
+
 local waywall = require("waywall")
 local helpers = require("waywall.helpers")
 local nix = require("nix")
@@ -8,7 +14,7 @@ local config = {
     repeat_rate = 40,
     repeat_delay = 300,
 
-    sensitivity = 13.001755676740837,
+    sensitivity = 6.200165180288892,
     confine_pointer = false,
 
     remaps = {
@@ -18,11 +24,11 @@ local config = {
   },
   theme = {
     background = nix.background .. "ff",
-    ninb_anchor = "topright",
+    ninb_anchor = "bottomright",
   },
 }
 
-local screen_eye = helpers.toggle_res(384, 16384, 0.8770906605517489)
+local screen_eye = helpers.toggle_res(384, 16384, 0.4182594342422464)
 local screen_preemptive = helpers.toggle_res(350, 1080)
 local screen_wide = helpers.toggle_res(1920, 300)
 
