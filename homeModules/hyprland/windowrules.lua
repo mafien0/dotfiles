@@ -63,6 +63,11 @@ hl.window_rule({
   float = true,
   size = {794, 554},
 })
+hl.window_rule({
+  name = "waywall-fullscreen",
+  match = {class = "(?i)^waywall$"},
+  fullscreen = true,
+})
 
 rules({
   {title = "(?i)terminal-popup"},

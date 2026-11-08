@@ -23,8 +23,12 @@ local config = {
     },
   },
   theme = {
-    background = nix.background .. "ff",
     ninb_anchor = "bottomright",
+
+    -- Somehow no background create a blured background of my wallpaper
+    -- idk how this works but i like it
+    -- thanks hyprland?
+    background = nix.background .. "00",
   },
 }
 
