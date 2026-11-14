@@ -119,6 +119,15 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         dank-qml-common.follows = "dms/dank-qml-common";
+        dux-qt-base.follows = "dfiles/dux-qt-base";
+      };
+    };
+
+    dfiles = {
+      url = "github:duxlabs-dev/dux-files";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        dank-qml-common.follows = "dms/dank-qml-common";
       };
     };
 
