@@ -1,18 +1,18 @@
 # MADE BY CLANKER
 {
   pkgs,
-  config,
   inputs,
   system,
+  config,
   ...
 }: let
   llmAgents = inputs.llm-agents.packages.${system};
 in {
-  imports = [./theme.nix];
-
   home = {
+    sessionPath = ["${config.home.homeDirectory}/.local/bin"];
+
     packages = [
-      llmAgents.omp
+      llmAgents.opencode2
       pkgs.mcp-nixos
 
       pkgs.ripgrep
@@ -21,7 +21,7 @@ in {
     ];
 
     file = {
-      ".omp/agent/AGENTS.md".text =
+      ".config/opencode/AGENTS.md".text =
         ''
           - Prefer `rg` over `grep`, `fd` over `find`.
           - Use git read-only actions when needed.
@@ -43,10 +43,35 @@ in {
         + "${builtins.readFile ./caveman.md}\n\n"
         + "${builtins.readFile ./judge.md}\n\n";
 
-      # Read-only settings layer, loaded above ~/.omp/agent/config.yml.
-      ".omp/agent/nix-settings.yml".source = ./nix-settings.yml;
-    };
+      ".config/opencode/opencode.json".text = builtins.toJSON {
+        "$schema" = "https://opencode.ai/config.json";
+        update = "disable";
+        mcp = {
+          servers = {
+            browse = {
+              type = "local";
+              command = [
+                "${config.home.homeDirectory}/.local/bin/browse"
+                "mcp"
+              ];
+              environment = {
+                OPENCODE_BROWSER_RUNTIME = "auto-update";
+              };
+            };
+          };
+        };
+      };
 
-    sessionVariables.PI_CONFIG_FILES = "${config.home.homeDirectory}/.omp/agent/nix-settings.yml";
+      ".config/opencode/cli.json".text = builtins.toJSON {
+        "$schema" = "https://opencode.ai/v2/cli.json";
+        theme = {
+          name = "system";
+          mode = "system";
+        };
+        tabs = {
+          mode = "off";
+        };
+      };
+    };
   };
 }

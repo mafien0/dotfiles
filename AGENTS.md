@@ -99,10 +99,10 @@ sub-files imported from the module's `default.nix`.
   (`hl.env` vars); the Hyprland lua API is the global `hl`. Config files load
   in `00-config`, `10-input`, `20-style`, `30-windowrules` order.
   Check changes with `Hyprland --verify-config -c <generated>/hyprland.lua`.
-- **ai** — installs `llm-agents.omp` + `mcp-nixos` (plus `rg`/`fd`/`python3`),
-  writes `~/.omp/agent/AGENTS.md` from the inline rules + `caveman.md` +
-  `judge.md`, links `nix-settings.yml` (via `sessionVariables.PI_CONFIG_FILES`),
-  and `theme.nix` generates an omp theme JSON from `config.common.colors`.
+- **ai** — installs `llm-agents.opencode2` + `mcp-nixos` (plus `rg`/`fd`/`python3`),
+  writes `~/.config/opencode/AGENTS.md` from the inline rules + `caveman.md` +
+  `judge.md`, and sets `~/.config/opencode/opencode.json` (updates disabled) +
+  `cli.json` (theme `system`).
 - **dms** — `programs.dank-material-shell` from `inputs.dms`, with settings
   split into `dms/config.nix` + `dms/idle.nix`; theming via
   `stylix.targets.dank-material-shell`. `nixosModules/dms-greeter` wires the
@@ -166,9 +166,7 @@ sub-files imported from the module's `default.nix`.
 │   ├──  ai/
 │   │   ├── 󰂺 caveman.md
 │   │   ├──  default.nix
-│   │   ├── 󰂺 judge.md
-│   │   ├──  nix-settings.yml
-│   │   └──  theme.nix
+│   │   └── 󰂺 judge.md
 │   ├──  apps/
 │   │   └──  default.nix
 │   ├──  btop/
