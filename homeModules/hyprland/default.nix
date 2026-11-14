@@ -16,8 +16,8 @@
         autoLoad = false;
         content = ''
           return {
-            ipc = "${lib.getExe inputs.dms.packages.${system}.dms-shell} ipc call",
             dms = "${lib.getExe inputs.dms.packages.${system}.dms-shell}",
+            ipc = "${lib.getExe inputs.dms.packages.${system}.dms-shell} ipc call",
             terminal = "${lib.getExe pkgs.foot}",
             fileManager = "${lib.getExe pkgs.thunar}",
             wlClipPersist = "${lib.getExe pkgs.wl-clip-persist}",
@@ -26,7 +26,6 @@
             wpctl = "${lib.getExe' pkgs.wireplumber "wpctl"}",
             playerctl = "${lib.getExe pkgs.playerctl}",
             brightnessctl = "${lib.getExe pkgs.brightnessctl}",
-            polkitAgent = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1",
 
             borderSize = ${toString config.common.borderSize},
             cornerRadius = ${toString (builtins.floor config.common.cornerRadius)},
