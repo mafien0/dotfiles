@@ -1,6 +1,23 @@
 {
   programs.dank-material-shell.settings = {
+    # General
+    configVersion = 42;
     clockFormat = "24h";
+    currentThemeName = "custom";
+    wallpaperBackgroundColorMode = "black";
+    fontWeight = 600;
+    fontScale = 1;
+    dmsWindowsFloatingSeeded = ["hyprland"];
+    widgetBackgroundColor = "default";
+    hyprlandWindowOpacity = 100;
+    hyprlandTilingLayout = "";
+    reduceMotion = false;
+    springBounce = 0;
+    barElevationEnabled = false;
+    launcherStyle = "spotlight";
+
+    # Lock screen
+    lockScreenShowPowerActions = true;
     lockScreenWidgetInstances = [
       {
         id = "lock_clock";
@@ -80,6 +97,7 @@
       }
     ];
 
+    # Greeter
     greeterWidgetInstances = [
       {
         id = "lock_clock";
@@ -158,13 +176,12 @@
       }
     ];
 
-    currentThemeName = "custom";
-    wallpaperBackgroundColorMode = "black";
-    fontWeight = 600;
-    fontScale = 1;
-    lockScreenShowPowerActions = true;
+    # OSD
+    osdPosition = 4;
     osdKeyboardLayoutEnabled = true;
+    osdWorkspaceEnabled = false;
 
+    # Dock
     dockConfigs = [
       {
         id = "dock";
@@ -236,15 +253,7 @@
       }
     ];
 
-    dmsWindowsFloatingSeeded = ["hyprland"];
-    widgetBackgroundColor = "default";
-    hyprlandWindowOpacity = 100;
-    hyprlandTilingLayout = "";
-    reduceMotion = false;
-    springBounce = 0;
-    barElevationEnabled = false;
-    launcherStyle = "spotlight";
-
+    # Bar
     barConfigs = [
       {
         id = "default";
@@ -366,7 +375,5 @@
         trigger = "?";
       };
     };
-
-    configVersion = 42;
   };
 }
