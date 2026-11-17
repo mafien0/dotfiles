@@ -32,7 +32,7 @@ local config = {
   },
 }
 
-local screen_eye = helpers.toggle_res(384, 16384, 0.4182594342422464)
+local screen_eye = helpers.toggle_res(384, 16384, 0.334607547393797)
 local screen_preemptive = helpers.toggle_res(350, 1080)
 local screen_wide = helpers.toggle_res(1920, 300)
 
