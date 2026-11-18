@@ -1,6 +1,7 @@
 # MADE BY CLANKER
 {
   pkgs,
+  lib,
   inputs,
   system,
   config,
@@ -37,6 +38,7 @@ in {
           - Pulling packages from other flakes is forbidden
           - Ask for permission before running huge packages
           - Always use flakes (e.g. `nix run nixpkgs#cowsay`)
+          - When doing nix-stuff, rely on mcp first, search the web or run commands only if mcp can't do what you want
 
           - Never speak chinese, if you forgot what langauge to speak in, default to english.
         ''
@@ -57,6 +59,12 @@ in {
               environment = {
                 OPENCODE_BROWSER_RUNTIME = "auto-update";
               };
+            };
+            nixos = {
+              type = "local";
+              command = [
+                (lib.getExe pkgs.mcp-nixos)
+              ];
             };
           };
         };
