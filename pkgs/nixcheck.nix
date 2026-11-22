@@ -48,7 +48,7 @@ pkgs.writeShellApplication {
 
     run "nixpkgs-lint" nixpkgs-lint "''${targets[@]}"
     run "alejandra check" alejandra -c -q "''${targets[@]}"
-    run "statix check" statix check "''${targets[@]}"
+    run "statix check" statix check -i ".direnv/" "''${targets[@]}"
     run "deadnix check" deadnix "''${targets[@]}"
 
     echo

@@ -1,0 +1,116 @@
+name: Kotlin Updates
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-kotlin-lsp:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31.11.1
+
+      - name: Check latest release
+        id: check
+        run: |
+          current=$(grep -oP 'version = "\K[^"]+' pkgs/kotlin-lsp/default.nix | head -1)
+          latest=$(curl -fsSL https://api.github.com/repos/Kotlin/kotlin-lsp/releases/latest | jq -r '.tag_name' | sed 's#^kotlin-lsp/v##')
+          echo "current=$current" >> "$GITHUB_ENV"
+          echo "latest=$latest" >> "$GITHUB_ENV"
+          if [ "$current" = "$latest" ]; then
+            echo "up_to_date=true" >> "$GITHUB_ENV"
+          else
+            echo "up_to_date=false" >> "$GITHUB_ENV"
+          fi
+
+      - name: Fetch hash
+        if: env.up_to_date != 'true'
+        run: |
+          hash=$(nix-prefetch-url --type sha256 "https://download.jetbrains.com/language-server/kotlin-server/${{ env.latest }}/kotlin-server-${{ env.latest }}.tar.gz")
+          sri=$(nix hash convert --hash-algo sha256 --to sri "$hash")
+          echo "sri=$sri" >> "$GITHUB_ENV"
+
+      - name: Update package
+        if: env.up_to_date != 'true'
+        run: |
+          sed -i "s/version = \"${{ env.current }}\";/version = \"${{ env.latest }}\";/" pkgs/kotlin-lsp/default.nix
+          sed -i "s#sha256 = \"sha256-[^\"]*\";#sha256 = \"${{ env.sri }}\";#" pkgs/kotlin-lsp/default.nix
+
+      - name: Validate
+        if: env.up_to_date != 'true'
+        run: NIXPKGS_ALLOW_UNFREE=1 nix build .#kotlin-lsp
+
+      - name: Open pull request
+        if: env.up_to_date != 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: update kotlin-lsp to ${{ env.latest }}"
+          title: "Update kotlin-lsp to ${{ env.latest }}"
+          body: "Automated update of the packaged Kotlin LSP to ${{ env.latest }}."
+          branch: "update-kotlin-lsp-${{ env.latest }}"
+          delete-branch: true
+
+  update-kotlin-nvim:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31.11.1
+
+      - name: Check latest release
+        id: check
+        run: |
+          current=$(grep -oP 'version = "\K[^"]+' homeModules/neovim/default.nix | head -1)
+          current_rev=$(grep -oP 'rev = "\K[^"]+' homeModules/neovim/default.nix | head -1)
+          latest=$(curl -fsSL https://api.github.com/repos/AlexandrosAlexiou/kotlin.nvim/releases/latest | jq -r '.tag_name')
+          latest_version="${latest#v}"
+          echo "current=$current" >> "$GITHUB_ENV"
+          echo "current_rev=$current_rev" >> "$GITHUB_ENV"
+          echo "latest=$latest" >> "$GITHUB_ENV"
+          echo "latest_version=$latest_version" >> "$GITHUB_ENV"
+          if [ "$current_rev" = "$latest" ]; then
+            echo "up_to_date=true" >> "$GITHUB_ENV"
+          else
+            echo "up_to_date=false" >> "$GITHUB_ENV"
+          fi
+
+      - name: Fetch hash
+        if: env.up_to_date != 'true'
+        run: |
+          hash=$(nix-prefetch-url --unpack "https://github.com/AlexandrosAlexiou/kotlin.nvim/archive/refs/tags/${{ env.latest }}.tar.gz")
+          sri=$(nix hash convert --hash-algo sha256 --to sri "$hash")
+          echo "sri=$sri" >> "$GITHUB_ENV"
+
+      - name: Update plugin
+        if: env.up_to_date != 'true'
+        run: |
+          sed -i "s/version = \"${{ env.current }}\";/version = \"${{ env.latest_version }}\";/" homeModules/neovim/default.nix
+          sed -i "s/rev = \"${{ env.current_rev }}\";/rev = \"${{ env.latest }}\";/" homeModules/neovim/default.nix
+          sed -i "s#sha256 = \"sha256-[^\"]*\";#sha256 = \"${{ env.sri }}\";#" homeModules/neovim/default.nix
+
+      - name: Validate
+        if: env.up_to_date != 'true'
+        run: NIXPKGS_ALLOW_UNFREE=1 nix flake check
+
+      - name: Open pull request
+        if: env.up_to_date != 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: update kotlin.nvim to ${{ env.latest }}"
+          title: "Update kotlin.nvim to ${{ env.latest }}"
+          body: "Automated update of the kotlin.nvim plugin to ${{ env.latest }}."
+          branch: "update-kotlin-nvim-${{ env.latest }}"
+          delete-branch: true

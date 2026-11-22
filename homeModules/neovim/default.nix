@@ -12,6 +12,7 @@
   programs.neovim = let
     toLua = str: "${str}\n";
     toLuaFile = file: "${builtins.readFile file}\n";
+    kotlinLsp = pkgs.callPackage ./../../pkgs/kotlin-lsp {};
   in {
     enable = true;
     defaultEditor = true;
@@ -40,6 +41,7 @@
       yaml-language-server
       sqls
       alejandra
+      kotlinLsp
     ];
 
     initLua = ''
@@ -165,6 +167,24 @@
       }
       luasnip
       friendly-snippets
+
+      # Kotlin
+      {
+        plugin = pkgs.vimUtils.buildVimPlugin {
+          pname = "kotlin-nvim";
+          version = "2.5.0";
+          src = pkgs.fetchFromGitHub {
+            owner = "AlexandrosAlexiou";
+            repo = "kotlin.nvim";
+            rev = "v2.5.0";
+            sha256 = "sha256-raEIjlUDJKMFw31DVvsv7FJJ+2GUke5qV8IPAga9EcM=";
+          };
+        };
+        config = toLua ''
+          vim.env.KOTLIN_LSP_DIR = "${kotlinLsp}"
+          ${builtins.readFile ./plugins/kotlin.lua}
+        '';
+      }
     ];
   };
 }

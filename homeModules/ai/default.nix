@@ -19,6 +19,7 @@ in {
       pkgs.ripgrep
       pkgs.fd
       pkgs.python3
+      pkgs.nushell
     ];
 
     file = {
@@ -32,7 +33,10 @@ in {
           - Don't write useless comments. Code should be self-explanatory.
 
 
-          - You have python3 at your disposal, use it to write simple scripts, check some stuff, etc
+          - Prefer nushell over anything. Use nushell when needed to write simple scripts, invoke http request, etc. to use it run `nu -c <command>`
+          - Do not suggest nushell code to me. if you really want to show some code: write python
+          - Never use curl. if you need to make an http request use nushell.
+          - You have python3 at your disposal, use it to write scripts that nushell can't do
           - You have THE POWER OF NIX at your disposal
           - You can run any software you need, but only from nixpkgs
           - Pulling packages from other flakes is forbidden

@@ -15,6 +15,7 @@
     packages.${system} = {
       nixcheck = import ./pkgs/nixcheck.nix {inherit pkgs;};
       nixformat = import ./pkgs/nixformat.nix {inherit pkgs;};
+      kotlin-lsp = import ./pkgs/kotlin-lsp {inherit pkgs;};
     };
   in {
     inherit packages;
