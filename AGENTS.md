@@ -105,8 +105,7 @@ sub-files imported from the module's `default.nix`.
   `cli.json` (theme `system`).
 - **dms** — `programs.dank-material-shell` from `inputs.dms`, with settings
   split into `dms/config.nix` + `dms/idle.nix`; theming via
-  `stylix.targets.dank-material-shell`. `nixosModules/dms-greeter` wires the
-  `dux-greeter` login manager (hyprland compositor).
+  `stylix.targets.dank-material-shell`.
 
 ## Patterns
 
@@ -139,7 +138,7 @@ sub-files imported from the module's `default.nix`.
   `hardware.nix` / `programs.nix` / `disko.nix`.
 - **Flake inputs** — pin with `follows` to dedupe nixpkgs; shared inputs
   carry a `# shared by:` comment. `flint --fail-if-multiple-versions` enforces
-  no duplicate versions (e.g. `dux-greeter` follows `dms/dank-qml-common`).
+  no duplicate versions.
 
 ## Structure
 
@@ -258,8 +257,6 @@ sub-files imported from the module's `default.nix`.
 │   ├──  avahi/
 │   │   └──  default.nix
 │   ├──  ddc/
-│   │   └──  default.nix
-│   ├──  dms-greeter/
 │   │   └──  default.nix
 │   ├──  docker/
 │   │   └──  default.nix

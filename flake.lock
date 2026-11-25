@@ -118,31 +118,6 @@
         "type": "github"
       }
     },
-    "dfiles": {
-      "inputs": {
-        "dank-qml-common": [
-          "dms",
-          "dank-qml-common"
-        ],
-        "dux-qt-base": "dux-qt-base",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1795443783,
-        "narHash": "sha256-uRw+pophqkqEgxiKqDYxAcPIIZqFHJuU/tRhrmaymWc=",
-        "owner": "duxlabs-dev",
-        "repo": "dux-files",
-        "rev": "73581769072cd40e539a16c627afe6bb18ae75ad",
-        "type": "github"
-      },
-      "original": {
-        "owner": "duxlabs-dev",
-        "repo": "dux-files",
-        "type": "github"
-      }
-    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -203,55 +178,6 @@
       "original": {
         "owner": "duxlabs-dev",
         "repo": "dux-plugin-registry",
-        "type": "github"
-      }
-    },
-    "dux-greeter": {
-      "inputs": {
-        "dank-qml-common": [
-          "dms",
-          "dank-qml-common"
-        ],
-        "dux-qt-base": [
-          "dfiles",
-          "dux-qt-base"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1795022150,
-        "narHash": "sha256-EINAcQZPXnTzHJNGqFxTMFSv7eT0wxymdg10Pud131E=",
-        "owner": "duxlabs-dev",
-        "repo": "dux-greeter",
-        "rev": "3e4affaf85f91fd98fdb83a27651d2597963e8ae",
-        "type": "github"
-      },
-      "original": {
-        "owner": "duxlabs-dev",
-        "repo": "dux-greeter",
-        "type": "github"
-      }
-    },
-    "dux-qt-base": {
-      "inputs": {
-        "nixpkgs": [
-          "dfiles",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1795139910,
-        "narHash": "sha256-JxBwcoR86CfjT92/xQSbbaHn1OxddwtH/iF+u4fUvRw=",
-        "owner": "duxlabs-dev",
-        "repo": "dux-qt-base",
-        "rev": "75d4524dc5e678ca4b64a1f862dd7509ca6852b1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "duxlabs-dev",
-        "repo": "dux-qt-base",
         "type": "github"
       }
     },
@@ -656,11 +582,9 @@
     },
     "root": {
       "inputs": {
-        "dfiles": "dfiles",
         "disko": "disko",
         "dms": "dms",
         "dms-plugin-registry": "dms-plugin-registry",
-        "dux-greeter": "dux-greeter",
         "flake-compat": "flake-compat_2",
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils",

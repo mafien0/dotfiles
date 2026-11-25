@@ -12,7 +12,6 @@
     "docker"
     "gvfs"
     "localsend"
-    "dms-greeter"
     "nh"
     "hyprland"
     "nix-index"
