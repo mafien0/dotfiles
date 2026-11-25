@@ -72,4 +72,7 @@
   };
 
   stylix.targets.hyprland.enable = true;
+  home.shellAliases = {
+    h = "start-hyprland"; # I have no DM
+  };
 }
