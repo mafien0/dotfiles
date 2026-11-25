@@ -35,4 +35,7 @@ in {
     g = "${lib.getExe pkgs.git}";
     lg = "${lib.getExe pkgs.lazygit}";
   };
+  home.packages = with pkgs; [
+    git-crypt
+  ];
 }

@@ -24,7 +24,7 @@
     bruno
     pixelorama
 
-    vscodium
+    # vscodium
 
     # -- Games --
     mangohud

@@ -106,6 +106,12 @@ rules({
   float = true,
 })
 
+rules({
+  {class = "(?i)md.obsidian.Obsidian"},
+}, {
+  no_screen_share = true,
+})
+
 -- Layer Rules --
 
 -- https://wiki.hypr.land/useful-utilities/screen-sharing/

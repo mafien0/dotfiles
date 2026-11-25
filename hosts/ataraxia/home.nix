@@ -15,6 +15,7 @@ let
     "mfetch"
     "nixcord"
     "nixtools"
+    "obsidian"
     "dms"
     "neovim"
     "prismlauncher"
