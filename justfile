@@ -9,7 +9,7 @@ test:
     nix flake check
 
 flint:
-    nix run github:NotAShelf/flint -- --fail-if-multiple-versions
+    flint --fail-if-multiple-versions
 
 generate-iso:
     rm -rf iso
