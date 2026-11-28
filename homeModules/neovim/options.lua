@@ -2,6 +2,7 @@ local o = vim.opt
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+o.timeoutlen = 300
 
 o.number = true
 o.relativenumber = true
@@ -47,11 +48,14 @@ map("n", "<C-j>", "<C-w>j")
 map("n", "<C-k>", "<C-w>k")
 map("n", "<C-l>", "<C-w>l")
 
-map("n", "<leader>t", ":tabnew<CR>")
+map("n", "<leader>r", ":tabnew<CR>")
 map("n", "<leader>w", ":tabclose<CR>")
 
+map("n", "<leader>Q", ":wq<CR>")
+map("n", "<leader>q", ":q!<CR>")
+
 for i = 1, 9 do
-    map("n", "<M-" .. i .. ">", function()
+    map("n", "<C-" .. i .. ">", function()
         vim.cmd.tabnext(i)
     end, { desc = "Go to tab " .. i })
 end

@@ -142,11 +142,11 @@
         config = toLuaFile ./plugins/tiny-inline-diagnostic.lua;
       }
 
-      # Tabby
-      {
-        plugin = tabby-nvim;
-        config = toLuaFile ./plugins/tabby.lua;
-      }
+      # # Tabby
+      # {
+      #   plugin = tabby-nvim;
+      #   config = toLuaFile ./plugins/tabby.lua;
+      # }
 
       # Snacks
       {
