@@ -1,20 +1,33 @@
+local o = vim.opt
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.opt.number = true
-vim.opt.relativenumber = true
+o.number = true
+o.relativenumber = true
 
 -- Options
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.scrolloff = 10
-vim.opt.autoindent = true
-vim.opt.undofile = true
-vim.opt.expandtab = true
-vim.opt.formatoptions = "tcqj"
-vim.opt.signcolumn = "yes"
-vim.opt.cmdheight = 0
-vim.opt.termguicolors = true
+o.tabstop = 2
+o.shiftwidth = 2
+o.expandtab = true
+o.autoindent = true
+o.smartindent = true
+o.scrolloff = 10
+o.undofile = true
+o.formatoptions = "tcqj"
+o.signcolumn = "yes"
+o.cmdheight = 0
+o.termguicolors = true
+o.cursorline = true
+
+o.ignorecase = true
+o.smartcase = true
+o.hlsearch = true
+o.incsearch = true
+
+o.errorbells = false
+o.swapfile = true
+o.autochdir = false
 
 -- Keymaps
 local map = vim.keymap.set
@@ -33,3 +46,12 @@ map("n", "<C-h>", "<C-w>h")
 map("n", "<C-j>", "<C-w>j")
 map("n", "<C-k>", "<C-w>k")
 map("n", "<C-l>", "<C-w>l")
+
+map("n", "<leader>t", ":tabnew<CR>")
+map("n", "<leader>w", ":tabclose<CR>")
+
+for i = 1, 9 do
+    map("n", "<M-" .. i .. ">", function()
+        vim.cmd.tabnext(i)
+    end, { desc = "Go to tab " .. i })
+end
